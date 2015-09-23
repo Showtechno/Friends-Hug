@@ -4,5 +4,7 @@ import java.util.HashMap;
 
 public class Server {
 
-	private HashMap clientlist();
+	private HashMap<Integer,ServerThread> clientlist;
+	
+
 }
