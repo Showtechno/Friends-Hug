@@ -32,6 +32,7 @@ public class Server {
 			ServerSocket serverSocket = new ServerSocket(7777,0,getIp());
 			while(true){
 				Socket cs = serverSocket.accept();
+				clientlist.put(i, new ServerThread());
 			}
 		}
 		catch(Exception e){
