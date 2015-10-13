@@ -42,7 +42,8 @@ public class Chatfenster {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 699, 540);
+		frame.setTitle("Chat");
+		frame.setBounds(100, 100, 700, 540);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
