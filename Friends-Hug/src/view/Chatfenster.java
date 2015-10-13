@@ -57,7 +57,7 @@ public class Chatfenster {
 		JLabel chatfenster = new JLabel("");
 		JScrollPane scrollerForChatfenster = new JScrollPane(chatfenster, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		chatfenster.setBounds(10, 11, 493, 416);
-		frame.getContentPane().add(chatfenster);
+		frame.getContentPane().add(scrollerForChatfenster);
 		
 		JButton zurueckButton = new JButton("zurück");
 		zurueckButton.addActionListener(new ActionListener() {
@@ -70,6 +70,6 @@ public class Chatfenster {
 		JLabel teilnehmerliste = new JLabel("");
 		JScrollPane scrollerForTeilnehmerliste = new JScrollPane(teilnehmerliste, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		teilnehmerliste.setBounds(528, 17, 133, 410);
-		frame.getContentPane().add(teilnehmerliste);
+		frame.getContentPane().add(scrollerForTeilnehmerliste);
 	}
 }
