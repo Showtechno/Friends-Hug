@@ -3,9 +3,11 @@ package view;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -37,6 +39,7 @@ public class Chatfenster {
 		initialize();
 	}
 
+	
 	/**
 	 * Initialize the contents of the frame.
 	 */
@@ -53,6 +56,7 @@ public class Chatfenster {
 		textField.setColumns(10);
 		
 		JLabel chatfenster = new JLabel("");
+		JScrollPane scrollerForChatfenster = new JScrollPane(chatfenster, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		chatfenster.setBounds(10, 11, 493, 416);
 		frame.getContentPane().add(chatfenster);
 		
@@ -65,6 +69,7 @@ public class Chatfenster {
 		frame.getContentPane().add(zurueckButton);
 		
 		JLabel teilnehmerliste = new JLabel("");
+		JScrollPane scrollerForTeilnehmerliste = new JScrollPane(teilnehmerliste, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		teilnehmerliste.setBounds(528, 17, 133, 410);
 		frame.getContentPane().add(teilnehmerliste);
 	}
