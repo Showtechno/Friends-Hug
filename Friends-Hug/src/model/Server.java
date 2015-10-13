@@ -13,7 +13,7 @@ import javax.xml.stream.events.StartDocument;
 
 public class Server {
 
-	private HashMap<Integer,ServerThread> clientlist;
+	private HashMap<Integer,ServerThread> clientlist = new HashMap<Integer, ServerThread>();
 	
 	private InetAddress ip;
 	
@@ -22,18 +22,18 @@ public class Server {
 	}
 	public void setIp() {
 		
-			InetSocketAddress i =new InetSocketAddress("127.0.0.1", 1234);
-			this.ip =i.getAddress();
+//			InetSocketAddress i =new InetSocketAddress("127.0.0.1", 7778);
+//			this.ip =i.getAddress();
 		
 	}		
 		
 	public void start(){
-		if(ip == null){
-			setIp();
-		}
-		int listnumber= 1;
+//		if(ip == null){
+//			setIp();
+//		}
+		int listnumber= 0;
 		try{
-			ServerSocket serverSocket = new ServerSocket(7777,0,ip);
+			ServerSocket serverSocket = new ServerSocket(7777);
 			System.out.println("Server ist im Betrieb");
 			while(true){
 				Socket socket = serverSocket.accept();
@@ -45,7 +45,8 @@ public class Server {
 			}
 		}
 		catch(Exception e){
-			System.out.println("Servers funktioniert nicht.");
+			System.out.println("Server funktioniert nicht.");
+			System.out.println(e);
 		}
 	}
 	public void removeClient(int serverListID){
