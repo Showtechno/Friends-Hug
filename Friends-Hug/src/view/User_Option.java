@@ -4,7 +4,10 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
+
 import java.awt.Font;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -92,7 +95,7 @@ public class User_Option {
 		lblAltesPassword.setBounds(10, 308, 157, 14);
 		frmBenutzeroptionen.getContentPane().add(lblAltesPassword);
 		
-		textField_3 = new JTextField();
+		textField_3 = new JPasswordField();
 		textField_3.setBounds(206, 305, 86, 20);
 		frmBenutzeroptionen.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
@@ -101,7 +104,7 @@ public class User_Option {
 		lblNeuesPassword.setBounds(10, 339, 157, 14);
 		frmBenutzeroptionen.getContentPane().add(lblNeuesPassword);
 		
-		textField_4 = new JTextField();
+		textField_4 = new JPasswordField();
 		textField_4.setBounds(206, 336, 86, 20);
 		frmBenutzeroptionen.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
@@ -110,7 +113,7 @@ public class User_Option {
 		lblNeuesPasswordWiederholen.setBounds(10, 370, 186, 14);
 		frmBenutzeroptionen.getContentPane().add(lblNeuesPasswordWiederholen);
 		
-		textField_5 = new JTextField();
+		textField_5 = new JPasswordField();
 		textField_5.setBounds(206, 367, 86, 20);
 		frmBenutzeroptionen.getContentPane().add(textField_5);
 		textField_5.setColumns(10);
@@ -126,5 +129,7 @@ public class User_Option {
 		JButton btnZurck = new JButton("Zur\u00FCck");
 		btnZurck.setBounds(367, 468, 89, 23);
 		frmBenutzeroptionen.getContentPane().add(btnZurck);
+		
+
 	}
 }

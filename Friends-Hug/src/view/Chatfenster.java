@@ -51,7 +51,6 @@ public class Chatfenster {
 		frame.getContentPane().setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(10, 444, 500, 47);
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		

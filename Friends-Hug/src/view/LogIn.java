@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -71,7 +72,7 @@ public class LogIn {
 		frame.getContentPane().add(textField_1);
 		textField_1.setColumns(10);
 		
-		textField_2 = new JTextField();
+		textField_2 = new JPasswordField();
 		textField_2.setBounds(162, 123, 200, 20);
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);

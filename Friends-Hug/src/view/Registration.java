@@ -4,6 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
@@ -96,12 +97,12 @@ public class Registration {
 		frame.getContentPane().add(textField_2);
 		textField_2.setColumns(10);
 		
-		textField_3 = new JTextField();
+		textField_3 = new  JPasswordField();
 		textField_3.setBounds(248, 140, 170, 20);
 		frame.getContentPane().add(textField_3);
 		textField_3.setColumns(10);
 		
-		textField_4 = new JTextField();
+		textField_4 = new  JPasswordField();
 		textField_4.setBounds(248, 180, 170, 20);
 		frame.getContentPane().add(textField_4);
 		textField_4.setColumns(10);
