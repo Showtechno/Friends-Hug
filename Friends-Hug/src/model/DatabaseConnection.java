@@ -6,6 +6,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//UserID = Einmalige ID der Users
+//UserName = Name des Benutzers im Chatprogramm
+//MailAdress = E-Mail Adresse des Users
+//Passwort = Passwort des Users
+//Name = Nachname des Users
+//FirstName = Vorname des Users
+//NewPasswort = Flag ob das Passwort neu gestzt werden muss
+//UserLoggedIn = Flag ob der Userr eingeloggt ist oder nicht
+//Code = Code welcher der User beim ersten anmelden eingeben muss
+
 public class DatabaseConnection {
 	public void Connection(){
 		Connection connection = null;
