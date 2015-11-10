@@ -13,7 +13,7 @@ import javax.xml.stream.events.StartDocument;
 
 public class Server {
 
-	private HashMap<Integer,ServerThread> clientlist = new HashMap<Integer, ServerThread>();
+	protected HashMap<Integer,ServerThread> clientlist = new HashMap<Integer, ServerThread>();
 	
 	private InetAddress ip;
 	

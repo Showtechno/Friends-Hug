@@ -50,9 +50,6 @@ public class Client {
 			setInputFromServer(clientSocket.getInputStream());
 			setOutToServer((DataOutputStream) clientSocket.getOutputStream());
 			setTextVomServer(getInputFromServer().readLine());
-			if(getTextVomServer() =="chatFlag = true"){
-				
-			}
 			
 		}
 	}

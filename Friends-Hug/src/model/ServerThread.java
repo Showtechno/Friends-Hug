@@ -1,5 +1,7 @@
 package model;
 
+import java.io.DataInputStream;
+import java.io.PrintStream;
 import java.net.Socket;
 
 public class ServerThread extends Thread {
@@ -9,11 +11,7 @@ public class ServerThread extends Thread {
 	Socket socket;
 	int listnumber;
 	Server server;
-
-	public ServerThread(Socket socket, int listnumber, Server server) {
-		this.socket = socket; this.listnumber= listnumber; this.server = server;
-		// TODO Auto-generated constructor stub
-	}
+	String clientSentence; 
 
 	public boolean isLogInBoolean() {
 		return logInBoolean;
@@ -29,5 +27,48 @@ public class ServerThread extends Thread {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+	
+	public String getClientSentence() {
+		return clientSentence;
+	}
+
+	public void setClientSentence(String clientSentence) {
+		this.clientSentence = clientSentence;
+	}
+
+	public ServerThread(Socket socket, int listnumber, Server server) {
+		this.socket = socket; this.listnumber= listnumber; this.server = server;
+		// TODO Auto-generated constructor stub
+	}
+	public void receive(){
+		try{
+			DataInputStream in=new DataInputStream(socket.getInputStream());
+			setClientSentence(in.readLine());
+		}
+		catch(Exception e){
+			//idle 5 min log out benötigt
+			try{
+				socket.close();
+			}
+			catch(Exception f){
+				
+			}
+		}
+	}
+	public void transmit(){
+		try{
+			PrintStream	out=new PrintStream(socket.getOutputStream());
+			//senden benötigt
+		}
+		catch(Exception e){
+			//idle 5 min log out benötigt
+			try{
+				socket.close();
+			}
+			catch(Exception f){
+				
+			}
+		}
 	}
 }
