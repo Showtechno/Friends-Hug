@@ -127,8 +127,12 @@ public class User_Option {
 		frmBenutzeroptionen.getContentPane().add(btnPasswordndern);
 		
 		JButton btnZurck = new JButton("Zur\u00FCck");
-		btnZurck.setBounds(367, 468, 89, 23);
+		btnZurck.setBounds(447, 401, 89, 23);
 		frmBenutzeroptionen.getContentPane().add(btnZurck);
+		
+		JLabel lblStatusServer = new JLabel("");
+		lblStatusServer.setBounds(10, 451, 640, 40);
+		frmBenutzeroptionen.getContentPane().add(lblStatusServer);
 		
 
 	}

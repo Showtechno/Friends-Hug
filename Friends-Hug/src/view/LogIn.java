@@ -16,6 +16,7 @@ public class LogIn {
 	private JTextField textField_2;
 	private JButton btnZurck;
 	private JButton btnEinloggen;
+	private JLabel lblStatusServer;
 
 	/**
 	 * Launch the application.
@@ -84,6 +85,10 @@ public class LogIn {
 		btnEinloggen = new JButton("Einloggen");
 		btnEinloggen.setBounds(10, 216, 89, 23);
 		frame.getContentPane().add(btnEinloggen);
+		
+		lblStatusServer = new JLabel("");
+		lblStatusServer.setBounds(10, 361, 639, 40);
+		frame.getContentPane().add(lblStatusServer);
 	}
 
 }

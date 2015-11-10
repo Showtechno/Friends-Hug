@@ -20,6 +20,7 @@ public class Registration {
 	private JTextField textField_6;
 	private JButton btnRegistrieren;
 	private JButton btnZurck;
+	private JLabel lblStatusServer;
 
 	/**
 	 * Launch the application.
@@ -117,13 +118,17 @@ public class Registration {
 		frame.getContentPane().add(textField_6);
 		textField_6.setColumns(10);
 		
-		btnRegistrieren = new JButton("Registrieren");
-		btnRegistrieren.setBounds(10, 378, 120, 23);
+		btnRegistrieren = new JButton("Registrieren");	
+		btnRegistrieren.setBounds(10, 347, 120, 23);
 		frame.getContentPane().add(btnRegistrieren);
 		
 		btnZurck = new JButton("Zur\u00FCck");
-		btnZurck.setBounds(444, 378, 89, 23);
+		btnZurck.setBounds(444, 347, 89, 23);
 		frame.getContentPane().add(btnZurck);
+		
+		lblStatusServer = new JLabel("");
+		lblStatusServer.setBounds(10, 378, 647, 23);
+		frame.getContentPane().add(lblStatusServer);
 	}
 
 }

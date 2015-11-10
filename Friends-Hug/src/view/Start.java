@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class Start {
 
@@ -51,8 +54,15 @@ public class Start {
 		frame.getContentPane().add(btnRegistrieren);
 		
 		JButton btnBeenden = new JButton("Beenden");
-		btnBeenden.setBounds(455, 346, 155, 55);
+		btnBeenden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		btnBeenden.setBounds(455, 297, 155, 55);
 		frame.getContentPane().add(btnBeenden);
+		
+		JLabel lblStatusServer = new JLabel("");
+		lblStatusServer.setBounds(10, 363, 647, 38);
+		frame.getContentPane().add(lblStatusServer);
 	}
-
 }

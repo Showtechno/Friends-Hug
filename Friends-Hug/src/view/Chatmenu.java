@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class Chatmenu {
 
@@ -59,6 +60,10 @@ public class Chatmenu {
 		JButton btnAbmelden = new JButton("Abmelden");
 		btnAbmelden.setBounds(254, 231, 149, 50);
 		frmChatmen.getContentPane().add(btnAbmelden);
+		
+		JLabel lblStatusServer = new JLabel("");
+		lblStatusServer.setBounds(10, 454, 640, 37);
+		frmChatmen.getContentPane().add(lblStatusServer);
 	}
 
 }

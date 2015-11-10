@@ -8,9 +8,6 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-
 public class Chatfenster {
 
 	private JFrame frame;
@@ -60,10 +57,6 @@ public class Chatfenster {
 		frame.getContentPane().add(scrollerForChatfenster);
 		
 		JButton zurueckButton = new JButton("zurück");
-		zurueckButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		zurueckButton.setBounds(556, 456, 89, 23);
 		frame.getContentPane().add(zurueckButton);
 		
@@ -71,5 +64,9 @@ public class Chatfenster {
 		JScrollPane scrollerForTeilnehmerliste = new JScrollPane(teilnehmerliste, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		teilnehmerliste.setBounds(528, 17, 133, 410);
 		frame.getContentPane().add(scrollerForTeilnehmerliste);
+		
+		JLabel lblStatusServer = new JLabel("");
+		lblStatusServer.setBounds(10, 447, 630, 44);
+		frame.getContentPane().add(lblStatusServer);
 	}
 }
