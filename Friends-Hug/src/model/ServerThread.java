@@ -11,7 +11,8 @@ public class ServerThread extends Thread {
 	Socket socket;
 	int listnumber;
 	Server server;
-	String clientSentence; 
+	String clientSentence;
+	private Flagdetection flagdetectionObject = new Flagdetection();
 
 	public boolean isLogInBoolean() {
 		return logInBoolean;
@@ -45,6 +46,10 @@ public class ServerThread extends Thread {
 		try{
 			DataInputStream in=new DataInputStream(socket.getInputStream());
 			setClientSentence(in.readLine());
+			flagdetectionObject.returnFlagText(getClientSentence());
+			if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
+				setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());
+			}
 		}
 		catch(Exception e){
 			//idle 5 min log out benötigt
@@ -59,8 +64,10 @@ public class ServerThread extends Thread {
 	public void transmit(){
 		try{
 			PrintStream	out=new PrintStream(socket.getOutputStream());
-			//senden benötigt
-		}
+				for(ServerThread s: server.clientlist.values()) {
+					s.setClientSentence(getClientSentence());
+				}
+			}
 		catch(Exception e){
 			//idle 5 min log out benötigt
 			try{
