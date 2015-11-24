@@ -12,7 +12,12 @@ public class Chatfenster {
 
 	private JFrame frame;
 	private JTextField textField;
-
+	private static Chatfenster instance = new Chatfenster();
+	
+	public static Chatfenster getInstance(){
+		return instance;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
