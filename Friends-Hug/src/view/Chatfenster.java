@@ -51,10 +51,11 @@ public class Chatfenster {
 		frame.getContentPane().add(textField);
 		textField.setColumns(10);
 		
-		JLabel chatfenster = new JLabel("");
+		JLabel chatfenster = new JLabel();
 		JScrollPane scrollerForChatfenster = new JScrollPane(chatfenster, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		chatfenster.setBounds(10, 11, 493, 416);
 		frame.getContentPane().add(scrollerForChatfenster);
+		frame.getContentPane().add(chatfenster);
 		
 		JButton zurueckButton = new JButton("zurück");
 		zurueckButton.setBounds(556, 456, 89, 23);
