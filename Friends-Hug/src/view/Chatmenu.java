@@ -50,10 +50,6 @@ public class Chatmenu {
 		frmChatmen.getContentPane().add(btnChat);
 		
 		JButton btnOptionen = new JButton("Optionen");
-		btnOptionen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnOptionen.setBounds(254, 157, 149, 50);
 		frmChatmen.getContentPane().add(btnOptionen);
 		

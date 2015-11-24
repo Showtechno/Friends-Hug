@@ -50,14 +50,10 @@ public class Start {
 		frame.getContentPane().add(btnAnmelden);
 		
 		JButton btnRegistrieren = new JButton("Registrieren");
-		btnRegistrieren.setBounds(455, 107, 155, 55);
+		btnRegistrieren.setBounds(55, 107, 155, 55);
 		frame.getContentPane().add(btnRegistrieren);
 		
 		JButton btnBeenden = new JButton("Beenden");
-		btnBeenden.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
 		btnBeenden.setBounds(455, 297, 155, 55);
 		frame.getContentPane().add(btnBeenden);
 		
