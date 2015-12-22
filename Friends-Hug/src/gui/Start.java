@@ -26,19 +26,19 @@ public class Start
 		JButton btnAnmelden = new MenuButton(2);
 		btnAnmelden.setText("Anmelden");
 		btnAnmelden.setBounds(55, 107, 155, 55);
-		btnAnmelden.addActionListener(MenuListener.getInstance());
+		
 		add(btnAnmelden);
 		
 		JButton btnRegistrieren = new MenuButton(1);
 		btnRegistrieren.setText("Registrieren");
 		btnRegistrieren.setBounds(455, 107, 155, 55);
-		btnRegistrieren.addActionListener(MenuListener.getInstance());
+	
 		add(btnRegistrieren);
 		
 		JButton btnBeenden = new MenuButton(-1);
 		btnBeenden.setText("Beenden");
 		btnBeenden.setBounds(455, 297, 155, 55);
-		btnBeenden.addActionListener(MenuListener.getInstance());
+	
 		add(btnBeenden);
 	}
 }

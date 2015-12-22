@@ -40,9 +40,10 @@ public class Frame
 		chatfenster = new Chatfenster(start);
 		userOption = new UserOption(start);
 		setContentPane(start);
-		setBounds(535, 190, 250 + 6, 300 + 29);
+		setBounds(700, 450, 250 + 6, 300 + 29);
 		setTitle("PONG");
 		setLayout(null);
+		setSize(700,450);
 		setResizable(false);
 		
 		setVisible(true);
@@ -59,7 +60,7 @@ public class Frame
 			break;
 		}
 		case (START): {
-			setContentPane(((MenuPanel) getContentPane()).getParentPanel());
+			
 			setSize(getContentPane().getWidth(), getContentPane().getHeight());
 			break;
 		}
