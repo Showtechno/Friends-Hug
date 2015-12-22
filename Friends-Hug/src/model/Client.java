@@ -1,10 +1,10 @@
 package model;
 
 import java.io.*;
-import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import view.Chatfenster;
 
 
 public class Client {
@@ -17,6 +17,12 @@ public class Client {
 	
 	//Text vom Server
 	private String textVomServer;
+	
+	private Boolean isConnected = false;
+	
+	private String connectionText;
+	
+	private int connectionTryCount = 10;
 	
 	
 	public BufferedReader getInputFromServer() {
@@ -36,21 +42,59 @@ public class Client {
 	}
 	
 	public String getTextVomServer() {
-		
 		return textVomServer;
 	}
+	
 	public void setTextVomServer(String textVomServer) {
 		this.textVomServer = textVomServer;
 	}
-	public void connection() throws UnknownHostException, IOException{
+	
+	public Boolean getIsConnected() {
+		return isConnected;
+	}
+
+	public void setIsConnected(Boolean isConnected) {
+		this.isConnected = isConnected;
+	}
+
+	public String getConnectionText() {
+		return connectionText;
+	}
+
+	public void setConnectionText(String connectionText) {
+		this.connectionText = connectionText;
+	}
+
+	public void connection(){
+		
 		//Client öffnet ein Verbindung mit dem Port:7777
-		Socket clientSocket = new Socket("localhost", 7777);
-		//als Thread ersetzen
-		while(true){
-			setInputFromServer(clientSocket.getInputStream());
-			setOutToServer((DataOutputStream) clientSocket.getOutputStream());
-			setTextVomServer(getInputFromServer().readLine());
+		//FEHLT INTERNET CONNECTION
+		try{
+			Socket clientSocket = new Socket("localhost", 7777);
+			setIsConnected(true);
+			//als Thread ersetzen
+			while(true){
+				setInputFromServer(clientSocket.getInputStream());
+				setOutToServer((DataOutputStream) clientSocket.getOutputStream());
+				setTextVomServer(getInputFromServer().readLine());
+				Flagdetection flagdetectionObject = new Flagdetection();
+				flagdetectionObject.returnFlagText(getTextVomServer());
+				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
+					Chatfenster.getInstance().nachrichtenFensterChange(getTextVomServer());
+				}
+			}
+		}
+		//gui anschluss fehlt
+		catch(Exception e){
+			setIsConnected(false);
+			if(connectionTryCount > 0){
+				connection();
+				connectionTryCount--;
+			}
 			
+			else{
+				
+			}
 		}
 	}
 

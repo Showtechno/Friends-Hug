@@ -1,15 +1,9 @@
 package model;
 
-import java.io.IOException;
 import java.net.InetAddress;
-import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.HashMap;
-
-import javax.xml.stream.events.StartDocument;
 
 public class Server {
 
@@ -20,6 +14,7 @@ public class Server {
 	public InetAddress getIp() {
 		return ip;
 	}
+	//FEHLT INTERNET CONNECTION
 	public void setIp() {
 		
 //			InetSocketAddress i =new InetSocketAddress("127.0.0.1", 7778);

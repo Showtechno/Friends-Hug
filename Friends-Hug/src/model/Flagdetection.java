@@ -4,7 +4,6 @@ public class Flagdetection {
 
 	private String flag;
 	private String text;
-	private static Flagdetection instance = new Flagdetection();
 		
 	public String getFlag() {
 		return flag;
@@ -17,9 +16,6 @@ public class Flagdetection {
 	}
 	private void setText(String text) {
 		this.text = text;
-	}
-	public static Flagdetection getInstance(){
-		return instance;
 	}
 
 	
