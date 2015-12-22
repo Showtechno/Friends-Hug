@@ -9,7 +9,7 @@ public class UserOption
 	
 	
 	private static final long	serialVersionUID	= 6292949248291295930L;
-	
+	public JLabel lblStatusServer;
 	public UserOption(JPanel Start) {
 		this.setName("Benutzeroptionen");
 		setSize(700, 450);
@@ -17,7 +17,7 @@ public class UserOption
 		
 		parent = Start;
 		
-		JLabel lblStatusServer = new JLabel();
+		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblStatusServer.setBounds(10, 451, 640, 40);
