@@ -13,13 +13,13 @@ public class Start
 		extends MenuPanel {
 	
 	private static final long	serialVersionUID	= -7976732089602227034L;
-		
+	public JLabel lblStatusServer;
 	public Start() {
 		setSize(700, 450);
 		setLayout(null);
 		this.setName("Friends Hug");
 		
-		JLabel lblStatusServer = new JLabel();
+		lblStatusServer = new JLabel();
 		lblStatusServer.setBounds(10, 363, 647, 38);
 		add(lblStatusServer);
 		

@@ -9,7 +9,7 @@ public class Chatmenu
 		extends MenuPanel {
 	
 	private static final long	serialVersionUID	= 4123157239432552031L;
-	
+	public JLabel lblStatusServer;
 	public Chatmenu(JPanel Start) {
 		setSize(700, 450);
 		setLayout(null);
@@ -17,7 +17,7 @@ public class Chatmenu
 		
 		parent = Start;
 				
-		JLabel lblStatusServer = new JLabel();
+		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setVerticalAlignment(SwingConstants.BOTTOM);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.PLAIN, 14));

@@ -9,7 +9,7 @@ public class Registration
 		extends MenuPanel {
 	
 	private static final long	serialVersionUID	= 5873155239462552831L;
-	
+	public JLabel lblStatusServer;
 	public Registration(JPanel Start) {
 		setSize(700, 450);
 		setLayout(null);
@@ -66,7 +66,7 @@ public class Registration
 		lblEmailAdresseWiederholen.setBounds(10, 260, 198, 14);
 		add(lblEmailAdresseWiederholen);
 		
-		JLabel lblStatusServer = new JLabel();
+		lblStatusServer = new JLabel();
 		lblStatusServer.setText("");
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.PLAIN, 14));

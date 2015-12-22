@@ -9,7 +9,7 @@ public class LogIn
 	
 	
 	private static final long	serialVersionUID	= 6292949248291295930L;
-	
+	public JLabel lblStatusServer;
 	public LogIn(JPanel Start) {
 		this.setName("Log In");
 		setSize(700, 450);
@@ -17,7 +17,7 @@ public class LogIn
 		
 		parent = Start;
 		
-		JLabel lblStatusServer = new JLabel();
+		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblStatusServer.setBounds(10, 361, 639, 40);
