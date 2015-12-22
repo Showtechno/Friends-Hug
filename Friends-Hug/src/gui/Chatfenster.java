@@ -9,7 +9,7 @@ public class Chatfenster
 	
 	
 	private static final long	serialVersionUID	= 6292949248291295930L;
-	
+	public JLabel chatfenster;
 	public Chatfenster(JPanel Start) {
 		this.setName("Chat");
 		setSize(700, 450);
@@ -17,13 +17,14 @@ public class Chatfenster
 		
 		parent = Start;
 		
+		
 		JLabel lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblStatusServer.setBounds(10, 447, 630, 44);
 		add(lblStatusServer);
 		
-		JLabel chatfenster = new JLabel();
+		chatfenster = new JLabel();
 		JScrollPane scrollerForChatfenster = new JScrollPane(chatfenster, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		chatfenster.setHorizontalAlignment(SwingConstants.CENTER);
 		chatfenster.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -47,4 +48,5 @@ public class Chatfenster
 		
 		
 	}
+	
 }
