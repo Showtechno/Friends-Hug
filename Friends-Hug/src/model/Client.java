@@ -80,7 +80,7 @@ public class Client {
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
 				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-					Chatfenster.getInstance().nachrichtenFensterChange(getTextVomServer());
+					gui.Chatfenster.ChatfensternachrichtenFensterChange(getTextVomServer());
 				}
 			}
 		}

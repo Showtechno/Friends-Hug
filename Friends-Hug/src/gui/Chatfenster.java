@@ -10,6 +10,7 @@ public class Chatfenster
 	
 	private static final long	serialVersionUID	= 6292949248291295930L;
 	
+	
 	public Chatfenster(JPanel Start) {
 		this.setName("Chat");
 		setSize(700, 450);
@@ -45,6 +46,7 @@ public class Chatfenster
 		zurueckButton.addActionListener(MenuListener.getInstance());
 		add(zurueckButton);
 		
-		
+		nachrichtenFensterChange("test");		
 	}
+	
 }
