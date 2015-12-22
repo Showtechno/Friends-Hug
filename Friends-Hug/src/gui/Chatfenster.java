@@ -50,9 +50,10 @@ public class Chatfenster
 		zurueckButton.addActionListener(MenuListener.getInstance());
 		add(zurueckButton);
 		
-		nachrichtenFensterChange("test");		
+		nachrichtenFensterChange("test");	
+				
 	}
 	public void nachrichtenFensterChange(String massagefromServer){
-		chatfenster.setText(chatfenster.getName() + "\n" + massagefromServer);
+		chatfenster.setText(chatfenster.getText() + "\n" + massagefromServer);
 	}
 }

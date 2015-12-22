@@ -41,7 +41,7 @@ public class Frame
 		userOption = new UserOption(start);
 		setContentPane(start);
 		setBounds(700, 450, 250 + 6, 300 + 29);
-		setTitle("PONG");
+		setTitle("Friends Hug");
 		setLayout(null);
 		setSize(700,450);
 		setResizable(false);
@@ -60,7 +60,6 @@ public class Frame
 			break;
 		}
 		case (START): {
-			
 			setSize(getContentPane().getWidth(), getContentPane().getHeight());
 			break;
 		}
