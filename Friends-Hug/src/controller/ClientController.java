@@ -4,7 +4,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import model.Client;
-import view.Chatfenster;
+import gui.Chatfenster;
 
 public class ClientController {
 

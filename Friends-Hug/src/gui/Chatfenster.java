@@ -9,7 +9,10 @@ public class Chatfenster
 	
 	
 	private static final long	serialVersionUID	= 6292949248291295930L;
+	
+	public JLabel lblStatusServer;
 	public JLabel chatfenster;
+	public JLabel teilnehmerliste;
 	
 	public Chatfenster(JPanel Start) {
 		this.setName("Chat");
@@ -19,7 +22,7 @@ public class Chatfenster
 		parent = Start;
 		
 		
-		JLabel lblStatusServer = new JLabel();
+		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
 		lblStatusServer.setBounds(10, 447, 630, 44);
@@ -33,7 +36,7 @@ public class Chatfenster
 		add(scrollerForChatfenster);
 		add(chatfenster);
 		
-		JLabel teilnehmerliste = new JLabel();
+		teilnehmerliste = new JLabel();
 		JScrollPane scrollerForTeilnehmerliste = new JScrollPane(teilnehmerliste, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		teilnehmerliste.setHorizontalAlignment(SwingConstants.CENTER);
 		teilnehmerliste.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -49,5 +52,7 @@ public class Chatfenster
 		
 		nachrichtenFensterChange("test");		
 	}
-	
+	public void nachrichtenFensterChange(String massagefromServer){
+		chatfenster.setText(chatfenster.getName() + "\n" + massagefromServer);
+	}
 }

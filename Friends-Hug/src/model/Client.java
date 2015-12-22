@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-import view.Chatfenster;
+import gui.Chatfenster;
 
 
 public class Client {
@@ -80,7 +80,7 @@ public class Client {
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
 				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-					gui.Chatfenster.ChatfensternachrichtenFensterChange(getTextVomServer());
+//				 	gui.Chatfenster.ChatfensternachrichtenFensterChange(getTextVomServer());
 				}
 			}
 		}
