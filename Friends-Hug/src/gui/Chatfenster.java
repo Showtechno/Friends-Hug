@@ -1,8 +1,5 @@
 package gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 
@@ -15,8 +12,8 @@ public class Chatfenster
 	private static final long	serialVersionUID	= 6292949248291295930L;
 	
 	public JLabel lblStatusServer;
-	public JTextArea chatfenster;
-	public JLabel teilnehmerliste;
+	public static JTextArea chatfenster;
+	public JTextArea teilnehmerliste;
 	
 	public Chatfenster(JPanel Start) {
 		this.setName("Chat");
@@ -36,22 +33,26 @@ public class Chatfenster
 		chatfenster.setOpaque(true);
 		chatfenster.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		chatfenster.setLineWrap(true);
-		chatfenster.setBounds(10, 11, 493, 416);
-		JScrollPane areaScrollPane = new JScrollPane(chatfenster);
-		areaScrollPane.setVerticalScrollBarPolicy(
-		                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		areaScrollPane.setPreferredSize(new Dimension(493, 416));
-		areaScrollPane.setViewportView(chatfenster);
-		chatfenster.setEditable(false);
+		chatfenster.setBounds(10, 11, 493, 356);
+		chatfenster.setEditable(true);
 		add(chatfenster);
+		JScrollPane scrollPaneChatfenster= new JScrollPane();
+		scrollPaneChatfenster.setBounds(10, 11, 493, 356);
+		add(scrollPaneChatfenster);
+		scrollPaneChatfenster.setViewportView(chatfenster);
 		
-		teilnehmerliste = new JLabel();
-		JScrollPane scrollerForTeilnehmerliste = new JScrollPane(teilnehmerliste, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		teilnehmerliste.setHorizontalAlignment(SwingConstants.CENTER);
-		teilnehmerliste.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		teilnehmerliste.setBounds(528, 17, 133, 410);
-		add(scrollerForTeilnehmerliste);
+		teilnehmerliste = new JTextArea();
+		teilnehmerliste.setOpaque(true);
+		teilnehmerliste.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		teilnehmerliste.setLineWrap(true);
+		teilnehmerliste.setBounds(528, 17, 133, 356);
+		teilnehmerliste.setEditable(true);
+		teilnehmerliste.
 		add(teilnehmerliste);
+//		JScrollPane scrollPaneChatteilnehmerliste= new JScrollPane();
+//		scrollPaneChatteilnehmerliste.setBounds(528, 17, 133, 356);
+//		add(scrollPaneChatteilnehmerliste);
+//		scrollPaneChatteilnehmerliste.setViewportView(teilnehmerliste);
 		
 		JButton zurueckButton = new MenuButton(3);
 		zurueckButton.setText("Back");
@@ -59,21 +60,27 @@ public class Chatfenster
 		zurueckButton.addActionListener(MenuListener.getInstance());
 		add(zurueckButton);
 		
-		chatfenster.setText("test1");
-		int i = 0;
-		while(i <100){
-			nachrichtenFensterChange("test2dfjjjjjjjjjjjdfbjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjxcbadfbadfbjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjasjjjjjjjjjjjjjjsdfbadfgbjjjjjjjjjjjjjjjjjjjj");		
-			i++;
-		}
+		
+		
+		
+//		chatfenster.append("test1");
+//		int i = 0;
+//		while(i <100){
+//			nachrichtenFensterChange("test2dfjjjjjjjjjjjdfbjjjjjjjjjjjjjjjjjjjjjjjjj\n");		
+//			i++;
+//		}
+		
+		
+	}		
 
-		nachrichtenFensterChange("test");	
-				
-		if(chatfenster.getText() != null)
-			chatfenster.setText(chatfenster.getText() +  "\n" + massagefromServer);
-		else{
-			chatfenster.setText(massagefromServer);
-		}
 
-		chatfenster.setText(chatfenster.getText() + "\n" + massagefromServer);
-	}
+		public static void nachrichtenFensterChange(String massagefromServer){
+			if(chatfenster.getText() != null){
+				chatfenster.append("\n" + massagefromServer);
+			}
+			else{
+				chatfenster.append(massagefromServer);
+			}
+		}
+	
 }

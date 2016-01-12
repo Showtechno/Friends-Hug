@@ -64,6 +64,7 @@ public class Client {
 	public void setConnectionText(String connectionText) {
 		this.connectionText = connectionText;
 	}
+	
 
 	public void connection(){
 		
@@ -80,7 +81,7 @@ public class Client {
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
 				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-//				 	gui.Chatfenster.ChatfensternachrichtenFensterChange(getTextVomServer());
+				 	Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
 				}
 			}
 		}
