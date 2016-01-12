@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 import javax.swing.*;
 
@@ -58,6 +60,25 @@ public class Chatfenster
 		zurueckButton.addActionListener(MenuListener.getInstance());
 		add(zurueckButton);
 		
+		JTextArea eingabe = new JTextArea();
+		eingabe.setOpaque(true);
+		eingabe.setFont(new Font("Times New Roman", Font.PLAIN, 16));
+		eingabe.setLineWrap(false);
+		eingabe.setBounds(11, 368, 493, 37);
+		eingabe.setEditable(true);
+		add(eingabe);
+		JScrollPane scrollPaneEingabe= new JScrollPane();
+		scrollPaneEingabe.setBounds(11, 368, 493, 37);
+		add(scrollPaneEingabe);
+		scrollPaneEingabe.setViewportView(eingabe);
+		eingabe.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if(e.getKeyCode()== 10){
+					//senden
+				}
+			}
+		});
 	}		
 
 

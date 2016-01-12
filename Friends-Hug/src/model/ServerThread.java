@@ -49,6 +49,7 @@ public class ServerThread extends Thread {
 			flagdetectionObject.returnFlagText(getClientSentence());
 			if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
 				setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());
+				
 			}
 		}
 		catch(Exception e){

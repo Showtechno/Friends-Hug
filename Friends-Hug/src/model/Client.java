@@ -78,10 +78,13 @@ public class Client {
 				setInputFromServer(clientSocket.getInputStream());
 				setOutToServer((DataOutputStream) clientSocket.getOutputStream());
 				setTextVomServer(getInputFromServer().readLine());
-				Flagdetection flagdetectionObject = new Flagdetection();
-				flagdetectionObject.returnFlagText(getTextVomServer());
-				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-				 	Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
+				if(getTextVomServer()!= null){
+					Flagdetection flagdetectionObject = new Flagdetection();
+					flagdetectionObject.returnFlagText(getTextVomServer());
+						if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
+							Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
+						}
+						setTextVomServer(null);
 				}
 			}
 		}
