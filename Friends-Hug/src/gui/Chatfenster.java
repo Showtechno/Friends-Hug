@@ -7,8 +7,7 @@ import javax.swing.*;
 
 public class Chatfenster
 		extends MenuPanel {
-	
-	
+		
 	private static final long	serialVersionUID	= 6292949248291295930L;
 	
 	public JLabel lblStatusServer;
@@ -24,10 +23,10 @@ public class Chatfenster
 		
 		
 		lblStatusServer = new JLabel();
-		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		lblStatusServer.setBounds(10, 447, 630, 44);
+		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblStatusServer.setBounds(10, 391, 630, 44);
 		add(lblStatusServer);
+		lblStatusServer.setText("Serverstatus getrennt!");
 		
 		chatfenster = new JTextArea();
 		chatfenster.setOpaque(true);
@@ -44,32 +43,20 @@ public class Chatfenster
 		teilnehmerliste = new JTextArea();
 		teilnehmerliste.setOpaque(true);
 		teilnehmerliste.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		teilnehmerliste.setLineWrap(true);
-		teilnehmerliste.setBounds(528, 17, 133, 356);
+		teilnehmerliste.setLineWrap(false);
+		teilnehmerliste.setBounds(520, 11, 133, 356);
 		teilnehmerliste.setEditable(true);
-		teilnehmerliste.
 		add(teilnehmerliste);
-//		JScrollPane scrollPaneChatteilnehmerliste= new JScrollPane();
-//		scrollPaneChatteilnehmerliste.setBounds(528, 17, 133, 356);
-//		add(scrollPaneChatteilnehmerliste);
-//		scrollPaneChatteilnehmerliste.setViewportView(teilnehmerliste);
+		JScrollPane scrollPaneChatteilnehmerliste= new JScrollPane();
+		scrollPaneChatteilnehmerliste.setBounds(520, 11, 133, 356);
+		add(scrollPaneChatteilnehmerliste);
+		scrollPaneChatteilnehmerliste.setViewportView(teilnehmerliste);
 		
 		JButton zurueckButton = new MenuButton(3);
 		zurueckButton.setText("Back");
-		zurueckButton.setBounds(556, 456, 89, 23);
+		zurueckButton.setBounds(546, 386, 89, 23);
 		zurueckButton.addActionListener(MenuListener.getInstance());
 		add(zurueckButton);
-		
-		
-		
-		
-//		chatfenster.append("test1");
-//		int i = 0;
-//		while(i <100){
-//			nachrichtenFensterChange("test2dfjjjjjjjjjjjdfbjjjjjjjjjjjjjjjjjjjjjjjjj\n");		
-//			i++;
-//		}
-		
 		
 	}		
 
