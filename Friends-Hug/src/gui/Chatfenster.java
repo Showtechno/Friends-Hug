@@ -1,11 +1,12 @@
 package gui;
 
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.*;
+
+import model.Client;
 
 public class Chatfenster
 		extends MenuPanel {
@@ -75,7 +76,8 @@ public class Chatfenster
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== 10){
-					//senden
+					Client.getInstance().send(eingabe.getText());
+					eingabe.setText(null);
 				}
 			}
 		});

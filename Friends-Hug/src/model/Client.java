@@ -5,6 +5,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import gui.Chatfenster;
+import gui.Frame;
 
 
 public class Client {
@@ -13,7 +14,7 @@ public class Client {
 	private BufferedReader inputFromServer;
 	
 	//Daten die der Client sendet
-	private DataOutputStream outToServer;
+	private OutputStream outToServer;
 	
 	//Text vom Server
 	private String textVomServer;
@@ -24,6 +25,8 @@ public class Client {
 	
 	private int connectionTryCount = 10;
 	
+	private static Client instance;
+	
 	
 	public BufferedReader getInputFromServer() {
 		return inputFromServer;
@@ -33,11 +36,11 @@ public class Client {
 		this.inputFromServer = new BufferedReader(new InputStreamReader(inputFromServer));
 	}
 	
-	public DataOutputStream getOutToServer() {
+	public OutputStream getOutToServer() {
 		return outToServer;
 	}
 	
-	public void setOutToServer(DataOutputStream outToServer) {
+	public void setOutToServer(OutputStream outToServer) {
 		this.outToServer = outToServer;
 	}
 	
@@ -66,6 +69,12 @@ public class Client {
 	}
 	
 
+	public static Client getInstance() {
+		if (instance == null) {
+			instance = new Client();
+		}
+		return instance;
+	}
 	public void connection(){
 		
 		//Client öffnet ein Verbindung mit dem Port:7777
@@ -73,11 +82,14 @@ public class Client {
 		try{
 			Socket clientSocket = new Socket("localhost", 7777);
 			setIsConnected(true);
+			System.out.println("test open port");
 			//als Thread ersetzen
 			while(true){
+				System.out.println("while true schleife");
 				setInputFromServer(clientSocket.getInputStream());
-				setOutToServer((DataOutputStream) clientSocket.getOutputStream());
+				setOutToServer(clientSocket.getOutputStream());
 				setTextVomServer(getInputFromServer().readLine());
+				System.out.println("bau");
 				if(getTextVomServer()!= null){
 					Flagdetection flagdetectionObject = new Flagdetection();
 					flagdetectionObject.returnFlagText(getTextVomServer());
@@ -88,18 +100,28 @@ public class Client {
 				}
 			}
 		}
-		//gui anschluss fehlt
+//		//gui anschluss fehlt
 		catch(Exception e){
-			setIsConnected(false);
-			if(connectionTryCount > 0){
-				connection();
-				connectionTryCount--;
-			}
-			
-			else{
-				
-			}
+			e.printStackTrace();
+//			setIsConnected(false);
+//			if(connectionTryCount > 0 && isConnected == false){
+//				connectionTryCount--;
+//				connection();
+//			}
+//			
+//			else{
+//				
+//			}
 		}
+	}
+	public void send(String sentenceToSent){
+		System.out.println(outToServer);
+//		try {
+//			outToServer.write(sentenceToSent.getBytes());
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
