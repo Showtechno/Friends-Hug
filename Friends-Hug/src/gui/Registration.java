@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -95,15 +97,25 @@ public class Registration
 		txtEMailAddressenWiederholen.setBounds(10, 260, 198, 14);
 		
 		JButton btnRegistrieren = new MenuButton(3);
-		btnRegistrieren.setText("Play");
+		btnRegistrieren.setText("Registrieren");
 		btnRegistrieren.setBounds(0, 200, 250, 50);
 		btnRegistrieren.addActionListener(MenuListener.getInstance());
 		add(btnRegistrieren);
+		btnRegistrieren.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.out.println("registrierung in db fehlt");
+			}
+		});
 		
 		JButton btnZurck = new MenuButton(0);
 		btnZurck.setText("Back");
 		btnZurck.setBounds(0, 250, 250, 50);
 		btnZurck.addActionListener(MenuListener.getInstance());
 		add(btnZurck);
+		btnRegistrieren.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Frame.getInstance().switchPanel(Frame.START);
+			}
+		});
 	}
 }

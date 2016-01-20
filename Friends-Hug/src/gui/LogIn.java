@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -58,6 +60,11 @@ public class LogIn
 		btnEinloggen.setBounds(10, 216, 89, 23);
 		btnEinloggen.addActionListener(MenuListener.getInstance());
 		add(btnEinloggen);
+		btnEinloggen.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.out.println("einloggen fehlt!");
+			}
+		});
 		
 		
 		JButton btnZurck = new MenuButton(0);
@@ -65,6 +72,11 @@ public class LogIn
 		btnZurck.setBounds(417, 216, 89, 23);
 		btnZurck.addActionListener(MenuListener.getInstance());
 		add(btnZurck);
+		btnZurck.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+					Frame.getInstance().switchPanel(Frame.START);
+			}
+		});
 		
 		
 	}

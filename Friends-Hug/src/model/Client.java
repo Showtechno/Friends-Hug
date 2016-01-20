@@ -3,9 +3,7 @@ package model;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-
 import gui.Chatfenster;
-import gui.Frame;
 
 
 public class Client {
@@ -22,8 +20,6 @@ public class Client {
 	private Boolean isConnected = false;
 	
 	private String connectionText;
-	
-	private int connectionTryCount = 10;
 	
 	private static Client instance;
 	

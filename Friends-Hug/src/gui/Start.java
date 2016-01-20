@@ -1,5 +1,8 @@
 package gui;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -26,17 +29,32 @@ public class Start
 		btnAnmelden.setBounds(55, 107, 155, 55);
 		btnAnmelden.addActionListener(MenuListener.getInstance());
 		add(btnAnmelden);
+		btnAnmelden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame.getInstance().switchPanel(Frame.LOGIN);
+			}
+		});
 		
 		JButton btnRegistrieren = new MenuButton(1);
 		btnRegistrieren.setText("Registrieren");
 		btnRegistrieren.setBounds(455, 107, 155, 55);
 		btnRegistrieren.addActionListener(MenuListener.getInstance());
 		add(btnRegistrieren);
+		btnRegistrieren.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Frame.getInstance().switchPanel(Frame.REGISTATION);
+			}
+		});
 		
 		JButton btnBeenden = new MenuButton(-1);
 		btnBeenden.setText("Beenden");
 		btnBeenden.setBounds(455, 297, 155, 55);
 		btnBeenden.addActionListener(MenuListener.getInstance());
 		add(btnBeenden);
+		btnBeenden.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				System.out.println("beenden fehler");
+			}
+		});
 	}
 }
