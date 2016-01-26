@@ -18,6 +18,8 @@ public class LogIn
 		setLayout(null);
 		
 		parent = Start;
+		String Name = "Test";
+		String Passwort = "DQI12"; 
 		
 		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -65,7 +67,7 @@ public class LogIn
 		add(btnEinloggen);
 		btnEinloggen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				System.out.println("einloggen fehlt!");
+					Frame.getInstance().switchPanel(Frame.CHATMENU);
 			}
 		});
 		
@@ -77,7 +79,7 @@ public class LogIn
 		add(btnZurck);
 		btnZurck.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				Frame.getInstance().switchPanel(Frame.START);
+					Frame.getInstance().switchPanel(Frame.START);
 			}
 		});
 			
