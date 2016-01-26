@@ -21,50 +21,50 @@ public class Registration
 		
 		JLabel lblVorname = new JLabel();
 		lblVorname.setText("Vorname: ");
-		lblVorname.setHorizontalAlignment(SwingConstants.CENTER);
-		lblVorname.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		lblVorname.setHorizontalAlignment(SwingConstants.LEFT);
+		lblVorname.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblVorname.setBounds(10, 20, 198, 14);
 		add(lblVorname);
 		
 		JLabel lblNachname = new JLabel();
 		lblNachname.setText("Nachname: ");
-		lblNachname.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNachname.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblNachname.setHorizontalAlignment(SwingConstants.LEFT);
+		lblNachname.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		lblNachname.setBounds(10, 60, 198, 14);
 		add(lblNachname);
 		
 		JLabel lblBenutzername = new JLabel();
 		lblBenutzername.setText("Benutzername: ");
-		lblBenutzername.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBenutzername.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblBenutzername.setHorizontalAlignment(SwingConstants.LEFT);
+		lblBenutzername.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		lblBenutzername.setBounds(10, 100, 198, 14);
 		add(lblBenutzername);
 		
 		JLabel lblPasswort = new JLabel();
 		lblPasswort.setText("Passwort: ");
-		lblPasswort.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPasswort.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblPasswort.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPasswort.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		lblPasswort.setBounds(10, 140, 198, 14);
 		add(lblPasswort);
 		
 		JLabel lblPasswordWiederholen = new JLabel();
 		lblPasswordWiederholen.setText("Password wiederholen: ");
-		lblPasswordWiederholen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPasswordWiederholen.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblPasswordWiederholen.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPasswordWiederholen.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		lblPasswordWiederholen.setBounds(10, 180, 198, 14);
 		add(lblPasswordWiederholen);
 		
 		JLabel lblEmailAdresse = new JLabel();
 		lblEmailAdresse.setText("E-Mail Adresse: ");
-		lblEmailAdresse.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEmailAdresse.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblEmailAdresse.setHorizontalAlignment(SwingConstants.LEFT);
+		lblEmailAdresse.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		lblEmailAdresse.setBounds(10, 220, 198, 14);
 		add(lblEmailAdresse);
 		
 		JLabel lblEmailAdresseWiederholen = new JLabel();
 		lblEmailAdresseWiederholen.setText("E-Mail Adresse wiederholen: ");
-		lblEmailAdresseWiederholen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEmailAdresseWiederholen.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblEmailAdresseWiederholen.setHorizontalAlignment(SwingConstants.LEFT);
+		lblEmailAdresseWiederholen.setFont(new Font("Times New Roman", Font.PLAIN, 12));
 		lblEmailAdresseWiederholen.setBounds(10, 260, 198, 14);
 		add(lblEmailAdresseWiederholen);
 		
@@ -98,7 +98,7 @@ public class Registration
 		
 		JButton btnRegistrieren = new MenuButton(3);
 		btnRegistrieren.setText("Registrieren");
-		btnRegistrieren.setBounds(0, 200, 250, 50);
+		btnRegistrieren.setBounds(0, 280, 250, 50);
 		btnRegistrieren.addActionListener(MenuListener.getInstance());
 		add(btnRegistrieren);
 		btnRegistrieren.addActionListener(new ActionListener(){
@@ -109,10 +109,10 @@ public class Registration
 		
 		JButton btnZurck = new MenuButton(0);
 		btnZurck.setText("Back");
-		btnZurck.setBounds(0, 250, 250, 50);
+		btnZurck.setBounds(0, 330, 250, 50);
 		btnZurck.addActionListener(MenuListener.getInstance());
 		add(btnZurck);
-		btnRegistrieren.addActionListener(new ActionListener(){
+		btnZurck.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				Frame.getInstance().switchPanel(Frame.START);
 			}

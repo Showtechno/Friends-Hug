@@ -27,34 +27,37 @@ public class LogIn
 		
 		JLabel lblName = new JLabel();
 		lblName.setText("Benutzername: ");
-		lblName.setHorizontalAlignment(SwingConstants.CENTER);
-		lblName.setFont(new Font("Times New Roman", Font.BOLD, 30));
+		lblName.setHorizontalAlignment(SwingConstants.LEFT);
+		lblName.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblName.setBounds(10, 11, 130, 40);
 		add(lblName);
 		
 		JLabel lblPassword = new JLabel();
 		lblPassword.setText("Passwort: ");
-		lblPassword.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		lblPassword.setBounds(10, 11, 130, 40);
+		lblPassword.setHorizontalAlignment(SwingConstants.LEFT);
+		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblPassword.setBounds(10, 51, 130, 40);
 		add(lblPassword);
 		
 		JLabel lblEmailAdresse = new JLabel();
 		lblEmailAdresse.setText("E-Mail Addresse: ");
-		lblEmailAdresse.setHorizontalAlignment(SwingConstants.CENTER);
-		lblEmailAdresse.setFont(new Font("Times New Roman", Font.BOLD, 30));
-		lblEmailAdresse.setBounds(10, 11, 130, 40);
+		lblEmailAdresse.setHorizontalAlignment(SwingConstants.LEFT);
+		lblEmailAdresse.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblEmailAdresse.setBounds(10, 91, 130, 40);
 		add(lblEmailAdresse);
 		
 		JTextField txtName = new JTextField();
-		txtName.setBounds(162, 21, 200, 20);
+		txtName.setBounds(162, 11, 200, 20);
+		add(txtName);
 		
 		JTextField txtPasswort = new JPasswordField();
-		txtPasswort.setBounds(162, 72, 200, 20);
+		txtPasswort.setBounds(162, 51, 200, 20);
+		add(txtPasswort);
 		
 		JTextField txtEMailAdresse = new JTextField();
-		txtEMailAdresse.setBounds(162, 123, 200, 20);
-
+		txtEMailAdresse.setBounds(162, 91, 200, 20);
+		add(txtEMailAdresse);
+		
 		JButton btnEinloggen = new MenuButton(3);
 		btnEinloggen.setText("Einloggen");
 		btnEinloggen.setBounds(10, 216, 89, 23);
@@ -74,10 +77,10 @@ public class LogIn
 		add(btnZurck);
 		btnZurck.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-					Frame.getInstance().switchPanel(Frame.START);
+				Frame.getInstance().switchPanel(Frame.START);
 			}
 		});
-		
+			
 		
 	}
 }

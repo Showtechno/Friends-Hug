@@ -53,7 +53,7 @@ public class Start
 		add(btnBeenden);
 		btnBeenden.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				System.out.println("beenden fehler");
+				System.exit(0);
 			}
 		});
 	}

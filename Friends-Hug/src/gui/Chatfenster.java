@@ -1,6 +1,8 @@
 package gui;
 
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -37,6 +39,7 @@ public class Chatfenster
 		chatfenster.setLineWrap(true);
 		chatfenster.setBounds(10, 11, 493, 356);
 		chatfenster.setEditable(true);
+		chatfenster.setEditable(false);
 		add(chatfenster);
 		JScrollPane scrollPaneChatfenster= new JScrollPane();
 		scrollPaneChatfenster.setBounds(10, 11, 493, 356);
@@ -49,6 +52,7 @@ public class Chatfenster
 		teilnehmerliste.setLineWrap(false);
 		teilnehmerliste.setBounds(520, 11, 133, 356);
 		teilnehmerliste.setEditable(true);
+		teilnehmerliste.setEditable(false);
 		add(teilnehmerliste);
 		JScrollPane scrollPaneChatteilnehmerliste= new JScrollPane();
 		scrollPaneChatteilnehmerliste.setBounds(520, 11, 133, 356);
@@ -60,6 +64,11 @@ public class Chatfenster
 		zurueckButton.setBounds(546, 386, 89, 23);
 		zurueckButton.addActionListener(MenuListener.getInstance());
 		add(zurueckButton);
+		zurueckButton.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e){
+				Frame.getInstance().switchPanel(Frame.CHATMENU);
+			}
+		});
 		
 		JTextArea eingabe = new JTextArea();
 		eingabe.setOpaque(true);

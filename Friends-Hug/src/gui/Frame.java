@@ -15,6 +15,7 @@ public class Frame
 	public static final int		CHATMENU			= 3;
 	public static final int		CHATFENSTER			= 4;
 	public static final int 	USEROPTION			= 5;
+	public static final int 	BEENDEN				= -1;
 	private Chatfenster 		chatfenster;
 	private UserOption			userOption;
 	private Start				start;
@@ -54,38 +55,33 @@ public class Frame
 	
 	public void switchPanel(int panelNumber) {
 		switch (panelNumber) {
-		case (-1): {
-			this.dispose();
+		case (BEENDEN): {
+			//this.dispose();
 			System.exit(0);
 			break;
 		}
 		case (START): {
-			setSize(getContentPane().getWidth(), getContentPane().getHeight());
+			setContentPane(start);
 			break;
 		}
 		case (CHATMENU): {
-			setSize(chatMenu.getWidth(), chatMenu.getHeight());
 			setContentPane(chatMenu);
 			break;
 		}
 		case (LOGIN): {
-			setSize(logIn.getWidth(), logIn.getHeight());
 			setContentPane(logIn);
 			break;
 		}
 		
 		case (REGISTATION): {
-			setSize(registration.getWidth(), registration.getHeight());
 			setContentPane(registration);
 			break;
 		}
 		case (CHATFENSTER): {
-			setSize(chatfenster.getWidth(), chatfenster.getHeight());
 			setContentPane(chatfenster);
 			break;
 		}
 		case (USEROPTION): {
-			setSize(userOption.getWidth(), userOption.getHeight());
 			setContentPane(userOption);
 			break;
 		}
