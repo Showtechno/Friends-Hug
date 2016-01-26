@@ -18,9 +18,7 @@ public class LogIn
 		setLayout(null);
 		
 		parent = Start;
-		String Name = "Test";
-		String Passwort = "DQI12"; 
-		
+
 		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -79,7 +77,7 @@ public class LogIn
 		add(btnZurck);
 		btnZurck.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-					Frame.getInstance().switchPanel(Frame.START);
+				Frame.getInstance().switchPanel(Frame.START);
 			}
 		});
 			
