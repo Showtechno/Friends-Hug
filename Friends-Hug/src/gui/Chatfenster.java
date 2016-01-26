@@ -5,9 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-
 import javax.swing.*;
-
 import model.Client;
 
 public class Chatfenster
@@ -85,7 +83,8 @@ public class Chatfenster
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== 10){
-					Client.getInstance().setTextVomServer(eingabe.getText());
+					 Client.getInstance().setOutToServerText("CHAT_FLAG;" + eingabe.getText());
+					 System.out.println(Client.getInstance().getOutToServerText());
 					eingabe.setText(null);
 				}
 			}

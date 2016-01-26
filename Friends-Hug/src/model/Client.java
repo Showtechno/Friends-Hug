@@ -3,17 +3,15 @@ package model;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
 import gui.Chatfenster;
 
 
-public class Client {
+public class Client{
 
 	//Daten die vom Server kommen
 	private BufferedReader inputFromServer;
-	
-	//Daten die der Client sendet
-	private OutputStream outToServer;
-	
+		
 	//Text vom Server
 	private String textVomServer;
 	
@@ -23,6 +21,8 @@ public class Client {
 	
 	private static Client instance;
 	
+	private String outToServerText;
+		
 	
 	public BufferedReader getInputFromServer() {
 		return inputFromServer;
@@ -30,14 +30,6 @@ public class Client {
 	
 	public void setInputFromServer(InputStream inputFromServer) {
 		this.inputFromServer = new BufferedReader(new InputStreamReader(inputFromServer));
-	}
-	
-	public OutputStream getOutToServer() {
-		return outToServer;
-	}
-	
-	public void setOutToServer(OutputStream outToServer) {
-		this.outToServer = outToServer;
 	}
 	
 	public String getTextVomServer() {
@@ -65,13 +57,21 @@ public class Client {
 	}
 	
 
+	public String getOutToServerText() {
+		return outToServerText;
+	}
+
+	public void setOutToServerText(String outToServerText) {
+		this.outToServerText = outToServerText;
+	}
+
 	public static Client getInstance() {
 		if (instance == null) {
 			instance = new Client();
 		}
 		return instance;
 	}
-	public void connection(){
+	public void start(){
 		
 		//Client öffnet ein Verbindung mit dem Port:7777
 		//FEHLT INTERNET CONNECTION
@@ -80,26 +80,34 @@ public class Client {
 			setIsConnected(true);
 			System.out.println("test open port");
 			//als Thread ersetzen
-			while(true){
-				System.out.println("while true schleife");
-				setInputFromServer(clientSocket.getInputStream());
-				setOutToServer(clientSocket.getOutputStream());
-				setTextVomServer(getInputFromServer().readLine());
-				System.out.println("bau");
-				if(getTextVomServer()!= null){
-					Flagdetection flagdetectionObject = new Flagdetection();
-					flagdetectionObject.returnFlagText(getTextVomServer());
-						if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-							Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
-						}
-						setTextVomServer(null);
+			if(isConnected == true){
+				while(true){
+					System.out.println("chatschleife");
+					setInputFromServer(clientSocket.getInputStream());
+					DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
+					outToServer.writeBytes(getOutToServerText());
+					System.out.println(getOutToServerText());
+					System.out.println("outToServer initalisiert");
+					setTextVomServer(getInputFromServer().readLine());
+					if(getTextVomServer()!= null){
+						System.out.println("if abfrage gettextvomserver != null");
+						Flagdetection flagdetectionObject = new Flagdetection();
+						flagdetectionObject.returnFlagText(getTextVomServer());
+							if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
+								System.out.println("if abfrage flag_chat");
+								Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
+							}
+//							else{
+//								setTextVomServer(null);
+//							}
+					}
 				}
 			}
 		}
-//		//gui anschluss fehlt
+		//gui anschluss fehlt
 		catch(Exception e){
 			e.printStackTrace();
-//			setIsConnected(false);
+			setIsConnected(false);
 //			if(connectionTryCount > 0 && isConnected == false){
 //				connectionTryCount--;
 //				connection();
@@ -110,17 +118,10 @@ public class Client {
 //			}
 		}
 	}
-	public void send(String sentenceToSent){
-		System.out.println(outToServer);
-//		try {
-//			outToServer.write(sentenceToSent.getBytes());
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	}
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
-		new Client().connection();
+		new Client().start();
 	}
+
+
 }

@@ -41,30 +41,26 @@ public class ServerThread extends Thread {
 	public ServerThread(Socket socket, int listnumber, Server server) {
 		this.socket = socket; this.listnumber= listnumber; this.server = server;
 	}
+	
 	public void run(){
 		try{
-			DataInputStream in=new DataInputStream(socket.getInputStream());
-			PrintStream	out=new PrintStream(socket.getOutputStream());
-			setClientSentence(in.readLine());
-			flagdetectionObject.returnFlagText(getClientSentence());
-			if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-				setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());			
-				for(ServerThread s: server.clientlist.values()) {
-					s.setClientSentence(getClientSentence());
-					out.println(getClientSentence());
-					s.run();
+			while(true){
+				DataInputStream in=new DataInputStream(socket.getInputStream());
+				PrintStream	out=new PrintStream(socket.getOutputStream());
+				setClientSentence(in.readLine());
+				flagdetectionObject.returnFlagText(getClientSentence());
+				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
+					setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());			
+					for(ServerThread s: server.clientlist.values()){
+						s.setClientSentence(getClientSentence());
+						out.println(getClientSentence());
+						s.run();
+					}
 				}
 			}
 		}
 		catch(Exception e){
-			//idle 5 min log out benötigt
-			try{
-				socket.close();
-			}
-			catch(Exception f){
-				
-			}
+			e.printStackTrace();
 		}
 	}
-
 }

@@ -41,7 +41,7 @@ public class Server {
 		}
 		catch(Exception e){
 			System.out.println("Server funktioniert nicht.");
-			System.out.println(e);
+			e.printStackTrace();
 		}
 	}
 	public void removeClient(int serverListID){
