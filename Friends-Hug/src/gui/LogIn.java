@@ -18,7 +18,7 @@ public class LogIn
 		setLayout(null);
 		
 		parent = Start;
-		
+
 		lblStatusServer = new JLabel();
 		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
 		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 30));
@@ -65,7 +65,7 @@ public class LogIn
 		add(btnEinloggen);
 		btnEinloggen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				System.out.println("einloggen fehlt!");
+					Frame.getInstance().switchPanel(Frame.CHATMENU);
 			}
 		});
 		
