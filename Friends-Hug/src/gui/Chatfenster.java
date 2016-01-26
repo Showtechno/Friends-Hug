@@ -76,7 +76,7 @@ public class Chatfenster
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== 10){
-					Client.getInstance().send(eingabe.getText());
+					Client.getInstance().setTextVomServer(eingabe.getText());
 					eingabe.setText(null);
 				}
 			}
