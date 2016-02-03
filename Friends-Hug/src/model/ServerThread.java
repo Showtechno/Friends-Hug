@@ -50,11 +50,11 @@ public class ServerThread extends Thread {
 				setClientSentence(in.readLine());
 				flagdetectionObject.returnFlagText(getClientSentence());
 				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-					setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());			
+					setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());	
+					System.out.println(getClientSentence());
 					for(ServerThread s: server.clientlist.values()){
 						s.setClientSentence(getClientSentence());
 						out.println(getClientSentence());
-						s.run();
 					}
 				}
 			}

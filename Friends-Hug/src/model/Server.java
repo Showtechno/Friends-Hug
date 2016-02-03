@@ -28,7 +28,7 @@ public class Server {
 //		}
 		int listnumber= 0;
 		try{
-			ServerSocket serverSocket = new ServerSocket(7777);
+			ServerSocket serverSocket = new ServerSocket(1337);
 			System.out.println("Server ist im Betrieb");
 			while(true){
 				Socket socket = serverSocket.accept();

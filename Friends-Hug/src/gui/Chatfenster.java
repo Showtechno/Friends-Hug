@@ -84,7 +84,6 @@ public class Chatfenster
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== 10){
 					 Client.getInstance().setOutToServerText("CHAT_FLAG;" + eingabe.getText());
-					 System.out.println(Client.getInstance().getOutToServerText());
 					eingabe.setText(null);
 				}
 			}

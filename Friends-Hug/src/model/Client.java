@@ -22,6 +22,9 @@ public class Client{
 	private static Client instance;
 	
 	private String outToServerText;
+	
+	Socket clientSocket;
+	DataOutputStream outToServer;
 		
 	
 	public BufferedReader getInputFromServer() {
@@ -73,21 +76,22 @@ public class Client{
 	}
 	public void start(){
 		
-		//Client öffnet ein Verbindung mit dem Port:7777
+		//Client öffnet ein Verbindung mit dem Port:1337
 		//FEHLT INTERNET CONNECTION
 		try{
-			Socket clientSocket = new Socket("localhost", 7777);
+			clientSocket = new Socket("localhost",1337);
 			setIsConnected(true);
-			System.out.println("test open port");
 			//als Thread ersetzen
 			if(isConnected == true){
+				System.out.println("connected");
 				while(true){
-					System.out.println("chatschleife");
+					System.out.println("while true");
 					setInputFromServer(clientSocket.getInputStream());
-					DataOutputStream outToServer = new DataOutputStream(clientSocket.getOutputStream());
-					outToServer.writeBytes(getOutToServerText());
-					System.out.println(getOutToServerText());
-					System.out.println("outToServer initalisiert");
+					outToServer = new DataOutputStream(clientSocket.getOutputStream());
+					if (getOutToServerText() != null){
+						send();
+						setOutToServerText(null);
+					}
 					setTextVomServer(getInputFromServer().readLine());
 					if(getTextVomServer()!= null){
 						System.out.println("if abfrage gettextvomserver != null");
@@ -118,6 +122,17 @@ public class Client{
 //			}
 		}
 	}
+		public void send(){
+			
+			try {
+				outToServer.writeBytes(getOutToServerText());
+				System.out.println("text wurde gesendet!");
+			}
+			 catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		new Client().start();
