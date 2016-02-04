@@ -76,7 +76,7 @@ public class Client{
 	}
 	public void start(){
 		
-		//Client öffnet ein Verbindung mit dem Port:1337
+		//Client Ã¶ffnet ein Verbindung mit dem Port:1337
 		//FEHLT INTERNET CONNECTION
 		try{
 			clientSocket = new Socket("localhost",1337);
@@ -86,7 +86,9 @@ public class Client{
 				System.out.println("connected");
 				while(true){
 					System.out.println("while true");
-					setInputFromServer(clientSocket.getInputStream());
+					if(clientSocket.getInputStream.hasNext()){
+						setInputFromServer(clientSocket.getInputStream());
+					}
 					outToServer = new DataOutputStream(clientSocket.getOutputStream());
 					if (getOutToServerText() != null){
 						send();
