@@ -47,7 +47,9 @@ public class ServerThread extends Thread {
 			while(true){
 				DataInputStream in=new DataInputStream(socket.getInputStream());
 				PrintStream	out=new PrintStream(socket.getOutputStream());
-				setClientSentence(in.readLine());
+				if(in.hasNext){
+					setClientSentence(in.readLine());
+				}
 				flagdetectionObject.returnFlagText(getClientSentence());
 				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
 					setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());	
