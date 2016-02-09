@@ -46,11 +46,11 @@ public class LogIn
 		lblEmailAdresse.setBounds(10, 91, 130, 40);
 		add(lblEmailAdresse);
 		
-		JTextField txtName = new JTextField();
+		JTextField txtName = new JTextField("DQI12");
 		txtName.setBounds(162, 11, 200, 20);
 		add(txtName);
 		
-		JTextField txtPasswort = new JPasswordField();
+		JTextField txtPasswort = new JPasswordField("DQI12");
 		txtPasswort.setBounds(162, 51, 200, 20);
 		add(txtPasswort);
 		

@@ -83,7 +83,7 @@ public class Chatfenster
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== 10){
-					 Client.getInstance().setOutToServerText("CHAT_FLAG;" + eingabe.getText());
+					Client.getInstance().send("FLAG_CHAT;" + eingabe.getText());
 					eingabe.setText(null);
 				}
 			}
@@ -92,12 +92,7 @@ public class Chatfenster
 
 
 		public static void nachrichtenFensterChange(String massagefromServer){
-			if(chatfenster.getText() != null){
-				chatfenster.append("\n" + massagefromServer);
-			}
-			else{
-				chatfenster.append(massagefromServer);
-			}
+			chatfenster.append(massagefromServer);
 		}
 	
 }
