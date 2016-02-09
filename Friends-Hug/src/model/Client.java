@@ -3,15 +3,13 @@ package model;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 import gui.Chatfenster;
 
 
 public class Client{
 
-	//Daten die vom Server kommen
-	private BufferedReader inputFromServer;
-		
 	//Text vom Server
 	private String textVomServer;
 	
@@ -26,14 +24,6 @@ public class Client{
 	Socket clientSocket;
 	DataOutputStream outToServer;
 		
-	
-	public BufferedReader getInputFromServer() {
-		return inputFromServer;
-	}
-	
-	public void setInputFromServer(InputStream inputFromServer) {
-		this.inputFromServer = new BufferedReader(new InputStreamReader(inputFromServer));
-	}
 	
 	public String getTextVomServer() {
 		return textVomServer;
@@ -71,6 +61,16 @@ public class Client{
 	public static Client getInstance() {
 		if (instance == null) {
 			instance = new Client();
+			try {
+				instance.clientSocket = new Socket("localhost",1337);
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 		return instance;
 	}
@@ -79,33 +79,30 @@ public class Client{
 		//Client öffnet ein Verbindung mit dem Port:1337
 		//FEHLT INTERNET CONNECTION
 		try{
-			clientSocket = new Socket("localhost",1337);
 			setIsConnected(true);
 			//als Thread ersetzen
 			if(isConnected == true){
 				System.out.println("connected");
 				while(true){
 					System.out.println("while true");
-					if(clientSocket.getInputStream.hasNext()){
-						setInputFromServer(clientSocket.getInputStream());
-					}
-					outToServer = new DataOutputStream(clientSocket.getOutputStream());
-					if (getOutToServerText() != null){
-						send();
-						setOutToServerText(null);
-					}
-					setTextVomServer(getInputFromServer().readLine());
-					if(getTextVomServer()!= null){
-						System.out.println("if abfrage gettextvomserver != null");
+					InputStream inFromServer = clientSocket.getInputStream();
+					Scanner scan = new Scanner(inFromServer);
+					System.out.println("Client horcht...");
+					System.out.println(scan.nextLine());
+					System.out.println("Client hat was");
+					if(scan.hasNext()){
+						System.out.println(scan.nextLine());
+						setTextVomServer(scan.nextLine());
 						Flagdetection flagdetectionObject = new Flagdetection();
 						flagdetectionObject.returnFlagText(getTextVomServer());
-							if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-								System.out.println("if abfrage flag_chat");
-								Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
-							}
-//							else{
-//								setTextVomServer(null);
-//							}
+						if(flagdetectionObject.getFlag().equals("FLAG_CHAT")){
+							System.out.println("if abfrage flag_chat");
+							Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
+							setTextVomServer(null);
+						}
+						else{
+							setTextVomServer(null);
+						}
 					}
 				}
 			}
@@ -124,21 +121,16 @@ public class Client{
 //			}
 		}
 	}
-		public void send(){
+		public void send(String OutToServerString){
 			
 			try {
-				outToServer.writeBytes(getOutToServerText());
-				System.out.println("text wurde gesendet!");
+//
+				outToServer= new DataOutputStream(clientSocket.getOutputStream());
+				outToServer.writeBytes(OutToServerString);
 			}
 			 catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-
-	public static void main(String[] args) throws UnknownHostException, IOException {
-		new Client().start();
-	}
-
-
 }

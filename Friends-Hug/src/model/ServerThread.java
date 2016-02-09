@@ -1,8 +1,11 @@
 package model;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.PrintStream;
 import java.net.Socket;
+import java.util.Scanner;
 
 public class ServerThread extends Thread {
 
@@ -12,6 +15,7 @@ public class ServerThread extends Thread {
 	int listnumber;
 	Server server;
 	String clientSentence;
+	DataOutputStream outToClient;
 	private Flagdetection flagdetectionObject = new Flagdetection();
 
 	public boolean isLogInBoolean() {
@@ -46,23 +50,38 @@ public class ServerThread extends Thread {
 		try{
 			while(true){
 				DataInputStream in=new DataInputStream(socket.getInputStream());
-				PrintStream	out=new PrintStream(socket.getOutputStream());
-				if(in.hasNext){
-					setClientSentence(in.readLine());
-				}
-				flagdetectionObject.returnFlagText(getClientSentence());
-				if(flagdetectionObject.getFlag()=="FLAG_CHAT"){
-					setClientSentence(flagdetectionObject.getFlag() + getUsername()+ ": " + flagdetectionObject.getText());	
-					System.out.println(getClientSentence());
-					for(ServerThread s: server.clientlist.values()){
-						s.setClientSentence(getClientSentence());
-						out.println(getClientSentence());
+				Scanner scan = new Scanner(in);
+				if (scan.hasNextLine()){
+					flagdetectionObject.returnFlagText(scan.nextLine());
+					if(flagdetectionObject.getFlag().equals("FLAG_CHAT")){
+						setClientSentence(flagdetectionObject.getFlag()+ ';' + getUsername()+ ": " + flagdetectionObject.getText());	
+						for(ServerThread s: server.clientlist.values()){
+							System.out.println("forEach Durchlauf");
+							s.setClientSentence(getClientSentence());
+							s.sendServerThread(s.getClientSentence());
+						}
 					}
-				}
+				}					
 			}
 		}
 		catch(Exception e){
 			e.printStackTrace();
 		}
 	}
+	public void sendServerThread(String OutToServerString){
+			
+		try {
+//			
+			outToClient= new DataOutputStream(socket.getOutputStream());
+			System.out.println(socket.getRemoteSocketAddress());
+			outToClient.writeBytes(OutToServerString);
+			outToClient.flush();
+			System.out.println("sendServerThread: " + OutToServerString);
+		}
+			catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
