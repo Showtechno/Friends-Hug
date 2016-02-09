@@ -48,6 +48,13 @@ public class LogIn
 		lblEmailAdresse.setBounds(10, 91, 130, 40);
 		add(lblEmailAdresse);
 		
+		JLabel lblCode = new JLabel();
+		lblCode.setText("Sicherheitscode: ");
+		lblCode.setHorizontalAlignment(SwingConstants.LEFT);
+		lblCode.setFont(new Font("Times New Roman", Font.BOLD, 12));
+		lblCode.setBounds(10, 131, 130, 40);
+		add(lblCode);
+		
 		JTextField txtName = new JTextField("DQI12");
 		txtName.setBounds(162, 11, 200, 20);
 		add(txtName);
@@ -59,6 +66,10 @@ public class LogIn
 		JTextField txtEMailAdresse = new JTextField();
 		txtEMailAdresse.setBounds(162, 91, 200, 20);
 		add(txtEMailAdresse);
+		
+		JTextField txtCode = new JTextField();
+		txtCode.setBounds(162, 131, 200, 20);
+		add(txtCode);
 		
 		String namerichtig = "DQI12";
 		String passwortrichtig = "DQI12";
