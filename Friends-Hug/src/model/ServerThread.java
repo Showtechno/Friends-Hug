@@ -49,7 +49,7 @@ public class ServerThread extends Thread {
 				String input = scan.nextLine();
 				System.out.println(input);
 				flagdetectionObject.returnFlagText(input);
-				if (true || flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
+				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
 							+ ": " + flagdetectionObject.getText());
 					for (ServerThread s : server.clientlist.values()) {
