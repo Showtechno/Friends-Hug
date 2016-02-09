@@ -105,6 +105,12 @@ public class UserOption
 		neuesPasswortWiederholen.setBounds(206, 367, 86, 20);
 		add(neuesPasswortWiederholen);
 		
+		String name = txtneuerName.getText();
+		String name2 = txtneuerNameWiederholen.getText();
+		String passwort = neuesPasswort.getText();
+		String passwort2 = neuesPasswortWiederholen.getText();
+		
+		
 		JButton btnBenutzernamendern = new JButton();
 		btnBenutzernamendern.setText("Benutzername ändern");
 		btnBenutzernamendern.setBounds(10, 188, 172, 26);
@@ -112,6 +118,9 @@ public class UserOption
 		add(btnBenutzernamendern);
 		btnBenutzernamendern.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if(name.equals(name2)){
+					System.out.println(txtneuerNameWiederholen.getText());
+				}
 				System.out.println("Benutzername ändern fehlt");
 			}
 		});
@@ -123,6 +132,9 @@ public class UserOption
 		add(btnPasswordndern);
 		btnPasswordndern.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if(passwort.equals(passwort2)){
+					System.out.println(neuesPasswort.getText());
+				}
 				System.out.println("Password ändern fehlt");
 			}
 		});

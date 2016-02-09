@@ -58,6 +58,10 @@ public class LogIn
 		txtEMailAdresse.setBounds(162, 91, 200, 20);
 		add(txtEMailAdresse);
 		
+		String namerichtig = "DQI12";
+		String passwortrichtig = "DQI12";
+		String mailrichtig = "DQI12@schule.bremen.de";
+		
 		JButton btnEinloggen = new MenuButton(3);
 		btnEinloggen.setText("Einloggen");
 		btnEinloggen.setBounds(10, 216, 89, 23);
@@ -65,7 +69,15 @@ public class LogIn
 		add(btnEinloggen);
 		btnEinloggen.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-					Frame.getInstance().switchPanel(Frame.CHATMENU);
+				String name = txtName.getText();
+				String passwort = txtPasswort.getText();
+				String mail = txtEMailAdresse.getText();
+					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
+						if(passwort.equals(passwortrichtig)){
+							System.out.println("korrekt");
+							Frame.getInstance().switchPanel(Frame.CHATMENU);
+						}
+					}
 			}
 		});
 		

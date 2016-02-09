@@ -76,25 +76,37 @@ public class Registration
 		add(lblStatusServer);
 		
 		JTextField txtVorname = new JTextField();
-		txtVorname.setBounds(10, 20, 198, 14);
+		txtVorname.setBounds(150, 20, 198, 23);
+		add(txtVorname);
 		
 		JTextField txtNachname = new JTextField();
-		txtNachname.setBounds(10, 60, 198, 14);
+		txtNachname.setBounds(150, 60, 198, 23);
+		add(txtNachname);
 		
 		JTextField txtBenutzername = new JTextField();
-		txtBenutzername.setBounds(10, 100, 198, 14);
+		txtBenutzername.setBounds(150, 100, 198, 23);
+		add(txtBenutzername);
 		
 		JTextField txtPasswort = new JPasswordField();
-		txtPasswort.setBounds(10, 140, 198, 14);
+		txtPasswort.setBounds(150, 140, 198, 23);
+		add(txtPasswort);
 		
 		JTextField txtPasswordWiederholen = new JPasswordField();
-		txtPasswordWiederholen.setBounds(10, 180, 198, 14);
+		txtPasswordWiederholen.setBounds(150, 180, 198, 23);
+		add(txtPasswordWiederholen);
 		
 		JTextField txtEMailAddresse = new JTextField();
-		txtEMailAddresse.setBounds(10, 220, 198, 14);
+		txtEMailAddresse.setBounds(150, 220, 198, 23);
+		add(txtEMailAddresse);
 		
 		JTextField txtEMailAddressenWiederholen = new JTextField();
-		txtEMailAddressenWiederholen.setBounds(10, 260, 198, 14);
+		txtEMailAddressenWiederholen.setBounds(150, 260, 198, 23);
+		add(txtEMailAddressenWiederholen);
+		
+		String passwort = txtPasswort.getText();
+		String passwort2 = txtPasswordWiederholen.getText();
+		String mail = txtEMailAddresse.getText();
+		String mail2 = txtEMailAddressenWiederholen.getText();
 		
 		JButton btnRegistrieren = new MenuButton(3);
 		btnRegistrieren.setText("Registrieren");
@@ -103,6 +115,15 @@ public class Registration
 		add(btnRegistrieren);
 		btnRegistrieren.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
+				if(passwort.equals(passwort2)){
+					if(mail.equals(mail2)){
+						System.out.print(txtVorname.getText());
+						System.out.print(txtNachname.getText());
+						System.out.print(txtBenutzername.getText());
+						System.out.print(txtPasswort.getText());
+						System.out.println(txtEMailAddresse.getText());
+					}
+				}
 				System.out.println("registrierung in db fehlt");
 			}
 		});
