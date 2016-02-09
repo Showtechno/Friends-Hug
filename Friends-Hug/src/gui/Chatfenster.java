@@ -83,7 +83,7 @@ public class Chatfenster
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== 10){
-					Client.getInstance().send("FLAG_CHAT;" + eingabe.getText());
+					Client.getInstance().send("FLAG_CHAT;"+ eingabe.getText());
 					eingabe.setText(null);
 				}
 			}
@@ -94,5 +94,9 @@ public class Chatfenster
 		public static void nachrichtenFensterChange(String massagefromServer){
 			chatfenster.append(massagefromServer);
 		}
-	
+		
+//		public void serverStatusChange(Boolean isConnected){
+//			if(isConnected == true)
+//					
+//		}
 }

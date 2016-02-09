@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import model.Client;
+
 public class LogIn
 		extends MenuPanel {
 	
@@ -76,6 +78,7 @@ public class LogIn
 						if(passwort.equals(passwortrichtig)){
 							System.out.println("korrekt");
 							Frame.getInstance().switchPanel(Frame.CHATMENU);
+//							Client.getInstance().setUsername(name);
 						}
 					}
 			}
