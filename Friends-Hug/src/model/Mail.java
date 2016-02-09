@@ -1,13 +1,14 @@
 package model;
 
 import java.util.*;
-import javax.activation.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
 public class Mail {
 
 	public static void main(String[] args) {
+		// Nicht in der Schule testen da Port 25 gebloggt ist!!!!
+		
 		String to = "melina.wolle@gmail.com";
 		String from = "melwo97@web.de";
 		String host = "localhost";
