@@ -76,7 +76,6 @@ public class ServerThread extends Thread {
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
 				if(s.isAlive()== false){
-					System.out.println(s.listnumber);
 					server.clientlist.remove(s);
 					
 				}
