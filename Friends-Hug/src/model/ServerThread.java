@@ -58,6 +58,13 @@ public class ServerThread extends Thread {
 						s.sendServerThread(s.getClientSentence());
 					}
 				}
+				if(flagdetectionObject.getFlag().equals("FLAG_LOGOUT")){
+					server.clientlist.remove(listnumber);
+					stop();
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
+					
+				}
 
 			}
 		} catch (Exception e) {

@@ -3,6 +3,7 @@ package gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.mail.SendFailedException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
@@ -56,6 +57,7 @@ public class Start
 		btnBeenden.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
 				System.exit(0);
+				Client.getInstance().send("FLAG_LOGOUT");
 			}
 		});
 	}

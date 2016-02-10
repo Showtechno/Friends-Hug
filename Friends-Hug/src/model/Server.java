@@ -44,9 +44,6 @@ public class Server {
 			e.printStackTrace();
 		}
 	}
-	public void removeClient(int serverListID){
-		clientlist.remove(serverListID);
-	}
 	public static void main(String[] args) {
 			new Server().start();
 	}
