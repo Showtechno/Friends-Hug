@@ -25,7 +25,7 @@ public class LogfileWriter {
 		try{
 			FileWriter fWriter = new FileWriter("log.txt");
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
-			bWriter.write(dateTime + ": " + input + "\n");
+			bWriter.append(dateTime + ": " + input+ "\n");
 			System.out.println("Ereignis wurde in die Log.txt geschrieben.");
 			bWriter.close();
 		}
