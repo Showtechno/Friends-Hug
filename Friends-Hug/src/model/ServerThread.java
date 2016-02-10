@@ -17,6 +17,7 @@ public class ServerThread extends Thread {
 	String clientSentence;
 	DataOutputStream outToClient;
 	private Flagdetection flagdetectionObject = new Flagdetection();
+	private CRegistration cRegistrationObject = new CRegistration();
 
 	public boolean isLogInBoolean() {
 		return logInBoolean;
@@ -47,13 +48,11 @@ public class ServerThread extends Thread {
 						socket.getInputStream());
 				Scanner scan = new Scanner(in);
 				String input = scan.nextLine();
-				System.out.println(input);
 				flagdetectionObject.returnFlagText(input);
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
 							+ ": " + flagdetectionObject.getText());
 					for (ServerThread s : server.clientlist.values()) {
-						System.out.println("forEach Durchlauf");
 						s.setClientSentence(getClientSentence());
 						s.sendServerThread(s.getClientSentence());
 					}
@@ -66,7 +65,7 @@ public class ServerThread extends Thread {
 					
 				}
 				else if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
-					
+					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText());
 				}
 
 
@@ -77,7 +76,9 @@ public class ServerThread extends Thread {
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
 				if(s.isAlive()== false){
+					System.out.println(s.listnumber);
 					server.clientlist.remove(s);
+					
 				}
 			}
 		}
