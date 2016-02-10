@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import model.Client;
+
 
 public class Registration
 		extends MenuPanel {
@@ -103,11 +105,6 @@ public class Registration
 		txtEMailAddressenWiederholen.setBounds(150, 260, 198, 23);
 		add(txtEMailAddressenWiederholen);
 		
-		String passwort = txtPasswort.getText();
-		String passwort2 = txtPasswordWiederholen.getText();
-		String mail = txtEMailAddresse.getText();
-		String mail2 = txtEMailAddressenWiederholen.getText();
-		
 		JButton btnRegistrieren = new MenuButton(3);
 		btnRegistrieren.setText("Registrieren");
 		btnRegistrieren.setBounds(0, 280, 250, 50);
@@ -115,16 +112,16 @@ public class Registration
 		add(btnRegistrieren);
 		btnRegistrieren.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				if(passwort.equals(passwort2)){
-					if(mail.equals(mail2)){
-						System.out.print(txtVorname.getText());
-						System.out.print(txtNachname.getText());
-						System.out.print(txtBenutzername.getText());
-						System.out.print(txtPasswort.getText());
-						System.out.println(txtEMailAddresse.getText());
+				if(txtPasswort.getText().equals(txtPasswordWiederholen.getText())){
+					if(txtEMailAddresse.getText().equals(txtEMailAddressenWiederholen.getText())){
+						Client.getInstance().send("FLAG_REGI;" + txtVorname.getText() + ',' + txtNachname.getText() + ',' + txtBenutzername.getText()
+								+ ',' + txtPasswort.getText() + ',' + txtEMailAddresse.getText());
+						Frame.getInstance().switchPanel(Frame.LOGIN);
 					}
 				}
-				System.out.println("registrierung in db fehlt");
+				else{
+					
+				}
 			}
 		});
 		
