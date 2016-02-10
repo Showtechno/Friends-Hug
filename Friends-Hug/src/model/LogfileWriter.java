@@ -21,7 +21,7 @@ public class LogfileWriter {
 	}
 		
 	public void writeLogfile(String input){
-		
+		//dont work :(
 		try{
 			FileWriter fWriter = new FileWriter("log.txt");
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
