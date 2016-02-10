@@ -77,41 +77,28 @@ public class Client {
 		// Client öffnet ein Verbindung mit dem Port:1337
 		// FEHLT INTERNET CONNECTION
 		try {
-			setIsConnected(true);
-			// als Thread ersetzen
-			if (isConnected == true) {
-				System.out.println("connected");
-				while (true) {
-					System.out.println("while true");
-					BufferedReader in = new BufferedReader(
-							new InputStreamReader(clientSocket.getInputStream()));
-					String serverResponse = in.readLine();
-
-					// InputStream inFromServer = clientSocket.getInputStream();
-					// Scanner scan = new Scanner(inFromServer);
-					System.out.println("Client horcht...");
-					System.out.println("from Server: " + serverResponse);
-					System.out.println("Client hat was");
-					setTextVomServer(serverResponse);
-					Flagdetection flagdetectionObject = new Flagdetection();
-					flagdetectionObject.returnFlagText(getTextVomServer());
-					if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
-						System.out.println("if abfrage flag_chat");
-						Chatfenster
-								.nachrichtenFensterChange(flagdetectionObject
-										.getText());
-						setTextVomServer(null);
-					} else {
-						setTextVomServer(null);
-					}
-
+			while (true) {
+				System.out.println("while true");
+				BufferedReader in = new BufferedReader(new InputStreamReader(
+						clientSocket.getInputStream()));
+				String serverResponse = in.readLine();
+				setTextVomServer(serverResponse);
+				Flagdetection flagdetectionObject = new Flagdetection();
+				flagdetectionObject.returnFlagText(getTextVomServer());
+				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
+					Chatfenster.nachrichtenFensterChange(flagdetectionObject
+							.getText());
+					setTextVomServer(null);
+				} else {
+					setTextVomServer(null);
 				}
+
 			}
+
 		}
 		// gui anschluss fehlt
 		catch (Exception e) {
-			e.printStackTrace();
-			setIsConnected(false);
+			System.out.println("Verbinden fehlgeschlagen!");
 			// if(connectionTryCount > 0 && isConnected == false){
 			// connectionTryCount--;
 			// connection();
@@ -126,7 +113,6 @@ public class Client {
 	public void send(String OutToServerString) {
 
 		try {
-			//
 			outToServer = new DataOutputStream(clientSocket.getOutputStream());
 			outToServer.writeBytes(OutToServerString);
 		} catch (IOException e) {
