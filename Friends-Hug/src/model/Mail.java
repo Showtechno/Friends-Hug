@@ -1,16 +1,25 @@
 package model;
 
 import java.util.*;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 
 public class Mail {
 
+	private static Mail instance;
+	public static Mail getInstance() {
+		if (instance == null) {
+			instance = new Mail();
+		}
+		return instance;
+	}
+	
 	public void sendMail(String mailAdress, int code) {
 		// Nicht in der Schule testen da Port 25 gebloggt ist!!!!
 		
 		String to = mailAdress;
-		String from = "melwo97@web.de";
+		String from = "tvhamster4@hotmail.de";
 		String host = "localhost";
 		Properties propeties = System.getProperties();
 		propeties.setProperty("mail.smtp.host", host);
@@ -28,6 +37,9 @@ public class Mail {
 			mex.printStackTrace();
 		}
 
+	}
+	public static void main(String[] args) {
+		Mail.getInstance().sendMail("tvhamster4@hotmail.de", 1111);
 	}
 
 }
