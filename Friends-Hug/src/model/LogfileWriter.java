@@ -21,7 +21,6 @@ public class LogfileWriter {
 	}
 		
 	public void writeLogfile(String input){
-		//dont work :(
 		try{
 			FileWriter fWriter = new FileWriter("log.txt");
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
@@ -32,5 +31,12 @@ public class LogfileWriter {
 		catch(Exception e){
 			System.out.println("ACHTUNG: Logfile konnte nicht beschrieben werden!");
 		}
+	}
+	public static void main(String[] args) {
+		LogfileWriter w = new LogfileWriter();
+		w.writeLogfile("test");
+		w.writeLogfile("test");
+		w.writeLogfile("test");
+		w.writeLogfile("test");
 	}
 }
