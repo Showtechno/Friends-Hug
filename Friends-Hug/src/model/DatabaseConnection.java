@@ -20,7 +20,7 @@ import javax.xml.crypto.Data;
 //Code = Code welcher der User beim ersten anmelden eingeben muss
 
 public class DatabaseConnection {
-	public void Connection(String sqlStatement){
+	public void Connection(String sqlStatement, ServerThread s){
 		Connection connection = null;
 		ResultSet resultSet = null;
 		Statement statement =null;
@@ -36,7 +36,7 @@ public class DatabaseConnection {
 				resultSet = statement.executeQuery(searchUserName);
 				while(resultSet.next()){
 					if(resultSet.getString(1).equals(RegiSplitter.getInstance().getRegiInfos()[2])){
-						ServerThread.this.sendServerThread("FLAG_REGI;"+"Benutzername schon vergeben");
+						s.sendServerThread("FLAG_REGI;"+"Benutzername schon vergeben");
 					}
 				}
 			}
@@ -56,9 +56,4 @@ public class DatabaseConnection {
 			}
 		}
 	}
-	public static void main(String[] args) {
-		DatabaseConnection d = new DatabaseConnection();
-		d.Connection("SELECT UserName FROM Data");
-	}
-	
 }

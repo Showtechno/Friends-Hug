@@ -19,10 +19,10 @@ public class CRegistration {
 	 * 4 = Email-Adresse
 	 */
 	
-	public void writeRegiIntoDB(String data){
+	public void writeRegiIntoDB(String data, ServerThread s){
 		RegiSplitter.getInstance().returnRegiInfos(data);
 		DatabaseConnection connectionDB = new DatabaseConnection();
-		connectionDB.Connection("SELECT UserName FROM Data");
+		connectionDB.Connection("SELECT UserName FROM Data", s);
 		Codegenerator generator = new Codegenerator();
 		generator.generate();
 		Mail.getInstance().sendMail(RegiSplitter.getInstance().getRegiInfos()[4], generator.getCode());

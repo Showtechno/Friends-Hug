@@ -65,7 +65,7 @@ public class ServerThread extends Thread {
 					
 				}
 				else if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
-					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText());
+					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 				}
 
 
