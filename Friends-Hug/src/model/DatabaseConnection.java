@@ -20,13 +20,14 @@ import javax.xml.crypto.Data;
 //Code = Code welcher der User beim ersten anmelden eingeben muss
 
 public class DatabaseConnection {
-	public void Connection(String sqlStatement, ServerThread s){
+	public void Connection(String sqlStatement, ServerThread s, String[]data){
 		Connection connection = null;
 		ResultSet resultSet = null;
 		Statement statement =null;
 		String searchUserID = "SELECT USERID from Data";
 		String searchUserName = "SELECT UserName FROM Data";
-//		String writeUserDB = "INSERT INTO Data (UserID,UserName,MailAdress,Passwort,Name,Firstname,NewPasswort,UserLoggedIn,Code) VALUES" (,"test","test","test","test","test",0,0,4444)
+		String writeUserDB = "INSERT INTO Data (UserID,UserName,MailAdress,Passwort,Name,Firstname,NewPasswort,UserLoggedIn) VALUES(" +
+				ID + data[2] + ',' + data[4] + ',' + data[3] + ',' + data[1] + ',' + data[0] +')';
 		
 		
 		try {
