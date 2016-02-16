@@ -85,8 +85,7 @@ public class LogIn
 				String name = txtName.getText();
 				String passwort = txtPasswort.getText();
 				String mail = txtEMailAdresse.getText();
-				String code = txtCode.getText();
-				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort +','+ mail + ',' +  code);
+				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort +','+ mail);
 //					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
 //						if(passwort.equals(passwortrichtig)){
 //							System.out.println("korrekt");
