@@ -22,7 +22,7 @@ public class CRegistration {
 	public void writeRegiIntoDB(String data, ServerThread s){
 		RegiSplitter.getInstance().returnRegiInfos(data);
 		DatabaseConnection connectionDB = new DatabaseConnection();
-		connectionDB.Connection("SELECT UserName FROM Data", s);
+		connectionDB.Connection("SELECT UserName FROM Data", s, RegiSplitter.getInstance().getRegiInfos());
 //		Codegenerator generator = new Codegenerator();
 //		generator.generate();
 //		Mail.getInstance().sendMail(RegiSplitter.getInstance().getRegiInfos()[4], generator.getCode());
