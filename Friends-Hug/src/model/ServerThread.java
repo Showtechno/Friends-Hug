@@ -57,14 +57,14 @@ public class ServerThread extends Thread {
 						s.sendServerThread(s.getClientSentence());
 					}
 				}
-				else if(flagdetectionObject.getFlag().equals("FLAG_LOGOUT")){
+				if(flagdetectionObject.getFlag().equals("FLAG_LOGOUT")){
 					server.clientlist.remove(listnumber);
 					stop();
 				}
-				else if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
+				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					System.out.println(flagdetectionObject.getText());
 				}
-				else if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
+				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 				}
 
