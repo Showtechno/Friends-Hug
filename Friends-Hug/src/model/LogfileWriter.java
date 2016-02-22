@@ -1,8 +1,8 @@
 package model;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
@@ -22,9 +22,10 @@ public class LogfileWriter {
 		
 	public void writeLogfile(String input){
 		try{
-			FileWriter fWriter = new FileWriter("log.txt");
+			FileWriter fWriter = new FileWriter("log.txt", true);
 			BufferedWriter bWriter = new BufferedWriter(fWriter);
-			bWriter.append(dateTime + ": " + input+ "\n");
+			PrintWriter pWriter = new PrintWriter(bWriter);
+			pWriter.println(dateTime + ": " + input);
 			System.out.println("Ereignis wurde in die Log.txt geschrieben.");
 			bWriter.close();
 		}
