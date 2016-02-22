@@ -112,7 +112,7 @@ public class DatabaseConnection {
 			}
 			if (sqlStatement.equals(writeUserDB)) {
 				resultSet = statement.executeQuery(writeUserDB);
-				s.sendServerThread("FLAG_REGI;Registrierung erfogreich");
+				s.sendServerThread("FLAG_REGI;SUCCESS");
 				resultSet.close();
 			}
 

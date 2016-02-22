@@ -116,7 +116,6 @@ public class Registration
 					if(txtEMailAddresse.getText().equals(txtEMailAddressenWiederholen.getText())){
 						Client.getInstance().send("FLAG_REGI;" + txtVorname.getText() + ',' + txtNachname.getText() + ',' + txtBenutzername.getText()
 								+ ',' + txtPasswort.getText() + ',' + txtEMailAddresse.getText());
-						Frame.getInstance().switchPanel(Frame.LOGIN);
 					}
 				}
 				else{

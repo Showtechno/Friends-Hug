@@ -6,8 +6,11 @@ import java.net.UnknownHostException;
 import java.util.Scanner;
 
 import javax.print.attribute.standard.MediaSize.Other;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 import gui.Chatfenster;
+import gui.Frame;
 
 public class Client {
 
@@ -21,7 +24,7 @@ public class Client {
 	private static Client instance;
 
 	private String outToServerText;
-	
+
 	private static PrintWriter writer;
 
 	Socket clientSocket;
@@ -64,7 +67,8 @@ public class Client {
 			instance = new Client();
 			try {
 				instance.clientSocket = new Socket("localhost", 1337);
-				writer= new PrintWriter(instance.clientSocket.getOutputStream());
+				writer = new PrintWriter(
+						instance.clientSocket.getOutputStream());
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -91,12 +95,21 @@ public class Client {
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
-					Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
+					Chatfenster.nachrichtenFensterChange(flagdetectionObject
+							.getText());
 					setTextVomServer(null);
 				} else {
 					setTextVomServer(null);
 				}
-
+				if (flagdetectionObject.getFlag().equals("FLAG_REGI")) {
+					if (flagdetectionObject.getText().contains("Benutzername")||flagdetectionObject.getText().contains("Email")) {
+						//client anzeigen was falsch war
+					}
+					if (flagdetectionObject.getText().equals("SUCCESS")){
+						Frame.getInstance().switchPanel(Frame.LOGIN);
+						JOptionPane.showInputDialog(null, "Registration erfolgreich!", "Registration");
+					}
+				}
 			}
 
 		}
@@ -115,16 +128,8 @@ public class Client {
 	}
 
 	public void send(String outToServerString) {
+		writer.println(outToServerString);
+		writer.flush();
 
-//		try {
-			writer.println(outToServerString);
-			writer.flush();
-//			outToServer = new DataOutputStream(clientSocket.getOutputStream());
-//			outToServer.writeBytes(outToServerString);
-			System.out.println("sended. "+outToServerString);
-//		} catch (IOException e) {
-//			 TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 	}
 }

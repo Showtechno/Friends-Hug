@@ -82,7 +82,6 @@ public class Chatfenster
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== KeyEvent.VK_ENTER && !eingabe.getText().equals(null)){
 					Client.getInstance().send("FLAG_CHAT;"+ eingabe.getText());
-					System.out.println(eingabe.getText());
 					eingabe.setText(null);
 				}
 			}
