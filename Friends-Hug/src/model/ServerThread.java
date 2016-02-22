@@ -1,8 +1,10 @@
 package model;
 
+import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
@@ -18,6 +20,8 @@ public class ServerThread extends Thread {
 	DataOutputStream outToClient;
 	private Flagdetection flagdetectionObject = new Flagdetection();
 	private CRegistration cRegistrationObject = new CRegistration();
+	
+	private BufferedReader reader;
 
 	public boolean isLogInBoolean() {
 		return logInBoolean;
@@ -39,15 +43,29 @@ public class ServerThread extends Thread {
 		this.socket = socket;
 		this.listnumber = listnumber;
 		this.server = server;
+		
+		InputStreamReader isReader;
+		try {
+			isReader = new InputStreamReader(socket.getInputStream());
+			reader = new BufferedReader(isReader);
+		} catch (IOException e) {
+			System.out.println("A Client disconnected.");
+			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
+			for (ServerThread s : server.clientlist.values()) {
+				if(s.isAlive()== false){
+					server.clientlist.remove(s);
+					
+				}
+			}
+		}
+		
 	}
 
 	public void run() {
 		try {
 			while (true) {
-				DataInputStream in = new DataInputStream(
-						socket.getInputStream());
-				Scanner scan = new Scanner(in);
-				String input = scan.nextLine();
+				String input = reader.readLine();
+				System.out.println("Message arrived: "+input);
 				flagdetectionObject.returnFlagText(input);
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
@@ -67,9 +85,6 @@ public class ServerThread extends Thread {
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 				}
-
-
-
 			}
 		} catch (Exception e) {
 			System.out.println("A Client disconnected.");

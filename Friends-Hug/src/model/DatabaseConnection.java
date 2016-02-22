@@ -20,14 +20,44 @@ import javax.xml.crypto.Data;
 //Code = Code welcher der User beim ersten anmelden eingeben muss
 
 public class DatabaseConnection {
+	
+	public String IDNumberSearchLast(){
+		String searchUserID = "SELECT USERID from Data";
+		Connection connection = null;
+		ResultSet resultSet = null;
+		Statement statement =null;
+		int lastID = 0;
+		try{
+			connection = DriverManager.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			resultSet = statement.executeQuery(searchUserID);
+			lastID = (Integer.valueOf(resultSet.getString(1)));
+			lastID ++;
+//			System.out.println(lastID);
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		finally{
+			try {
+				resultSet.close();
+				statement.close();
+				connection.close();
+			} 
+			catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return Integer.toString(lastID);
+	}
 	public void Connection(String sqlStatement, ServerThread s, String[]data){
 		Connection connection = null;
 		ResultSet resultSet = null;
 		Statement statement =null;
-		String searchUserID = "SELECT USERID from Data";
 		String searchUserName = "SELECT UserName FROM Data";
+		String searchEmail = "SELECT MailAdress FROM Data";
 		String writeUserDB = "INSERT INTO Data (UserID,UserName,MailAdress,Passwort,Name,Firstname,NewPasswort,UserLoggedIn) VALUES(" +
-				ID + data[2] + ',' + data[4] + ',' + data[3] + ',' + data[1] + ',' + data[0] +')';
+				IDNumberSearchLast() + data[2] + ',' + data[4] + ',' + data[3] + ',' + data[1] + ',' + data[0] +')';
 		
 		
 		try {
@@ -38,6 +68,12 @@ public class DatabaseConnection {
 				while(resultSet.next()){
 					if(resultSet.getString(1).equals(RegiSplitter.getInstance().getRegiInfos()[2])){
 						s.sendServerThread("FLAG_REGI;"+"Benutzername schon vergeben");
+					}
+					resultSet = statement.executeQuery(searchEmail);
+					while(resultSet.next()){
+						if(resultSet.getString(1).equals(RegiSplitter.getInstance().getRegiInfos()[3])){
+							s.sendServerThread("FLAG_REGI;"+"Email schon vergeben");
+						}
 					}
 				}
 			}

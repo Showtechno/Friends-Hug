@@ -17,6 +17,8 @@ public class Chatfenster
 	public static JTextArea chatfenster;
 	public JTextArea teilnehmerliste;
 	
+	private JTextField eingabe;
+	
 	public Chatfenster(JPanel Start) {
 		this.setName("Chat");
 		setSize(700, 450);
@@ -68,7 +70,7 @@ public class Chatfenster
 			}
 		});
 		
-		JTextField eingabe = new JTextField();
+		eingabe = new JTextField();
 		eingabe.setOpaque(true);
 		eingabe.setFont(new Font("Times New Roman", Font.PLAIN, 16));
 		eingabe.setEditable(true);
@@ -78,8 +80,9 @@ public class Chatfenster
 		eingabe.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if(e.getKeyCode()== 10){
+				if(e.getKeyCode()== KeyEvent.VK_ENTER && !eingabe.getText().equals(null)){
 					Client.getInstance().send("FLAG_CHAT;"+ eingabe.getText());
+					System.out.println(eingabe.getText());
 					eingabe.setText(null);
 				}
 			}

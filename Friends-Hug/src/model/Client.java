@@ -5,6 +5,8 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
+import javax.print.attribute.standard.MediaSize.Other;
+
 import gui.Chatfenster;
 
 public class Client {
@@ -19,6 +21,8 @@ public class Client {
 	private static Client instance;
 
 	private String outToServerText;
+	
+	private static PrintWriter writer;
 
 	Socket clientSocket;
 	DataOutputStream outToServer;
@@ -60,6 +64,7 @@ public class Client {
 			instance = new Client();
 			try {
 				instance.clientSocket = new Socket("localhost", 1337);
+				writer= new PrintWriter(instance.clientSocket.getOutputStream());
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,8 +91,7 @@ public class Client {
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
-					Chatfenster.nachrichtenFensterChange(flagdetectionObject
-							.getText());
+					Chatfenster.nachrichtenFensterChange(flagdetectionObject.getText());
 					setTextVomServer(null);
 				} else {
 					setTextVomServer(null);
@@ -110,14 +114,17 @@ public class Client {
 		}
 	}
 
-	public void send(String OutToServerString) {
+	public void send(String outToServerString) {
 
-		try {
-			outToServer = new DataOutputStream(clientSocket.getOutputStream());
-			outToServer.writeBytes(OutToServerString);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+			writer.println(outToServerString);
+			writer.flush();
+//			outToServer = new DataOutputStream(clientSocket.getOutputStream());
+//			outToServer.writeBytes(outToServerString);
+			System.out.println("sended. "+outToServerString);
+//		} catch (IOException e) {
+//			 TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 	}
 }
