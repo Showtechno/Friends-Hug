@@ -86,12 +86,12 @@ public class LogIn
 				String passwort = txtPasswort.getText();
 				String mail = txtEMailAdresse.getText();
 				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort +','+ mail);
-//					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
-//						if(passwort.equals(passwortrichtig)){
-//							System.out.println("korrekt");
-//							Frame.getInstance().switchPanel(Frame.CHATMENU);
-//						}
-//					}
+					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
+						if(passwort.equals(passwortrichtig)){
+							System.out.println("korrekt");
+							Frame.getInstance().switchPanel(Frame.CHATMENU);
+						}
+					}
 			}
 		});
 		

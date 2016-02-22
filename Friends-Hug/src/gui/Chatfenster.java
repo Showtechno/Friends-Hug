@@ -68,17 +68,13 @@ public class Chatfenster
 			}
 		});
 		
-		JTextArea eingabe = new JTextArea();
+		JTextField eingabe = new JTextField();
 		eingabe.setOpaque(true);
 		eingabe.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		eingabe.setLineWrap(false);
-		eingabe.setBounds(11, 368, 493, 37);
 		eingabe.setEditable(true);
-		add(eingabe);
-		JScrollPane scrollPaneEingabe= new JScrollPane();
+		JScrollPane scrollPaneEingabe= new JScrollPane(eingabe, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneEingabe.setBounds(11, 368, 493, 37);
 		add(scrollPaneEingabe);
-		scrollPaneEingabe.setViewportView(eingabe);
 		eingabe.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
