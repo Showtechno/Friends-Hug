@@ -2,6 +2,7 @@ package server;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -23,6 +24,7 @@ public class DatabaseConnection {
 
 	private boolean isUsernameAvailable;
 	private boolean isEmailAvailable;
+	Codegenerator generator = new Codegenerator();
 
 	public boolean isUsernameAvailable() {
 		return isUsernameAvailable;
@@ -40,6 +42,10 @@ public class DatabaseConnection {
 		this.isEmailAvailable = isEmailAvailable;
 	}
 
+	public DatabaseConnection() {
+		generator.generate();
+	}
+
 	public String IDNumberSearchLast() {
 		String searchUserID = "SELECT USERID from Data";
 		Connection connection = null;
@@ -51,9 +57,10 @@ public class DatabaseConnection {
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(searchUserID);
-			lastID = (Integer.valueOf(resultSet.getString(1)));
+			while(resultSet.next()){
+				lastID = (Integer.valueOf(resultSet.getString(1)));
+			}
 			lastID++;
-			// System.out.println(lastID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -84,9 +91,8 @@ public class DatabaseConnection {
 			if (sqlStatement.equals(logInName)) {
 				resultSet = statement.executeQuery(logInName);
 				while (resultSet.next()) {
-					System.out.println(resultSet.getString(1));
 					if (resultSet.getString(1).equals(data[1])) {
-						s.sendServerThread("FLAG_LOGIN;1,"+ data[0]);
+						s.sendServerThread("FLAG_LOGIN;1," + data[0]);
 						s.setUsername(data[0]);
 					} else {
 						s.sendServerThread("FLAG_LOGIN;0");
@@ -96,10 +102,9 @@ public class DatabaseConnection {
 			} else if (sqlStatement.equals(logInMail)) {
 				resultSet = statement.executeQuery(logInMail);
 				while (resultSet.next()) {
-	
 					if (resultSet.getString(1).equals(data[1])) {
 
-						s.sendServerThread("FLAG_LOGIN;1,"+ data[0]);
+						s.sendServerThread("FLAG_LOGIN;1," + data[0]);
 						s.setUsername(data[0]);
 					} else {
 						s.sendServerThread("FLAG_LOGIN;0");
@@ -122,19 +127,16 @@ public class DatabaseConnection {
 	}
 
 	public void ConnectionRegi(String sqlStatement, ServerThread s,
-			String[] data) {
+			String[] data, CRegistration regi) {
 		Connection connection = null;
 		ResultSet resultSet = null;
 		Statement statement = null;
 		String searchUserName = "SELECT UserName FROM Data";
 		String searchEmail = "SELECT MailAdress FROM Data";
-		String writeUserDB = "INSERT INTO Data (UserID,UserName,MailAdress,Passwort,Name,Firstname,NewPasswort,UserLoggedIn) VALUES("
-				+ IDNumberSearchLast()
-				+ data[2]
-				+ ','
-				+ data[4]
-				+ ','
-				+ data[3] + ',' + data[1] + ',' + data[0] + ')';
+		String writeUserDB = "INSERT INTO Data VALUES('" + IDNumberSearchLast()
+				+ "','" + data[2] + "','" + data[4] + "','" + data[3] + "','"
+				+ data[1] + "','" + data[0] + "'," + "'0'" + "," + "'0'" + ","
+				+ null + ')';
 		try {
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
@@ -147,38 +149,34 @@ public class DatabaseConnection {
 						s.sendServerThread("FLAG_REGI;Benutzername schon vergeben");
 						setUsernameAvailable(false);
 					}
-					setUsernameAvailable(true);
+					else{
+						setUsernameAvailable(true);
+					}
 				}
-				resultSet.close();
 			}
 			if (sqlStatement.equals(searchEmail)) {
 				resultSet = statement.executeQuery(searchEmail);
 				while (resultSet.next()) {
 					if (resultSet.getString(1).equals(
-							RegiSplitter.getInstance().getRegiInfos()[3])) {
+							RegiSplitter.getInstance().getRegiInfos()[4])) {
 						s.sendServerThread("FLAG_REGI;Email schon vergeben");
 						setEmailAvailable(false);
 					}
-					setEmailAvailable(true);
+					else{
+						setEmailAvailable(true);
+					}
 				}
-				resultSet.close();
 			}
 			if (sqlStatement.equals(writeUserDB)) {
-				resultSet = statement.executeQuery(writeUserDB);
+				statement.executeUpdate(writeUserDB);
 				s.sendServerThread("FLAG_REGI;SUCCESS");
-				resultSet.close();
 			}
-
-		} catch (SQLException e) {
+			else{
+				System.out.println(sqlStatement);
+				System.out.println(writeUserDB);
+			}
+		} catch (Exception e) {
 			e.printStackTrace();
-		} finally {
-			try {
-				resultSet.close();
-				statement.close();
-				connection.close();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
 		}
 	}
 }

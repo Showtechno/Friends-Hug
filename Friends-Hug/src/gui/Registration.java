@@ -125,9 +125,14 @@ public class Registration
 						Client.getInstance().send("FLAG_REGI;" + txtVorname.getText() + ',' + txtNachname.getText() + ',' + txtBenutzername.getText()
 								+ ',' + txtPasswort.getText() + ',' + txtEMailAddresse.getText());
 					}
+					else{
+						JOptionPane.showMessageDialog(null,
+								"Email bitte korrekt wiederholen!");
+					}
 				}
 				else{
-					
+					JOptionPane.showMessageDialog(null,
+							"Passwort bitte korrekt wiederholen!");
 				}
 			}
 		});

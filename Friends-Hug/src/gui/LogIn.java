@@ -49,21 +49,17 @@ public class LogIn
 		lblCode.setBounds(10, 131, 130, 40);
 		add(lblCode);
 		
-		JTextField txtName = new JTextField("Test");
+		JTextField txtName = new JTextField("Showtech");
 		txtName.setBounds(162, 11, 200, 20);
 		add(txtName);
 		
-		JTextField txtPasswort = new JPasswordField("123456789");
+		JTextField txtPasswort = new JPasswordField("123");
 		txtPasswort.setBounds(162, 51, 200, 20);
 		add(txtPasswort);
 		
 		JTextField txtCode = new JTextField();
 		txtCode.setBounds(162, 131, 200, 20);
 		add(txtCode);
-		
-		String namerichtig = "DQI12";
-		String passwortrichtig = "DQI12";
-		String mailrichtig = "DQI12@schule.bremen.de";
 		
 		JButton btnEinloggen = new MenuButton(3);
 		btnEinloggen.setText("Einloggen");
@@ -75,12 +71,6 @@ public class LogIn
 				String name = txtName.getText();
 				String passwort = txtPasswort.getText();
 				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort);
-//					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
-//						if(passwort.equals(passwortrichtig)){
-//							System.out.println("korrekt");
-//							Frame.getInstance().switchPanel(Frame.CHATMENU);
-//						}
-//					}
 			}
 		});
 		

@@ -1,7 +1,10 @@
 package server;
 
+import org.hamcrest.core.IsEqual;
+
 public class CRegistration {
 
+	DatabaseConnection connectionDB = new DatabaseConnection();
 	private CRegistration instance;
 
 	public CRegistration getInstance() {
@@ -9,7 +12,6 @@ public class CRegistration {
 			instance = new CRegistration();
 		}
 		return instance;
-
 	}
 
 	/*
@@ -17,44 +19,40 @@ public class CRegistration {
 	 */
 
 	public void writeRegiIntoDB(String data, ServerThread s) {
-		RegiSplitter.getInstance().returnRegiInfos(data);
-		DatabaseConnection connectionDB = new DatabaseConnection();
+		RegiSplitter.getInstance().returnRegiInfos(data);	
 		connectionDB.ConnectionRegi("SELECT UserName FROM Data", s, RegiSplitter
-				.getInstance().getRegiInfos());
+				.getInstance().getRegiInfos(), instance);
 		LogfileWriter.getInstance().writeLogfile("connect to Database: search if Username already in use");
-
-		if (connectionDB.isEmailAvailable()) {
-			connectionDB.ConnectionRegi("SELECT MailAdress FROM Data", s,
-					RegiSplitter.getInstance().getRegiInfos());
+		if (connectionDB.isUsernameAvailable()) {
+			connectionDB.ConnectionRegi("SELECT MailAdress FROM Data", s,RegiSplitter.getInstance().getRegiInfos(), instance);
 			LogfileWriter.getInstance().writeLogfile("connect to Database: search if Emailadresse already in use");
 			if (connectionDB.isEmailAvailable()) {
 				connectionDB
 						.ConnectionRegi(
-								"INSERT INTO Data (UserID,UserName,MailAdress,Passwort,Name,Firstname,NewPasswort,UserLoggedIn) VALUES("
-										+ connectionDB.IDNumberSearchLast()
-										+ RegiSplitter.getInstance()
-												.getRegiInfos()[2]
+								"INSERT INTO Data VALUES("
+										+ "'" + connectionDB.IDNumberSearchLast()+"'" 
 										+ ','
-										+ RegiSplitter.getInstance()
-												.getRegiInfos()[4]
+										+ "'"+RegiSplitter.getInstance()
+												.getRegiInfos()[2]+"'"
 										+ ','
-										+ RegiSplitter.getInstance()
-												.getRegiInfos()[3]
+										+ "'"+RegiSplitter.getInstance()
+												.getRegiInfos()[4]+"'"
 										+ ','
-										+ RegiSplitter.getInstance()
-												.getRegiInfos()[1]
+										+ "'"+RegiSplitter.getInstance()
+												.getRegiInfos()[3]+"'"
 										+ ','
-										+ RegiSplitter.getInstance()
-												.getRegiInfos()[0] + ')', s,
-								RegiSplitter.getInstance().getRegiInfos());
+										+ "'"+RegiSplitter.getInstance()
+												.getRegiInfos()[1]+"'"
+										+ ','
+										+ "'"+RegiSplitter.getInstance()
+												.getRegiInfos()[0]+"'" +",'"+0+"'"+ ','
+												+"'"+0+"'"+"," + null+ ')', s,
+								RegiSplitter.getInstance().getRegiInfos(), instance);
 				LogfileWriter.getInstance().writeLogfile("connect to Database: write Registration in Database");
 
 			}
 		}
-		// Codegenerator generator = new Codegenerator();
-		// generator.generate();
-		// Mail.getInstance().sendMail(RegiSplitter.getInstance().getRegiInfos()[4],
-		// generator.getCode());
-		// daten in db speichern
+
+
 	}
 }

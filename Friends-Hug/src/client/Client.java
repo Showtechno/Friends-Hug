@@ -1,7 +1,6 @@
 package client;
 
 import java.io.*;
-
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -117,20 +116,18 @@ public class Client {
 					if (flagdetectionObject.getText().contains("Benutzername")
 							|| flagdetectionObject.getText().contains("Email")) {
 						if (Frame.getInstance().getContentPane() instanceof Registration) {
-							JOptionPane.showInputDialog(null,
-									flagdetectionObject.getText(),
-									"Registration");
+							JOptionPane.showMessageDialog(null,
+									flagdetectionObject.getText());
 						} else {
 							Frame.getInstance().switchPanel(Frame.REGISTATION);
-							JOptionPane.showInputDialog(null,
-									flagdetectionObject.getText(),
-									"Registration");
+							JOptionPane.showMessageDialog(null,
+									flagdetectionObject.getText());
 						}
 					}
 					if (flagdetectionObject.getText().equals("SUCCESS")) {
 						Frame.getInstance().switchPanel(Frame.LOGIN);
-						JOptionPane.showInputDialog(null,
-								"Registration erfolgreich!", "Registration");
+						JOptionPane.showMessageDialog(null,
+								"Registration erfolgreich!");
 					}
 				
 						
@@ -147,24 +144,17 @@ public class Client {
 						
 					}
 					if(flagdetectionObject.getFlag().equals("0")){
-						JOptionPane.showInputDialog(null,
-								"Logindaten nicht korrekt!", "Login");
+						JOptionPane.showMessageDialog(null,
+								"Logindaten nicht korrekt!");
 					}
 				}
 			}
 
 		}
 		// gui anschluss fehlt
-		catch (Exception e) {
-			System.out.println("Verbinden fehlgeschlagen!");
-			// if(connectionTryCount > 0 && isConnected == false){
-			// connectionTryCount--;
-			// connection();
-			// }
-			//
-			// else{
-			//
-			// }
+		catch (Exception e) { 
+			JOptionPane.showMessageDialog(null,"Verbindung zum Server unterbrochen!");
+			System.exit(0);
 		}
 	}
 

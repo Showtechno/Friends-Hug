@@ -76,7 +76,7 @@ public class ServerThread extends Thread {
 		try {
 			while (true) {
 				String input = reader.readLine();
-				LogfileWriter.getInstance().writeLogfile("Message arrived from a Client" + getUsername());
+				LogfileWriter.getInstance().writeLogfile("Message arrived from a Client: " + getUsername());
 				flagdetectionObject.returnFlagText(input);
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
@@ -118,7 +118,7 @@ public class ServerThread extends Thread {
 			out.println(OutToServerString);
 		} catch (IOException e) {
 			e.printStackTrace();
-			System.out.println("client disconnect?");
+			System.out.println("client disconnect");
 		}
 	}
 
