@@ -99,7 +99,6 @@ public class Client {
 		// FEHLT INTERNET CONNECTION
 		try {
 			while (true) {
-				System.out.println("while true");
 				BufferedReader in = new BufferedReader(new InputStreamReader(
 						clientSocket.getInputStream()));
 				String serverResponse = in.readLine();
@@ -107,8 +106,6 @@ public class Client {
 				setTextVomServer(serverResponse);
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
-				System.out.println(flagdetectionObject.getFlag());
-				System.out.println(flagdetectionObject.getText());
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					Chatfenster.nachrichtenFensterChange(flagdetectionObject
 							.getText());
