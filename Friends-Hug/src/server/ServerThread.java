@@ -76,11 +76,11 @@ public class ServerThread extends Thread {
 		try {
 			while (true) {
 				String input = reader.readLine();
-				LogfileWriter.getInstance().writeLogfile("Message arrived from a Client");
+				LogfileWriter.getInstance().writeLogfile("Message arrived from a Client" + getUsername());
 				flagdetectionObject.returnFlagText(input);
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
-							+ ": " + flagdetectionObject.getText());
+							+ getUsername() +": " + flagdetectionObject.getText());
 					for (ServerThread s : server.clientlist.values()) {
 						s.setClientSentence(getClientSentence());
 						s.sendServerThread(s.getClientSentence());
