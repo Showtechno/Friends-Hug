@@ -103,18 +103,23 @@ public class Client {
 					setTextVomServer(null);
 				}
 				if (flagdetectionObject.getFlag().equals("FLAG_REGI")) {
-					if (flagdetectionObject.getText().contains("Benutzername")||flagdetectionObject.getText().contains("Email")) {
-						if(Frame.getInstance().getContentPane() instanceof Registration){
-							JOptionPane.showInputDialog(null, flagdetectionObject.getText(), "Registration");
-						}
-						else{
+					if (flagdetectionObject.getText().contains("Benutzername")
+							|| flagdetectionObject.getText().contains("Email")) {
+						if (Frame.getInstance().getContentPane() instanceof Registration) {
+							JOptionPane.showInputDialog(null,
+									flagdetectionObject.getText(),
+									"Registration");
+						} else {
 							Frame.getInstance().switchPanel(Frame.REGISTATION);
-							JOptionPane.showInputDialog(null, flagdetectionObject.getText(), "Registration");
+							JOptionPane.showInputDialog(null,
+									flagdetectionObject.getText(),
+									"Registration");
 						}
 					}
-					if (flagdetectionObject.getText().equals("SUCCESS")){
+					if (flagdetectionObject.getText().equals("SUCCESS")) {
 						Frame.getInstance().switchPanel(Frame.LOGIN);
-						JOptionPane.showInputDialog(null, "Registration erfolgreich!", "Registration");
+						JOptionPane.showInputDialog(null,
+								"Registration erfolgreich!", "Registration");
 					}
 				}
 			}
