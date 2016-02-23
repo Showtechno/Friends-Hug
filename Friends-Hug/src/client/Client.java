@@ -1,6 +1,7 @@
 package client;
 
 import java.io.*;
+
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
@@ -9,7 +10,7 @@ import javax.print.attribute.standard.MediaSize.Other;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import server.Flagdetection;
+import client.Flagdetection;
 import gui.Chatfenster;
 import gui.Frame;
 import gui.Registration;
@@ -93,9 +94,12 @@ public class Client {
 				BufferedReader in = new BufferedReader(new InputStreamReader(
 						clientSocket.getInputStream()));
 				String serverResponse = in.readLine();
+				System.out.println("vom Server empfangen: " + serverResponse);
 				setTextVomServer(serverResponse);
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
+				System.out.println(flagdetectionObject.getFlag());
+				System.out.println(flagdetectionObject.getText());
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					Chatfenster.nachrichtenFensterChange(flagdetectionObject
 							.getText());
@@ -122,16 +126,19 @@ public class Client {
 						JOptionPane.showInputDialog(null,
 								"Registration erfolgreich!", "Registration");
 					}
-					if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
-						if(flagdetectionObject.getText().equals("1")){
-							Frame.getInstance().switchPanel(Frame.CHATMENU);
-						}
-						if(flagdetectionObject.getFlag().equals("0")){
-							JOptionPane.showInputDialog(null,
-									"Logindaten nicht korrekt!", "Login");
-						}
-					}
+				
 						
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
+					System.out.println("anmelden");
+					if(flagdetectionObject.getText().equals("1")){
+						Frame.getInstance().switchPanel(Frame.CHATMENU);
+						
+					}
+					if(flagdetectionObject.getFlag().equals("0")){
+						JOptionPane.showInputDialog(null,
+								"Logindaten nicht korrekt!", "Login");
+					}
 				}
 			}
 
