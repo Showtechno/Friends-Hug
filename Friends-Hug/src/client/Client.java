@@ -107,7 +107,7 @@ public class Client {
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
-					Chatfenster.nachrichtenFensterChange(flagdetectionObject
+					Chatfenster.nachrichtenFensterChange(getUserName() + flagdetectionObject
 							.getText());
 					setTextVomServer(null);
 				} else {
