@@ -121,6 +121,16 @@ public class Client {
 						JOptionPane.showInputDialog(null,
 								"Registration erfolgreich!", "Registration");
 					}
+					if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
+						if(flagdetectionObject.getText().equals("1")){
+							Frame.getInstance().switchPanel(Frame.CHATMENU);
+						}
+						if(flagdetectionObject.getFlag().equals("0")){
+							JOptionPane.showInputDialog(null,
+									"Logindaten nicht korrekt!", "Login");
+						}
+					}
+						
 				}
 			}
 
