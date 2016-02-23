@@ -82,9 +82,11 @@ public class ServerThread extends Thread {
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
+					LogfileWriter.getInstance().writeLogfile("Login request");
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
+					LogfileWriter.getInstance().writeLogfile("Registration request");
 				}
 			}
 		} catch (Exception e) {
