@@ -21,9 +21,12 @@ public class CRegistration {
 		DatabaseConnection connectionDB = new DatabaseConnection();
 		connectionDB.ConnectionRegi("SELECT UserName FROM Data", s, RegiSplitter
 				.getInstance().getRegiInfos());
+		LogfileWriter.getInstance().writeLogfile("connect to Database: search if Username already in use");
+
 		if (connectionDB.isEmailAvailable()) {
 			connectionDB.ConnectionRegi("SELECT MailAdress FROM Data", s,
 					RegiSplitter.getInstance().getRegiInfos());
+			LogfileWriter.getInstance().writeLogfile("connect to Database: search if Emailadresse already in use");
 			if (connectionDB.isEmailAvailable()) {
 				connectionDB
 						.ConnectionRegi(
@@ -44,6 +47,8 @@ public class CRegistration {
 										+ RegiSplitter.getInstance()
 												.getRegiInfos()[0] + ')', s,
 								RegiSplitter.getInstance().getRegiInfos());
+				LogfileWriter.getInstance().writeLogfile("connect to Database: write Registration in Database");
+
 			}
 		}
 		// Codegenerator generator = new Codegenerator();
