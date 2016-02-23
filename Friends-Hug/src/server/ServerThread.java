@@ -10,8 +10,6 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
-import client.CLogIn;
-
 public class ServerThread extends Thread {
 
 	private boolean logInBoolean = false;

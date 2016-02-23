@@ -1,8 +1,5 @@
-package client;
+package server;
 
-import server.DatabaseConnection;
-import server.RegiSplitter;
-import server.ServerThread;
 
 public class CLogIn{
 
