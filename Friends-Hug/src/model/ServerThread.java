@@ -20,6 +20,7 @@ public class ServerThread extends Thread {
 	DataOutputStream outToClient;
 	private Flagdetection flagdetectionObject = new Flagdetection();
 	private CRegistration cRegistrationObject = new CRegistration();
+	private CLogIn cLoginObject = new CLogIn();
 	
 	private BufferedReader reader;
 
@@ -80,7 +81,7 @@ public class ServerThread extends Thread {
 					stop();
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
-					System.out.println(flagdetectionObject.getText());
+					cLoginObject.getInstance.logIn(flagdetectionObject.getText(),this);
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
