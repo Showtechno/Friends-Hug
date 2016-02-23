@@ -1,4 +1,4 @@
-package model;
+package client;
 
 import java.io.*;
 import java.net.Socket;
@@ -9,6 +9,7 @@ import javax.print.attribute.standard.MediaSize.Other;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import server.Flagdetection;
 import gui.Chatfenster;
 import gui.Frame;
 import gui.Registration;

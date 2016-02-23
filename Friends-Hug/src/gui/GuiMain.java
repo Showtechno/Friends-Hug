@@ -1,6 +1,6 @@
 package gui;
 
-import model.Client;
+import client.Client;
 import gui.Frame;
 public class GuiMain {
 

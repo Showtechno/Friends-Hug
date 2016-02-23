@@ -7,7 +7,7 @@ import javax.mail.SendFailedException;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import model.Client;
+import client.Client;
 
 
 

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-import model.Client;
+import client.Client;
 
 
 public class Registration

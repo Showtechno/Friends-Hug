@@ -1,4 +1,4 @@
-package model;
+package server;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
@@ -9,6 +9,8 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
+
+import client.CLogIn;
 
 public class ServerThread extends Thread {
 
