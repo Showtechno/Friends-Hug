@@ -20,6 +20,7 @@ public class ServerThread extends Thread {
 	DataOutputStream outToClient;
 	private Flagdetection flagdetectionObject = new Flagdetection();
 	private CRegistration cRegistrationObject = new CRegistration();
+	private CLogIn cLoginObject = new CLogIn();
 	
 	private BufferedReader reader;
 
@@ -49,7 +50,7 @@ public class ServerThread extends Thread {
 			isReader = new InputStreamReader(socket.getInputStream());
 			reader = new BufferedReader(isReader);
 		} catch (IOException e) {
-			System.out.println("A Client disconnected.");
+			e.printStackTrace();
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
 				if(s.isAlive()== false){
@@ -65,7 +66,7 @@ public class ServerThread extends Thread {
 		try {
 			while (true) {
 				String input = reader.readLine();
-				System.out.println("Message arrived: "+input);
+				LogfileWriter.getInstance().writeLogfile("Message arrived from a Client");
 				flagdetectionObject.returnFlagText(input);
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
@@ -80,13 +81,14 @@ public class ServerThread extends Thread {
 					stop();
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
-					System.out.println(flagdetectionObject.getText());
+					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 				}
 			}
 		} catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("A Client disconnected.");
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
@@ -99,14 +101,10 @@ public class ServerThread extends Thread {
 	}
 
 	public void sendServerThread(String OutToServerString) {
-
 		try {
-			//
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			out.println(OutToServerString);
-			System.out.println(OutToServerString);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("client disconnect?");
 		}

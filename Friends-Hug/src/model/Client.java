@@ -11,6 +11,7 @@ import javax.swing.JTextField;
 
 import gui.Chatfenster;
 import gui.Frame;
+import gui.Registration;
 
 public class Client {
 
@@ -102,13 +103,34 @@ public class Client {
 					setTextVomServer(null);
 				}
 				if (flagdetectionObject.getFlag().equals("FLAG_REGI")) {
-					if (flagdetectionObject.getText().contains("Benutzername")||flagdetectionObject.getText().contains("Email")) {
-						//client anzeigen was falsch war
+					if (flagdetectionObject.getText().contains("Benutzername")
+							|| flagdetectionObject.getText().contains("Email")) {
+						if (Frame.getInstance().getContentPane() instanceof Registration) {
+							JOptionPane.showInputDialog(null,
+									flagdetectionObject.getText(),
+									"Registration");
+						} else {
+							Frame.getInstance().switchPanel(Frame.REGISTATION);
+							JOptionPane.showInputDialog(null,
+									flagdetectionObject.getText(),
+									"Registration");
+						}
 					}
-					if (flagdetectionObject.getText().equals("SUCCESS")){
+					if (flagdetectionObject.getText().equals("SUCCESS")) {
 						Frame.getInstance().switchPanel(Frame.LOGIN);
-						JOptionPane.showInputDialog(null, "Registration erfolgreich!", "Registration");
+						JOptionPane.showInputDialog(null,
+								"Registration erfolgreich!", "Registration");
 					}
+					if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
+						if(flagdetectionObject.getText().equals("1")){
+							Frame.getInstance().switchPanel(Frame.CHATMENU);
+						}
+						if(flagdetectionObject.getFlag().equals("0")){
+							JOptionPane.showInputDialog(null,
+									"Logindaten nicht korrekt!", "Login");
+						}
+					}
+						
 				}
 			}
 
