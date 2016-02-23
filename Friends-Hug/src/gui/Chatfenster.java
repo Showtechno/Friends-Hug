@@ -26,13 +26,6 @@ public class Chatfenster
 		
 		parent = Start;
 		
-		
-		lblStatusServer = new JLabel();
-		lblStatusServer.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblStatusServer.setBounds(10, 391, 630, 44);
-		add(lblStatusServer);
-		lblStatusServer.setText("Serverstatus getrennt!");
-		
 		chatfenster = new JTextArea();
 		chatfenster.setOpaque(true);
 		chatfenster.setFont(new Font("Times New Roman", Font.PLAIN, 16));
@@ -90,11 +83,11 @@ public class Chatfenster
 
 
 		public static void nachrichtenFensterChange(String massagefromServer){
-			chatfenster.append(massagefromServer);
+			if(!chatfenster.getText().equals(null)){
+					chatfenster.append(massagefromServer + "\n");
+			}
+			else{
+				chatfenster.append(massagefromServer);
+			}
 		}
-		
-//		public void serverStatusChange(Boolean isConnected){
-//			if(isConnected == true)
-//					
-//		}
 }

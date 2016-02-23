@@ -13,7 +13,15 @@ public class Registration
 		extends MenuPanel {
 	
 	private static final long	serialVersionUID	= 5873155239462552831L;
-	public JLabel lblStatusServer;
+	private JLabel lblStatusRegistration;
+	
+	public JLabel getLblStatusRegistration() {
+		return lblStatusRegistration;
+	}
+	public void setLblStatusRegistration(JLabel lblStatusRegistration) {
+		this.lblStatusRegistration = lblStatusRegistration;
+	}
+	
 	public Registration(JPanel Start) {
 		setSize(700, 450);
 		setLayout(null);
@@ -70,12 +78,12 @@ public class Registration
 		lblEmailAdresseWiederholen.setBounds(10, 260, 198, 14);
 		add(lblEmailAdresseWiederholen);
 		
-		lblStatusServer = new JLabel();
-		lblStatusServer.setText("");
-		lblStatusServer.setHorizontalAlignment(SwingConstants.CENTER);
-		lblStatusServer.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		lblStatusServer.setBounds(10, 378, 647, 23);
-		add(lblStatusServer);
+		lblStatusRegistration = new JLabel();
+		lblStatusRegistration.setText("");
+		lblStatusRegistration.setHorizontalAlignment(SwingConstants.CENTER);
+		lblStatusRegistration.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		lblStatusRegistration.setBounds(10, 378, 647, 23);
+		add(lblStatusRegistration);
 		
 		JTextField txtVorname = new JTextField();
 		txtVorname.setBounds(150, 20, 198, 23);
