@@ -24,7 +24,6 @@ public class DatabaseConnection {
 
 	private boolean isUsernameAvailable;
 	private boolean isEmailAvailable;
-	Codegenerator generator = new Codegenerator();
 
 	public boolean isUsernameAvailable() {
 		return isUsernameAvailable;
@@ -40,10 +39,6 @@ public class DatabaseConnection {
 
 	public void setEmailAvailable(boolean isEmailAvailable) {
 		this.isEmailAvailable = isEmailAvailable;
-	}
-
-	public DatabaseConnection() {
-		generator.generate();
 	}
 
 	public String IDNumberSearchLast() {
@@ -88,6 +83,7 @@ public class DatabaseConnection {
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
+			LogfileWriter.getInstance().writeLogfile("connect to Database");
 			if (sqlStatement.equals(logInName)) {
 				resultSet = statement.executeQuery(logInName);
 				while (resultSet.next()) {
@@ -148,6 +144,7 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[2])) {
 						s.sendServerThread("FLAG_REGI;Benutzername schon vergeben");
 						setUsernameAvailable(false);
+						LogfileWriter.getInstance().writeLogfile("Registration failed. Username already in use");
 					}
 					else{
 						setUsernameAvailable(true);
@@ -161,6 +158,7 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[4])) {
 						s.sendServerThread("FLAG_REGI;Email schon vergeben");
 						setEmailAvailable(false);
+						LogfileWriter.getInstance().writeLogfile("Registration failed. Email already in use");
 					}
 					else{
 						setEmailAvailable(true);
@@ -170,10 +168,7 @@ public class DatabaseConnection {
 			if (sqlStatement.equals(writeUserDB)) {
 				statement.executeUpdate(writeUserDB);
 				s.sendServerThread("FLAG_REGI;SUCCESS");
-			}
-			else{
-				System.out.println(sqlStatement);
-				System.out.println(writeUserDB);
+				LogfileWriter.getInstance().writeLogfile("Registration complete");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

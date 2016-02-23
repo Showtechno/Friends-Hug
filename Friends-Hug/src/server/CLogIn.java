@@ -15,13 +15,11 @@ public class CLogIn{
 		RegiSplitter.getInstance().returnRegiInfos(data);
 		DatabaseConnection connectionDB = new DatabaseConnection();
 		if(RegiSplitter.getInstance().getRegiInfos()[0].contains("@")){
-			System.out.println("Mail");
 			connectionDB.ConnectionLogIn("SELECT Passwort FROM Data WHERE MailAdress = '"+RegiSplitter.getInstance()
 					.getRegiInfos()[0]+"'", s, RegiSplitter
 					.getInstance().getRegiInfos());
 		}
 		else{
-			System.out.println("name");
 			connectionDB.ConnectionLogIn("SELECT Passwort FROM Data WHERE USERName = '"+RegiSplitter.getInstance()
 					.getRegiInfos()[0]+"'", s, RegiSplitter
 					.getInstance().getRegiInfos());

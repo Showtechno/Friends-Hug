@@ -60,7 +60,6 @@ public class ServerThread extends Thread {
 			isReader = new InputStreamReader(socket.getInputStream());
 			reader = new BufferedReader(isReader);
 		} catch (IOException e) {
-			e.printStackTrace();
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
 				if(s.isAlive()== false){
@@ -76,7 +75,6 @@ public class ServerThread extends Thread {
 		try {
 			while (true) {
 				String input = reader.readLine();
-				LogfileWriter.getInstance().writeLogfile("Message arrived from a Client: " + getUsername());
 				flagdetectionObject.returnFlagText(input);
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
@@ -100,7 +98,6 @@ public class ServerThread extends Thread {
 				}
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("A Client disconnected.");
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
@@ -117,8 +114,7 @@ public class ServerThread extends Thread {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
 			out.println(OutToServerString);
 		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println("client disconnect");
+			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 		}
 	}
 
