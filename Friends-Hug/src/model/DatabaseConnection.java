@@ -20,10 +20,9 @@ import javax.xml.crypto.Data;
 //Code = Code welcher der User beim ersten anmelden eingeben muss
 
 public class DatabaseConnection {
-	
+
 	private boolean isUsernameAvailable;
 	private boolean isEmailAvailable;
-
 
 	public boolean isUsernameAvailable() {
 		return isUsernameAvailable;
@@ -69,7 +68,46 @@ public class DatabaseConnection {
 		return Integer.toString(lastID);
 	}
 
-	public void Connection(String sqlStatement, ServerThread s, String[] data) {
+	public void ConnectionLogIn(String sqlStatement, ServerThread s,
+			String[] data) {
+		Connection connection = null;
+		ResultSet resultSet = null;
+		Statement statement = null;
+		String logInName = "SELECT Passwort FROM Data WHERE USERName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
+//		String logInMail = "SELECT Passwort FROM Data WHERE MailAdress='"
+//				+ data[2] + "'";
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			if (sqlStatement.equals(logInName)) {
+				resultSet = statement.executeQuery(logInName);
+				while (resultSet.next()) {
+					if (resultSet.getString(1).equals(data[0])) {
+						s.sendServerThread("FLAG_LOGIN;1");
+					} else {
+						s.sendServerThread("FLAG_LOGIN;0");
+					}
+				}
+				resultSet.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void ConnectionRegi(String sqlStatement, ServerThread s,
+			String[] data) {
 		Connection connection = null;
 		ResultSet resultSet = null;
 		Statement statement = null;

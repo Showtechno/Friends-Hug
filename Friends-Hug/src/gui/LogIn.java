@@ -55,11 +55,11 @@ public class LogIn
 		lblCode.setBounds(10, 131, 130, 40);
 		add(lblCode);
 		
-		JTextField txtName = new JTextField("DQI12");
+		JTextField txtName = new JTextField("test");
 		txtName.setBounds(162, 11, 200, 20);
 		add(txtName);
 		
-		JTextField txtPasswort = new JPasswordField("DQI12");
+		JTextField txtPasswort = new JPasswordField("test");
 		txtPasswort.setBounds(162, 51, 200, 20);
 		add(txtPasswort);
 		
@@ -85,13 +85,13 @@ public class LogIn
 				String name = txtName.getText();
 				String passwort = txtPasswort.getText();
 				String mail = txtEMailAdresse.getText();
-//				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort +','+ mail);
-					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
-						if(passwort.equals(passwortrichtig)){
-							System.out.println("korrekt");
-							Frame.getInstance().switchPanel(Frame.CHATMENU);
-						}
-					}
+				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort +','+ mail);
+//					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
+//						if(passwort.equals(passwortrichtig)){
+//							System.out.println("korrekt");
+//							Frame.getInstance().switchPanel(Frame.CHATMENU);
+//						}
+//					}
 			}
 		});
 		

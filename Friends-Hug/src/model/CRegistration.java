@@ -19,14 +19,14 @@ public class CRegistration {
 	public void writeRegiIntoDB(String data, ServerThread s) {
 		RegiSplitter.getInstance().returnRegiInfos(data);
 		DatabaseConnection connectionDB = new DatabaseConnection();
-		connectionDB.Connection("SELECT UserName FROM Data", s, RegiSplitter
+		connectionDB.ConnectionRegi("SELECT UserName FROM Data", s, RegiSplitter
 				.getInstance().getRegiInfos());
 		if (connectionDB.isEmailAvailable()) {
-			connectionDB.Connection("SELECT MailAdress FROM Data", s,
+			connectionDB.ConnectionRegi("SELECT MailAdress FROM Data", s,
 					RegiSplitter.getInstance().getRegiInfos());
 			if (connectionDB.isEmailAvailable()) {
 				connectionDB
-						.Connection(
+						.ConnectionRegi(
 								"INSERT INTO Data (UserID,UserName,MailAdress,Passwort,Name,Firstname,NewPasswort,UserLoggedIn) VALUES("
 										+ connectionDB.IDNumberSearchLast()
 										+ RegiSplitter.getInstance()
