@@ -19,6 +19,8 @@ public class Client {
 
 	// Text vom Server
 	private String textVomServer;
+	
+	private String UserName;
 
 	private Boolean isConnected = false;
 
@@ -63,6 +65,13 @@ public class Client {
 
 	public void setOutToServerText(String outToServerText) {
 		this.outToServerText = outToServerText;
+	}
+	public String getUserName() {
+		return UserName;
+	}
+
+	public void setUserName(String userName) {
+		UserName = userName;
 	}
 
 	public static Client getInstance() {
@@ -130,8 +139,13 @@ public class Client {
 						
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
-					System.out.println("anmelden");
-					if(flagdetectionObject.getText().equals("1")){
+					
+					String parts [] = flagdetectionObject.getText().split(",");
+					String success= parts[0];
+					String name = parts[1];
+					
+					if(success.equals("1")){
+						setUserName(name);
 						Frame.getInstance().switchPanel(Frame.CHATMENU);
 						
 					}
@@ -162,4 +176,5 @@ public class Client {
 		writer.flush();
 
 	}
+	
 }

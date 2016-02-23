@@ -21,6 +21,7 @@ public class ServerThread extends Thread {
 	private Flagdetection flagdetectionObject = new Flagdetection();
 	private CRegistration cRegistrationObject = new CRegistration();
 	private CLogIn cLoginObject = new CLogIn();
+	private String Username;
 	
 	private BufferedReader reader;
 
@@ -40,6 +41,15 @@ public class ServerThread extends Thread {
 		this.clientSentence = clientSentence;
 	}
 
+	public String getUsername() {
+		return Username;
+	}
+
+	public void setUsername(String username) {
+		Username = username;
+	}
+
+	
 	public ServerThread(Socket socket, int listnumber, Server server) {
 		this.socket = socket;
 		this.listnumber = listnumber;

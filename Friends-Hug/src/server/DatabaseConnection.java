@@ -75,8 +75,8 @@ public class DatabaseConnection {
 		Statement statement = null;
 		String logInName = "SELECT Passwort FROM Data WHERE USERName = '"
 				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
-//		String logInMail = "SELECT Passwort FROM Data WHERE MailAdress='"
-//				+ data[2] + "'";
+		String logInMail = "SELECT Passwort FROM Data WHERE MailAdress = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
 		try {
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
@@ -84,8 +84,23 @@ public class DatabaseConnection {
 			if (sqlStatement.equals(logInName)) {
 				resultSet = statement.executeQuery(logInName);
 				while (resultSet.next()) {
-					if (resultSet.getString(1).equals(data[0])) {
-						s.sendServerThread("FLAG_LOGIN;1");
+					System.out.println(resultSet.getString(1));
+					if (resultSet.getString(1).equals(data[1])) {
+						s.sendServerThread("FLAG_LOGIN;1,"+ data[0]);
+						s.setUsername(data[0]);
+					} else {
+						s.sendServerThread("FLAG_LOGIN;0");
+					}
+				}
+				resultSet.close();
+			} else if (sqlStatement.equals(logInMail)) {
+				resultSet = statement.executeQuery(logInMail);
+				while (resultSet.next()) {
+	
+					if (resultSet.getString(1).equals(data[1])) {
+
+						s.sendServerThread("FLAG_LOGIN;1,"+ data[0]);
+						s.setUsername(data[0]);
 					} else {
 						s.sendServerThread("FLAG_LOGIN;0");
 					}

@@ -28,7 +28,7 @@ public class LogIn
 		add(lblStatusServer);
 		
 		JLabel lblName = new JLabel();
-		lblName.setText("Benutzername: ");
+		lblName.setText("Name/Mail: ");
 		lblName.setHorizontalAlignment(SwingConstants.LEFT);
 		lblName.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblName.setBounds(10, 11, 130, 40);
@@ -40,13 +40,7 @@ public class LogIn
 		lblPassword.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblPassword.setBounds(10, 51, 130, 40);
 		add(lblPassword);
-		
-		JLabel lblEmailAdresse = new JLabel();
-		lblEmailAdresse.setText("E-Mail Addresse: ");
-		lblEmailAdresse.setHorizontalAlignment(SwingConstants.LEFT);
-		lblEmailAdresse.setFont(new Font("Times New Roman", Font.BOLD, 12));
-		lblEmailAdresse.setBounds(10, 91, 130, 40);
-		add(lblEmailAdresse);
+	
 		
 		JLabel lblCode = new JLabel();
 		lblCode.setText("Sicherheitscode: ");
@@ -55,17 +49,13 @@ public class LogIn
 		lblCode.setBounds(10, 131, 130, 40);
 		add(lblCode);
 		
-		JTextField txtName = new JTextField("test");
+		JTextField txtName = new JTextField("Test");
 		txtName.setBounds(162, 11, 200, 20);
 		add(txtName);
 		
-		JTextField txtPasswort = new JPasswordField("test");
+		JTextField txtPasswort = new JPasswordField("123456789");
 		txtPasswort.setBounds(162, 51, 200, 20);
 		add(txtPasswort);
-		
-		JTextField txtEMailAdresse = new JTextField();
-		txtEMailAdresse.setBounds(162, 91, 200, 20);
-		add(txtEMailAdresse);
 		
 		JTextField txtCode = new JTextField();
 		txtCode.setBounds(162, 131, 200, 20);
@@ -84,8 +74,7 @@ public class LogIn
 			public void actionPerformed(ActionEvent e){
 				String name = txtName.getText();
 				String passwort = txtPasswort.getText();
-				String mail = txtEMailAdresse.getText();
-				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort +','+ mail);
+				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort);
 //					if (name.equals(namerichtig) || mail.equals(mailrichtig)){
 //						if(passwort.equals(passwortrichtig)){
 //							System.out.println("korrekt");
