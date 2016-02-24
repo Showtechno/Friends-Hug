@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.util.Scanner;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+
 public class ServerThread extends Thread {
 
 	private boolean logInBoolean = false;
@@ -22,6 +25,7 @@ public class ServerThread extends Thread {
 	private CRegistration cRegistrationObject = new CRegistration();
 	private CLogIn cLoginObject = new CLogIn();
 	private String Username;
+	String userList;
 	
 	private BufferedReader reader;
 
@@ -84,13 +88,22 @@ public class ServerThread extends Thread {
 						s.sendServerThread(s.getClientSentence());
 					}
 				}
-				if(flagdetectionObject.getFlag().equals("FLAG_LOGOUT")){
+				if(flagdetectionObject.getFlag().equals("FLAG_QUIT")){
 					server.clientlist.remove(listnumber);
 					stop();
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
 					LogfileWriter.getInstance().writeLogfile("Login request");
+					if(!getUsername().equals(null)){
+						server.getList().add(getUsername());
+						for(int i = 0; i < server.getList().size(); i++){
+							userList = userList +',' + server.getList().get(i);
+						}
+						for (ServerThread s : server.clientlist.values()) {
+								s.sendServerThread("FLAG_ADD;" + userList );
+						}
+					}
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);

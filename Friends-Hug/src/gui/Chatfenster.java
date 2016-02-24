@@ -17,7 +17,8 @@ public class Chatfenster
 	
 	public JLabel lblStatusServer;
 	public static JTextArea chatfenster;
-	public JTextArea teilnehmerliste;
+	public JList<?> teilnehmerliste;
+	static DefaultListModel<String> listModel = new DefaultListModel<String>();
 	
 	private JTextField eingabe;
 	
@@ -41,13 +42,13 @@ public class Chatfenster
 		add(scrollPaneChatfenster);
 		scrollPaneChatfenster.setViewportView(chatfenster);
 		
-		teilnehmerliste = new JTextArea();
+
+		JList<String>teilnehmerliste = new JList<String>(listModel);
 		teilnehmerliste.setOpaque(true);
 		teilnehmerliste.setFont(new Font("Times New Roman", Font.PLAIN, 16));
-		teilnehmerliste.setLineWrap(false);
 		teilnehmerliste.setBounds(520, 11, 133, 356);
-		teilnehmerliste.setEditable(true);
-		teilnehmerliste.setEditable(false);
+		teilnehmerliste.setLayoutOrientation(JList.HORIZONTAL_WRAP);
+
 		add(teilnehmerliste);
 		JScrollPane scrollPaneChatteilnehmerliste= new JScrollPane();
 		scrollPaneChatteilnehmerliste.setBounds(520, 11, 133, 356);
@@ -92,4 +93,8 @@ public class Chatfenster
 				chatfenster.append(massagefromServer);
 			}
 		}
+		public static void addUser(String username){
+			listModel.addElement(username);
+		}
+		
 }

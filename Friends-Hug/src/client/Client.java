@@ -3,12 +3,7 @@ package client;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
-import java.util.Scanner;
-
-import javax.print.attribute.standard.MediaSize.Other;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-
 import client.Flagdetection;
 import gui.Chatfenster;
 import gui.Frame;
@@ -129,8 +124,9 @@ public class Client {
 						JOptionPane.showMessageDialog(null,
 								"Registration erfolgreich!");
 					}
-				
-						
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_ADD")){
+					Chatfenster.addUser(flagdetectionObject.getText());
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					

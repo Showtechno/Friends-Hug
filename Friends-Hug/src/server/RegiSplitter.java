@@ -30,8 +30,4 @@ public class RegiSplitter {
 		
 		setRegiInfos(nonSplittedInfos.split(","));
 	}
-	public static void main(String[] args) {
-		RegiSplitter.getInstance().returnRegiInfos("1,2,3,4,5");
-		System.out.println(RegiSplitter.getInstance().getRegiInfos()[0]);
-	}
 }

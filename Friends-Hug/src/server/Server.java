@@ -1,13 +1,15 @@
 package server;
-
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Server {
 
 	protected HashMap<Integer,ServerThread> clientlist = new HashMap<Integer, ServerThread>();
+	private List<String> list = new ArrayList<>();
 	
 	private InetAddress ip;
 	
@@ -22,6 +24,9 @@ public class Server {
 		
 	}		
 		
+	public List<String> getList() {
+		return list;
+	}
 	public void start(){
 //		if(ip == null){
 //			setIp();

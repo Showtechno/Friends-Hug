@@ -56,7 +56,7 @@ public class Start
 		add(btnBeenden);
 		btnBeenden.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				Client.getInstance().send("FLAG_LOGOUT");
+				Client.getInstance().send("FLAG_QUIT");
 				System.exit(0);
 			}
 		});
