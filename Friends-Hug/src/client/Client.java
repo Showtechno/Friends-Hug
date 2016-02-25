@@ -3,7 +3,11 @@ package client;
 import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.ListModel;
+
 import client.Flagdetection;
 import gui.Chatfenster;
 import gui.Frame;
@@ -126,7 +130,15 @@ public class Client {
 					}
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_ADD")){
-					Chatfenster.addUser(flagdetectionObject.getText());
+					ClientListSplitter.getInstance().returnListClient(flagdetectionObject.getText());
+					Chatfenster.setListModel(DefaultListModel<String> null);
+//					for(int i=0;i<Chatfenster.getListModel().size();i++){
+//						Chatfenster.getListModel().removeAllElements();
+//					}
+					for(int i=0;i<ClientListSplitter.getInstance().getList().size();i++){
+						System.out.println("UserinTree: " + ClientListSplitter.getInstance().getList().get(i));
+						Chatfenster.addUser(ClientListSplitter.getInstance().getList().get(i));
+					}
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					

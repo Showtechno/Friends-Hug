@@ -25,7 +25,7 @@ public class ServerThread extends Thread {
 	private CRegistration cRegistrationObject = new CRegistration();
 	private CLogIn cLoginObject = new CLogIn();
 	private String Username;
-	String userList;
+	String userList="";
 	
 	private BufferedReader reader;
 
@@ -95,11 +95,17 @@ public class ServerThread extends Thread {
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
 					LogfileWriter.getInstance().writeLogfile("Login request");
-					if(!getUsername().equals(null)){
+					if(getUsername()!= null){
 						server.getList().add(getUsername());
 						for(int i = 0; i < server.getList().size(); i++){
-							userList = userList +',' + server.getList().get(i);
+							if(userList==""){
+								userList = server.getList().get(i);
+							}
+							else{
+								userList = userList +',' + server.getList().get(i);
+							}
 						}
+						System.out.println(userList);
 						for (ServerThread s : server.clientlist.values()) {
 								s.sendServerThread("FLAG_ADD;" + userList );
 						}

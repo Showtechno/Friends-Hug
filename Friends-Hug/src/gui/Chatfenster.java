@@ -5,9 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.List;
 
 import javax.swing.*;
 
+import server.CRegistration;
 import client.Client;
 
 public class Chatfenster
@@ -18,8 +20,28 @@ public class Chatfenster
 	public JLabel lblStatusServer;
 	public static JTextArea chatfenster;
 	public JList<?> teilnehmerliste;
-	static DefaultListModel<String> listModel = new DefaultListModel<String>();
+	private static DefaultListModel<String> listModel = new DefaultListModel<String>();
 	
+	public static DefaultListModel<String> getListModel() {
+		return listModel;
+	}
+	
+//	public void replaceUserList(List<String> user) {
+//		String[] userArray=new String[user.size()];
+//		int i = 0;
+//		for(String u : user) {
+//			userArray[i] = u;
+//			i++;
+//		}
+//		
+//		teilnehmerliste.setModel(new DefaultListModel<String>(userArray));
+//		
+//	}
+
+	public static void setListModel(DefaultListModel<String> listModel) {
+		Chatfenster.listModel = listModel;
+	}
+
 	private JTextField eingabe;
 	
 	public Chatfenster(JPanel Start) {
