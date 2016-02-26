@@ -19,9 +19,9 @@ public class Chatfenster
 	
 	public JLabel lblStatusServer;
 	public static JTextArea chatfenster;
-	public JList<?> teilnehmerliste;
+	public static JList<?> teilnehmerliste;
 	private static DefaultListModel<String> listModel = new DefaultListModel<String>();
-	
+
 	public static DefaultListModel<String> getListModel() {
 		return listModel;
 	}
@@ -117,6 +117,5 @@ public class Chatfenster
 		}
 		public static void addUser(String username){
 			listModel.addElement(username);
-		}
-		
+		}	
 }

@@ -131,12 +131,12 @@ public class Client {
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_ADD")){
 					ClientListSplitter.getInstance().returnListClient(flagdetectionObject.getText());
-					Chatfenster.setListModel(DefaultListModel<String> null);
-//					for(int i=0;i<Chatfenster.getListModel().size();i++){
-//						Chatfenster.getListModel().removeAllElements();
+					Chatfenster.getListModel().removeAllElements();
+//					System.out.println(Chatfenster.getListModel().getSize());
+//					for(int i=0;i<Chatfenster.getListModel().getSize();i++){
+//						Chatfenster.getListModel().remove(i);
 //					}
 					for(int i=0;i<ClientListSplitter.getInstance().getList().size();i++){
-						System.out.println("UserinTree: " + ClientListSplitter.getInstance().getList().get(i));
 						Chatfenster.addUser(ClientListSplitter.getInstance().getList().get(i));
 					}
 				}
