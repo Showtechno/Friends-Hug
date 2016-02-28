@@ -87,12 +87,16 @@ public class DatabaseConnection {
 			if (sqlStatement.equals(searchUserName)) {
 				resultSet = statement.executeQuery(searchUserName);
 				while (resultSet.next()) {
+					System.out.println("gucken ob nutzer name schon vergeben");
 					if (resultSet.getString(1).equals(
-							RegiSplitter.getInstance().getRegiInfos()[2])) {
+							RegiSplitter.getInstance().getRegiInfos()[1])) {
 						s.sendServerThread("FLAG_NAMECHANGE;Benutzername schon vergeben");
 						setUsernameAvailable(false);
+						System.out.println("Nutzername schon vergeben");
 					} else {
 						setUsernameAvailable(true);
+						System.out.println("Nutzername noch frei");
+						
 					}
 				}
 			} 
