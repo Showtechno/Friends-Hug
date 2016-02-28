@@ -61,10 +61,13 @@ public class ServerThread extends Thread {
 		
 		InputStreamReader isReader;
 		try {
+			//uebergibt des isreader den inputsteam vom socket
 			isReader = new InputStreamReader(socket.getInputStream());
+			//uebergibt den bufferedreader den inputsteam
 			reader = new BufferedReader(isReader);
 		} catch (IOException e) {
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
+			//iterriert ueber die clientenlist und loescht alle heraus die nicht mehr verbunden sind
 			for (ServerThread s : server.clientlist.values()) {
 				if(s.isAlive()== false){
 					server.clientlist.remove(s);
@@ -74,24 +77,27 @@ public class ServerThread extends Thread {
 		}
 		
 	}
-
+//reagiert auf die von Client gesendeten Flags
 	public void run() {
 		try {
 			while (true) {
 				String input = reader.readLine();
 				flagdetectionObject.returnFlagText(input);
+				//regiert auf die Flag Chat
 				if (flagdetectionObject.getFlag().equals("FLAG_CHAT")) {
 					setClientSentence(flagdetectionObject.getFlag() + ';'
 							+ getUsername() +": " + flagdetectionObject.getText());
+					//iteriert ueber die clientlist und sendet an alle die Nachricht
 					for (ServerThread s : server.clientlist.values()) {
 						s.setClientSentence(getClientSentence());
 						s.sendServerThread(s.getClientSentence());
 					}
 				}
+				//regiert auf die Flag quit und loescht sich aus der clientlist
 				if(flagdetectionObject.getFlag().equals("FLAG_QUIT")){
 					server.clientlist.remove(listnumber);
-					stop();
 				}
+				//regiert auf die Flag login
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
 					LogfileWriter.getInstance().writeLogfile("Login request");
@@ -111,12 +117,16 @@ public class ServerThread extends Thread {
 						}
 					}
 				}
+				//regiert auf Registrations Flag
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
+					//uebergibt den registrationsauftrag an die entsprechende klasse weiter
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Registration request");
 				}
 			}
-		} catch (Exception e) {
+		}
+		//faengt ab das die Clientverbindung abgebrochen ist und loescht ihn aus der Server clientlist
+		catch (Exception e) {
 			System.out.println("A Client disconnected.");
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
@@ -127,7 +137,7 @@ public class ServerThread extends Thread {
 			}
 		}
 	}
-
+//methode zum senden zum Client auf dem outputstream
 	public void sendServerThread(String OutToServerString) {
 		try {
 			PrintWriter out = new PrintWriter(socket.getOutputStream(), true);

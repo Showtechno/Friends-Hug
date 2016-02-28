@@ -95,6 +95,7 @@ public class Chatfenster
 		JScrollPane scrollPaneEingabe= new JScrollPane(eingabe, JScrollPane.VERTICAL_SCROLLBAR_NEVER, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
 		scrollPaneEingabe.setBounds(11, 368, 493, 37);
 		add(scrollPaneEingabe);
+		//actionlistener zum versenden der Nachrichten bei enter
 		eingabe.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
@@ -106,7 +107,7 @@ public class Chatfenster
 		});
 	}		
 
-
+		//hinzufügen einer Nachricht auf dem Chatfenster
 		public static void nachrichtenFensterChange(String massagefromServer){
 			if(!chatfenster.getText().equals(null)){
 					chatfenster.append(massagefromServer + "\n");
@@ -115,6 +116,7 @@ public class Chatfenster
 				chatfenster.append(massagefromServer);
 			}
 		}
+		//verändern der Userliste
 		public static void addUser(String username){
 			listModel.addElement(username);
 		}	

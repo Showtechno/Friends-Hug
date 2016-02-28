@@ -12,7 +12,7 @@ public class RegiSplitter {
 	public void setRegiInfos(String regiInfos[]) {
 		this.regiInfos = regiInfos;
 	}
-	
+	//singelton Pattern
 	public static RegiSplitter getInstance() {
 		if (instance == null) {
 			instance = new RegiSplitter();
@@ -26,6 +26,7 @@ public class RegiSplitter {
 	 * 3 = Passwort
 	 * 4 = Email-Adresse
 	 */
+	//retured die Daten fuer die Registrationsdaten
 	public void returnRegiInfos(String nonSplittedInfos){
 		
 		setRegiInfos(nonSplittedInfos.split(","));

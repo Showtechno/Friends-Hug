@@ -41,6 +41,7 @@ public class DatabaseConnection {
 		this.isEmailAvailable = isEmailAvailable;
 	}
 
+	// holt sich die aktuelle hoechtste userID und returned die naechst hoehere
 	public String IDNumberSearchLast() {
 		String searchUserID = "SELECT USERID from Data";
 		Connection connection = null;
@@ -52,7 +53,7 @@ public class DatabaseConnection {
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(searchUserID);
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				lastID = (Integer.valueOf(resultSet.getString(1)));
 			}
 			lastID++;
@@ -121,7 +122,10 @@ public class DatabaseConnection {
 		}
 
 	}
-
+/*baut die verbindung zur Datenbank auf und verarbeitet die empfangenen Daten
+ * ueberprueft ob username oder Email schon einmal vergeben sind und schreibt bei erfolgreichen ueberpfuefung
+ * die Registrationsdaten in die Datenbank
+ */
 	public void ConnectionRegi(String sqlStatement, ServerThread s,
 			String[] data, CRegistration regi) {
 		Connection connection = null;
@@ -137,6 +141,7 @@ public class DatabaseConnection {
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
+			//UserName ueberpruefung
 			if (sqlStatement.equals(searchUserName)) {
 				resultSet = statement.executeQuery(searchUserName);
 				while (resultSet.next()) {
@@ -144,13 +149,14 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[2])) {
 						s.sendServerThread("FLAG_REGI;Benutzername schon vergeben");
 						setUsernameAvailable(false);
-						LogfileWriter.getInstance().writeLogfile("Registration failed. Username already in use");
-					}
-					else{
+						LogfileWriter.getInstance().writeLogfile(
+								"Registration failed. Username already in use");
+					} else {
 						setUsernameAvailable(true);
 					}
 				}
 			}
+			//Email ueberpruefung
 			if (sqlStatement.equals(searchEmail)) {
 				resultSet = statement.executeQuery(searchEmail);
 				while (resultSet.next()) {
@@ -158,17 +164,19 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[4])) {
 						s.sendServerThread("FLAG_REGI;Email schon vergeben");
 						setEmailAvailable(false);
-						LogfileWriter.getInstance().writeLogfile("Registration failed. Email already in use");
-					}
-					else{
+						LogfileWriter.getInstance().writeLogfile(
+								"Registration failed. Email already in use");
+					} else {
 						setEmailAvailable(true);
 					}
 				}
 			}
+			//schreiben in die Datenbank(Registrationsdaten)
 			if (sqlStatement.equals(writeUserDB)) {
 				statement.executeUpdate(writeUserDB);
 				s.sendServerThread("FLAG_REGI;SUCCESS");
-				LogfileWriter.getInstance().writeLogfile("Registration complete");
+				LogfileWriter.getInstance().writeLogfile(
+						"Registration complete");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

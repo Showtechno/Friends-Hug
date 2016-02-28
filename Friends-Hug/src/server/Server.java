@@ -8,7 +8,9 @@ import java.util.List;
 
 public class Server {
 
+	//hashmap mit allen Teilnehmern
 	protected HashMap<Integer,ServerThread> clientlist = new HashMap<Integer, ServerThread>();
+	
 	private List<String> list = new ArrayList<>();
 	
 	private InetAddress ip;
@@ -33,9 +35,15 @@ public class Server {
 //		}
 		int listnumber= 0;
 		try{
+			//ein socket wird auf port 1337 geoeffnet
 			ServerSocket serverSocket = new ServerSocket(1337);
 			System.out.println("Server ist im Betrieb");
 			while(true){
+				/*server nimmt jede einkommende verbindung an und startet ein neuen Thread und uebergibt ihm
+				 * den socket seine ,,Verbindungsnummer" und den Server selbst
+				 * diesen Thread fuegt er der Hashmap hinzu und erhoeht die Verbindungsnummer
+				 *der Key fuer die Hashmap ist die Verbindungsnummer
+				 */
 				Socket socket = serverSocket.accept();
 				ServerThread serverThread = new ServerThread(socket,listnumber,this);
 				serverThread.start();
