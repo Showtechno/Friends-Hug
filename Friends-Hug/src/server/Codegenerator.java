@@ -13,7 +13,7 @@ public class Codegenerator {
 	public void setCode(int code) {
 		this.code = code;
 	}
-
+	//methode zum generieren eines zufälligen 4stelligen Zahlencodes 
 	public void generate(){
 		String number1 = Integer.toString(ThreadLocalRandom.current().nextInt(0,10));
 		String number2 = Integer.toString(ThreadLocalRandom.current().nextInt(0,10));
