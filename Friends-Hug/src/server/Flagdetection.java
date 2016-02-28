@@ -24,8 +24,10 @@ public class Flagdetection {
 		String [] flagTextSplitted = input.split(";");
 		setFlag(flagTextSplitted[0]);
 		setText(flagTextSplitted[1]);
-		for(int i = 1;i<flagTextSplitted.length;i++){
-			setText(getText() + flagTextSplitted[i]);
+		if (1 < flagTextSplitted.length) {
+			for (int i = 2; i < flagTextSplitted.length; i++) {
+				setText(getText() + flagTextSplitted[i]);
+			}
 		}
 	}
 }
