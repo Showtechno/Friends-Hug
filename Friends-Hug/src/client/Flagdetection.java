@@ -19,12 +19,12 @@ public class Flagdetection {
 	}
 
 	
-	//slit a input stream to read the flag
+	//Slittet den input String in Flag und folgenen Text auf
 	public void returnFlagText(String input){
 		String [] flagTextSplitted = input.split(";");
 		setFlag(flagTextSplitted[0]);
 		setText(flagTextSplitted[1]);
-		for(int i = 2;i<flagTextSplitted.length;i++){
+		for(int i = 1;i<flagTextSplitted.length;i++){
 			setText(getText() + flagTextSplitted[i]);
 		}
 	}
