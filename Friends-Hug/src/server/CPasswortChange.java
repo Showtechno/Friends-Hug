@@ -9,7 +9,7 @@ public class CPasswortChange {
 		}
 		return instance;
 	}
-
+	//schreibt das neue Passwort in die DB
 	public void passwortChange(String data, ServerThread s) {
 		RegiSplitter.getInstance().returnRegiInfos(data);
 		DatabaseConnection connectionDB = new DatabaseConnection();

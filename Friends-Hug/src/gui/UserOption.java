@@ -93,7 +93,9 @@ public class UserOption extends MenuPanel {
 		add(btnBenutzernamendern);
 		btnBenutzernamendern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Ueberprueft ob beide Namen gleich sind
 				if (txtneuerName.getText().equals(txtneuerNameWiederholen.getText())) {
+					//Sendet Aktuellen und gewuenschten neuen Namen
 					Client.getInstance().send(
 							"FLAG_NAMECHANGE;"
 									+ Client.getInstance().getUserName() + ','
@@ -110,7 +112,9 @@ public class UserOption extends MenuPanel {
 		add(btnPasswordndern);
 		btnPasswordndern.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Ueberprueft ob beide Passwoerter gleich sind
 				if (neuesPasswort.getText().equals(neuesPasswortWiederholen.getText())) {
+					//Sendet UserName und neues Passwort
 					Client.getInstance().send(
 							"FLAG_PASSWORTCHANGE;"
 									+ Client.getInstance().getUserName() + ','

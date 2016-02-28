@@ -70,6 +70,7 @@ public class LogIn
 			public void actionPerformed(ActionEvent e){
 				String name = txtName.getText();
 				String passwort = txtPasswort.getText();
+				//sendet die Eingegebenden Daten
 				Client.getInstance().send("FLAG_LOGIN;"+ name +','+ passwort);
 			}
 		});

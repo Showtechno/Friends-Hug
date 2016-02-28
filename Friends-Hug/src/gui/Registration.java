@@ -122,11 +122,15 @@ public class Registration extends MenuPanel {
 		add(btnRegistrieren);
 		btnRegistrieren.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//Ueberpruefen ob beide passwoerter gleich sind
 				if (txtPasswort.getText().equals(
 						txtPasswordWiederholen.getText())) {
+					//Ueberpruefen ob beide Mails gleich sind
 					if (txtEMailAddresse.getText().equals(
 							txtEMailAddressenWiederholen.getText())) {
+						//Ueberpruefen ob die Mail ein @ enthaelt
 						if (txtEMailAddresse.getText().contains("@")) {
+							//Daten an senden
 							Client.getInstance().send(
 									"FLAG_REGI;" + txtVorname.getText() + ','
 											+ txtNachname.getText() + ','

@@ -83,13 +83,14 @@ public class DatabaseConnection {
 				+ "' WHERE UserName = '"
 				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
 		try {
+			//baut Verbindung zur DB auf
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
+			//ueberprueft ob der Nutzername schon vergeben ist
 			if (sqlStatement.equals(searchUserName)) {
 				resultSet = statement.executeQuery(searchUserName);
 				while (resultSet.next()) {
-					System.out.println("gucken ob nutzer name schon vergeben");
 					if (resultSet.getString(1).equals(
 							RegiSplitter.getInstance().getRegiInfos()[1])) {
 						s.sendServerThread("FLAG_NAMECHANGE;Benutzername schon vergeben");
@@ -102,6 +103,7 @@ public class DatabaseConnection {
 					}
 				}
 			}
+			//aendert den Namen in der DB
 			if (sqlStatement.equals(changeName)) {
 				statement.executeUpdate(changeName);
 				s.sendServerThread("FLAG_NAMECHANGE;1");
@@ -130,10 +132,12 @@ public class DatabaseConnection {
 				+ "' WHERE UserName = '"
 				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
 		try {
+			//baut Verbindung zur DB auf
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
 			if (sqlStatement.equals(changePasswort)) {
+				//aendert das Passwort in der DB
 				statement.executeUpdate(changePasswort);
 				s.sendServerThread("FLAG_PASSWORTCHANGE;1");
 			}
@@ -161,14 +165,17 @@ public class DatabaseConnection {
 		String logInMail = "SELECT Passwort FROM Data WHERE MailAdress = '"
 				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
 		try {
+			//baut Verbindung zur DB auf
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
 			LogfileWriter.getInstance().writeLogfile("connect to Database");
 			if (sqlStatement.equals(logInName)) {
+				//LogIn mit dem UserName
 				resultSet = statement.executeQuery(logInName);
 				while (resultSet.next()) {
 					if (resultSet.getString(1).equals(data[1])) {
+						//Ueberprueft ob das DB Passwort mit dem Eingegebenen uebereinstimmt
 						s.sendServerThread("FLAG_LOGIN;1," + data[0]);
 						s.setUsername(data[0]);
 					} else {
@@ -177,10 +184,11 @@ public class DatabaseConnection {
 				}
 				resultSet.close();
 			} else if (sqlStatement.equals(logInMail)) {
+				//LogIN mit der Mail
 				resultSet = statement.executeQuery(logInMail);
 				while (resultSet.next()) {
 					if (resultSet.getString(1).equals(data[1])) {
-
+						//Ueberprueft ob das DB Passwort mit dem Eingegebenen uebereinstimmt
 						s.sendServerThread("FLAG_LOGIN;1," + data[0]);
 						s.setUsername(data[0]);
 					} else {

@@ -166,17 +166,22 @@ public class Client {
 								"Logindaten nicht korrekt!");
 					}
 				}
+				//Auswertung des Namen aenderns
 				if(flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")){
+					//Name schon vergeben
 					if(flagdetectionObject.getText().contains("vergeben")){
 						JOptionPane.showMessageDialog(null,
 								"Nutzername ist schon vergeben");
 					}
+					//Name noch nicht vergeben
 					if(flagdetectionObject.getText().equals("1")){
 						JOptionPane.showMessageDialog(null,
 								"Name erfolgreich geändert");
 					}
 				}
+				//Auswertung des Passwort aenderns
 				if(flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")){
+					//Passwort wurde geaendert
 					if(flagdetectionObject.getText().equals("1")){
 						JOptionPane.showMessageDialog(null,
 								"Passwort erfolgreich geändert");

@@ -101,13 +101,14 @@ public class ServerThread extends Thread {
 				}
 				//regiert auf die Flag login
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
+					//uebergibt den LogIn Auftrag an die Klasse
 					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
 					LogfileWriter.getInstance().writeLogfile("Login request");
 					if(getUsername()!= null){
 						server.getList().add(getUsername());
 						for(int i = 0; i < server.getList().size(); i++){
 							if(userList==""){
-								userList = server.getList().get(i);
+								userList = server.getList().get(i);   
 							}
 							else{
 								userList = userList +',' + server.getList().get(i);
@@ -125,11 +126,15 @@ public class ServerThread extends Thread {
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Registration request");
 				}
+				//reagiert auf NameChange Flag
 				if(flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")){
+					//uebergibt den Namensaendernauftrag and die Klasse
 					cNameChangeObject.getInstance().nameChange(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Name change request");
 				}
+				//reagiert auf PasswortChange Flag
 				if(flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")){
+					//uebergibt den Passwortaendernauftrag an die Klasse
 					cPasswortChangeObject.getInstance().passwortChange(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Passwort change request");
 				}

@@ -16,7 +16,7 @@ public class CRegistration {
 	/*
 	 * 0 = Vorname 1 = Nachname 2 = Benutzername 3 = Passwort 4 = Email-Adresse
 	 */
-	// schreibt die Regisaten in die db
+	// schreibt die Regidaten in die db
 	public void writeRegiIntoDB(String data, ServerThread s) {
 		RegiSplitter.getInstance().returnRegiInfos(data);
 		// uebergibt einer neuen Klasse die Daten, die ueberprueft ob Username

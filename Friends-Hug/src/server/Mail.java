@@ -17,8 +17,9 @@ public class Mail {
 	
 	public void sendMail(String mailAdress, int code) {
 		// Nicht in der Schule testen da Port 25 gebloggt ist!!!!
-		
+		//Von
 		String to = mailAdress;
+		//nach
 		String from = "tvhamster4@hotmail.de";
 		String host = "localhost";
 		Properties propeties = System.getProperties();
@@ -28,9 +29,11 @@ public class Mail {
 		try{
 			MimeMessage message = new MimeMessage(session);
 			message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+			//Nachrichten Text
 			message.setSubject("Wilkommen bei Friends-Hug");
 			message.setText("Bitte geben sie diesen Code beim ersten Anmelden an:");
 			message.setText(Integer.toString(code));
+			//Nachricht senden
 			Transport.send(message);
 			System.out.println("Nachricht wurde gesendet");
 		}catch(MessagingException mex){
