@@ -54,9 +54,10 @@ public class DatabaseConnection {
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(searchUserID);
 			while (resultSet.next()) {
-				lastID = (Integer.valueOf(resultSet.getString(1)));
+				lastID++;
 			}
 			lastID++;
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -97,11 +98,11 @@ public class DatabaseConnection {
 					} else {
 						setUsernameAvailable(true);
 						System.out.println("Nutzername noch frei");
-						
+
 					}
 				}
-			} 
-			if(sqlStatement.equals(changeName)){
+			}
+			if (sqlStatement.equals(changeName)) {
 				statement.executeUpdate(changeName);
 				s.sendServerThread("FLAG_NAMECHANGE;1");
 			}
@@ -135,7 +136,7 @@ public class DatabaseConnection {
 			if (sqlStatement.equals(changePasswort)) {
 				statement.executeUpdate(changePasswort);
 				s.sendServerThread("FLAG_PASSWORTCHANGE;1");
-			} 
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -149,7 +150,7 @@ public class DatabaseConnection {
 		}
 
 	}
-	
+
 	public void ConnectionLogIn(String sqlStatement, ServerThread s,
 			String[] data) {
 		Connection connection = null;
@@ -201,10 +202,13 @@ public class DatabaseConnection {
 		}
 
 	}
-/*baut die verbindung zur Datenbank auf und verarbeitet die empfangenen Daten
- * ueberprueft ob username oder Email schon einmal vergeben sind und schreibt bei erfolgreichen ueberpfuefung
- * die Registrationsdaten in die Datenbank
- */
+
+	/*
+	 * baut die verbindung zur Datenbank auf und verarbeitet die empfangenen
+	 * Daten ueberprueft ob username oder Email schon einmal vergeben sind und
+	 * schreibt bei erfolgreichen ueberpfuefung die Registrationsdaten in die
+	 * Datenbank
+	 */
 	public void ConnectionRegi(String sqlStatement, ServerThread s,
 			String[] data, CRegistration regi) {
 		Connection connection = null;
@@ -213,14 +217,17 @@ public class DatabaseConnection {
 		String searchUserName = "SELECT UserName FROM Data";
 		String searchEmail = "SELECT MailAdress FROM Data";
 		String writeUserDB = "INSERT INTO Data VALUES('" + IDNumberSearchLast()
-				+ "','" + data[2] + "','" + data[4] + "','" + data[3] + "','"
-				+ data[1] + "','" + data[0] + "'," + "'0'" + "," + "'0'" + ","
-				+ null + ')';
+				+ "','" + RegiSplitter.getInstance().getRegiInfos()[2] + "','"
+				+ RegiSplitter.getInstance().getRegiInfos()[4] + "','"
+				+ RegiSplitter.getInstance().getRegiInfos()[3] + "','"
+				+ RegiSplitter.getInstance().getRegiInfos()[1] + "','"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'," + "'0'"
+				+ "," + "'0'" + "," + null + ")";
 		try {
 			connection = DriverManager
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
-			//UserName ueberpruefung
+			// UserName ueberpruefung
 			if (sqlStatement.equals(searchUserName)) {
 				resultSet = statement.executeQuery(searchUserName);
 				while (resultSet.next()) {
@@ -235,7 +242,7 @@ public class DatabaseConnection {
 					}
 				}
 			}
-			//Email ueberpruefung
+			// Email ueberpruefung
 			if (sqlStatement.equals(searchEmail)) {
 				resultSet = statement.executeQuery(searchEmail);
 				while (resultSet.next()) {
@@ -250,8 +257,10 @@ public class DatabaseConnection {
 					}
 				}
 			}
-			//schreiben in die Datenbank(Registrationsdaten)
+			// schreiben in die Datenbank(Registrationsdaten)
 			if (sqlStatement.equals(writeUserDB)) {
+				System.out.println("regi gesendet");
+				System.out.println(IDNumberSearchLast());
 				statement.executeUpdate(writeUserDB);
 				s.sendServerThread("FLAG_REGI;SUCCESS");
 				LogfileWriter.getInstance().writeLogfile(
