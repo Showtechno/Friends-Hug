@@ -238,3 +238,11 @@
 28.02.2016 04:39:39.675: connect to Database
 28.02.2016 04:39:39.675: Login request
 28.02.2016 04:39:39.675: A Client disconnected.
+28.02.2016 04:45:48.931: connect to Database: search if Username already in use
+28.02.2016 04:45:48.931: connect to Database: search if Emailadresse already in use
+28.02.2016 04:45:48.931: Registration complete
+28.02.2016 04:45:48.931: connect to Database: write Registration in Database
+28.02.2016 04:45:48.931: Registration request
+28.02.2016 04:45:48.931: connect to Database
+28.02.2016 04:45:48.931: Login request
+28.02.2016 04:45:48.931: A Client disconnected.
