@@ -85,3 +85,34 @@
 28.02.2016 01:12:30.745: A Client disconnected.
 28.02.2016 01:12:30.745: A Client disconnected.
 28.02.2016 01:12:30.745: A Client disconnected.
+28.02.2016 01:17:32.995: connect to Database
+28.02.2016 01:17:32.995: Login request
+28.02.2016 01:17:32.995: A Client disconnected.
+28.02.2016 01:17:32.995: connect to Database
+28.02.2016 01:17:32.995: Login request
+28.02.2016 01:17:32.995: A Client disconnected.
+28.02.2016 01:19:42.792: connect to Database: search if Username already in use
+28.02.2016 01:19:42.792: connect to Database: search if Emailadresse already in use
+28.02.2016 01:19:42.792: connect to Database: write Registration in Database
+28.02.2016 01:19:42.792: Registration request
+28.02.2016 01:21:31.771: connect to Database: search if Username already in use
+28.02.2016 01:21:31.771: connect to Database: search if Emailadresse already in use
+28.02.2016 01:21:31.771: connect to Database: write Registration in Database
+28.02.2016 01:21:31.771: Registration request
+28.02.2016 01:22:20.375: connect to Database: search if Username already in use
+28.02.2016 01:22:20.375: connect to Database: search if Emailadresse already in use
+28.02.2016 01:22:20.375: connect to Database: write Registration in Database
+28.02.2016 01:22:20.375: Registration request
+28.02.2016 01:24:39.901: connect to Database
+28.02.2016 01:24:39.901: Login request
+28.02.2016 01:24:39.901: connect to Database: search if Username already in use
+28.02.2016 01:24:39.901: connect to Database: search if Emailadresse already in use
+28.02.2016 01:24:39.901: connect to Database: write Registration in Database
+28.02.2016 01:24:39.901: Registration request
+28.02.2016 01:26:18.070: connect to Database: search if Username already in use
+28.02.2016 01:26:18.070: connect to Database: search if Emailadresse already in use
+28.02.2016 01:26:18.070: connect to Database: write Registration in Database
+28.02.2016 01:26:18.070: Registration request
+28.02.2016 01:26:18.070: connect to Database
+28.02.2016 01:26:18.070: Login request
+28.02.2016 01:26:18.070: A Client disconnected.

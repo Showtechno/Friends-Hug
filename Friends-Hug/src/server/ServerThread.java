@@ -119,9 +119,11 @@ public class ServerThread extends Thread {
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")){
 					cNameChangeObject.getInstance().nameChange(flagdetectionObject.getText(), this);
+					LogfileWriter.getInstance().writeLogfile("Name change request");
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")){
 					cPasswortChangeObject.getInstance().passwortChange(flagdetectionObject.getText(), this);
+					LogfileWriter.getInstance().writeLogfile("Passwort change request");
 				}
 			}
 		} catch (Exception e) {
