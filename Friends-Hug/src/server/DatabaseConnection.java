@@ -71,6 +71,85 @@ public class DatabaseConnection {
 		return Integer.toString(lastID);
 	}
 
+	public void ConnectionNameChange(String sqlStatement, ServerThread s,
+			String[] data) {
+		Connection connection = null;
+		ResultSet resultSet = null;
+		Statement statement = null;
+		String searchUserName = "SELECT UserName FROM Data";
+		String changeName = "UPDATE Data SET UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[1]
+				+ "' WHERE UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			if (sqlStatement.equals(searchUserName)) {
+				resultSet = statement.executeQuery(searchUserName);
+				while (resultSet.next()) {
+					System.out.println("gucken ob nutzer name schon vergeben");
+					if (resultSet.getString(1).equals(
+							RegiSplitter.getInstance().getRegiInfos()[1])) {
+						s.sendServerThread("FLAG_NAMECHANGE;Benutzername schon vergeben");
+						setUsernameAvailable(false);
+						System.out.println("Nutzername schon vergeben");
+					} else {
+						setUsernameAvailable(true);
+						System.out.println("Nutzername noch frei");
+						
+					}
+				}
+			} 
+			if(sqlStatement.equals(changeName)){
+				statement.executeUpdate(changeName);
+				s.sendServerThread("FLAG_NAMECHANGE;1");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void ConnectionPasswortChange(String sqlStatement, ServerThread s,
+			String[] data) {
+		Connection connection = null;
+		ResultSet resultSet = null;
+		Statement statement = null;
+		String changePasswort = "UPDATE Data SET Passwort = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[1]
+				+ "' WHERE UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			if (sqlStatement.equals(changePasswort)) {
+				statement.executeUpdate(changePasswort);
+				s.sendServerThread("FLAG_PASSWORTCHANGE;1");
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
 	public void ConnectionLogIn(String sqlStatement, ServerThread s,
 			String[] data) {
 		Connection connection = null;
