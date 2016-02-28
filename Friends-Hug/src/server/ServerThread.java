@@ -23,7 +23,9 @@ public class ServerThread extends Thread {
 	DataOutputStream outToClient;
 	private Flagdetection flagdetectionObject = new Flagdetection();
 	private CRegistration cRegistrationObject = new CRegistration();
+	private CNameChange cNameChangeObject = new CNameChange();
 	private CLogIn cLoginObject = new CLogIn();
+	private CPasswortChange cPasswortChangeObject = new CPasswortChange();
 	private String Username;
 	String userList="";
 	
@@ -114,6 +116,12 @@ public class ServerThread extends Thread {
 				if(flagdetectionObject.getFlag().equals("FLAG_REGI")){
 					cRegistrationObject.getInstance().writeRegiIntoDB(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Registration request");
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")){
+					cNameChangeObject.getInstance().nameChange(flagdetectionObject.getText(), this);
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")){
+					cPasswortChangeObject.getInstance().passwortChange(flagdetectionObject.getText(), this);
 				}
 			}
 		} catch (Exception e) {

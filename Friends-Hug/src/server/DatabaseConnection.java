@@ -52,7 +52,7 @@ public class DatabaseConnection {
 					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
 			statement = connection.createStatement();
 			resultSet = statement.executeQuery(searchUserID);
-			while(resultSet.next()){
+			while (resultSet.next()) {
 				lastID = (Integer.valueOf(resultSet.getString(1)));
 			}
 			lastID++;
@@ -70,6 +70,81 @@ public class DatabaseConnection {
 		return Integer.toString(lastID);
 	}
 
+	public void ConnectionNameChange(String sqlStatement, ServerThread s,
+			String[] data) {
+		Connection connection = null;
+		ResultSet resultSet = null;
+		Statement statement = null;
+		String searchUserName = "SELECT UserName FROM Data";
+		String changeName = "UPDATE Data SET UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[1]
+				+ "' WHERE UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			if (sqlStatement.equals(searchUserName)) {
+				resultSet = statement.executeQuery(searchUserName);
+				while (resultSet.next()) {
+					if (resultSet.getString(1).equals(
+							RegiSplitter.getInstance().getRegiInfos()[2])) {
+						s.sendServerThread("FLAG_NAMECHANGE;Benutzername schon vergeben");
+						setUsernameAvailable(false);
+					} else {
+						setUsernameAvailable(true);
+					}
+				}
+			} 
+			if(sqlStatement.equals(changeName)){
+				statement.executeUpdate(changeName);
+				s.sendServerThread("FLAG_NAMECHANGE;1");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
+	public void ConnectionPasswortChange(String sqlStatement, ServerThread s,
+			String[] data) {
+		Connection connection = null;
+		ResultSet resultSet = null;
+		Statement statement = null;
+		String changePasswort = "UPDATE Data SET Passwort = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[1]
+				+ "' WHERE UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
+		try {
+			connection = DriverManager
+					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			if (sqlStatement.equals(changePasswort)) {
+				statement.executeUpdate(changePasswort);
+				s.sendServerThread("FLAG_PASSWORTCHANGE;1");
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				resultSet.close();
+				statement.close();
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
 	public void ConnectionLogIn(String sqlStatement, ServerThread s,
 			String[] data) {
 		Connection connection = null;
@@ -144,9 +219,9 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[2])) {
 						s.sendServerThread("FLAG_REGI;Benutzername schon vergeben");
 						setUsernameAvailable(false);
-						LogfileWriter.getInstance().writeLogfile("Registration failed. Username already in use");
-					}
-					else{
+						LogfileWriter.getInstance().writeLogfile(
+								"Registration failed. Username already in use");
+					} else {
 						setUsernameAvailable(true);
 					}
 				}
@@ -158,9 +233,9 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[4])) {
 						s.sendServerThread("FLAG_REGI;Email schon vergeben");
 						setEmailAvailable(false);
-						LogfileWriter.getInstance().writeLogfile("Registration failed. Email already in use");
-					}
-					else{
+						LogfileWriter.getInstance().writeLogfile(
+								"Registration failed. Email already in use");
+					} else {
 						setEmailAvailable(true);
 					}
 				}
@@ -168,7 +243,8 @@ public class DatabaseConnection {
 			if (sqlStatement.equals(writeUserDB)) {
 				statement.executeUpdate(writeUserDB);
 				s.sendServerThread("FLAG_REGI;SUCCESS");
-				LogfileWriter.getInstance().writeLogfile("Registration complete");
+				LogfileWriter.getInstance().writeLogfile(
+						"Registration complete");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

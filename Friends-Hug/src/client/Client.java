@@ -166,6 +166,26 @@ public class Client {
 								"Logindaten nicht korrekt!");
 					}
 				}
+				if(flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")){
+					if(flagdetectionObject.getText().contains("vergeben")){
+						JOptionPane.showMessageDialog(null,
+								"Nutzername ist schon vergeben");
+					}
+					if(flagdetectionObject.getText().equals("1")){
+						JOptionPane.showMessageDialog(null,
+								"Name erfolgreich geändert");
+					}
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")){
+					if(flagdetectionObject.getText().equals("1")){
+						JOptionPane.showMessageDialog(null,
+								"Passwort erfolgreich geändert");
+					}
+					else{
+						JOptionPane.showMessageDialog(null,
+								"Passowrt konnte nicht geändert werden");
+					}
+				}
 			}
 
 		}
