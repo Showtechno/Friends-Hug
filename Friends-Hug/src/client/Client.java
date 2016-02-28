@@ -71,10 +71,13 @@ public class Client {
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-
+	//singelton Pattern
 	public static Client getInstance() {
 		if (instance == null) {
 			instance = new Client();
+			/* Client oeffnet ein Socket mit dem Port:1337
+			 * oeffnet einen outputstream auf dem Socket
+			 */
 			try {
 				instance.clientSocket = new Socket("localhost", 1337);
 				writer = new PrintWriter(
@@ -90,11 +93,10 @@ public class Client {
 		}
 		return instance;
 	}
-
+	/* ließt den Inputstream ein
+	 * wertet die Empfangenen ,,FLAGs" aus
+	 */
 	public void start() {
-
-		// Client Ã¶ffnet ein Verbindung mit dem Port:1337
-		// FEHLT INTERNET CONNECTION
 		try {
 			while (true) {
 				BufferedReader in = new BufferedReader(new InputStreamReader(
@@ -111,24 +113,30 @@ public class Client {
 				} else {
 					setTextVomServer(null);
 				}
+				//Auswertung der Registrierung
 				if (flagdetectionObject.getFlag().equals("FLAG_REGI")) {
+					//Benuter oder Email schon vergeben
 					if (flagdetectionObject.getText().contains("Benutzername")
 							|| flagdetectionObject.getText().contains("Email")) {
+						//ueberprüfung der Benutzerobeflaeche(Registration)
 						if (Frame.getInstance().getContentPane() instanceof Registration) {
 							JOptionPane.showMessageDialog(null,
 									flagdetectionObject.getText());
-						} else {
+						}
+						else {
 							Frame.getInstance().switchPanel(Frame.REGISTATION);
 							JOptionPane.showMessageDialog(null,
 									flagdetectionObject.getText());
 						}
 					}
+					//Registration erfolgreich
 					if (flagdetectionObject.getText().equals("SUCCESS")) {
 						Frame.getInstance().switchPanel(Frame.LOGIN);
 						JOptionPane.showMessageDialog(null,
 								"Registration erfolgreich!");
 					}
 				}
+				//Auswertung zum Anzeigen der Teilnehmenr
 				if(flagdetectionObject.getFlag().equals("FLAG_ADD")){
 					ClientListSplitter.getInstance().returnListClient(flagdetectionObject.getText());
 					Chatfenster.getListModel().removeAllElements();
@@ -140,17 +148,19 @@ public class Client {
 						Chatfenster.addUser(ClientListSplitter.getInstance().getList().get(i));
 					}
 				}
+				//Auswertung des Logins
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
 					
 					String parts [] = flagdetectionObject.getText().split(",");
 					String success= parts[0];
 					String name = parts[1];
-					
+					//gesendete logindaten waren korrekt
 					if(success.equals("1")){
 						setUserName(name);
 						Frame.getInstance().switchPanel(Frame.CHATMENU);
 						
 					}
+					//gesendete logindaten waren nicht korrekt
 					if(flagdetectionObject.getFlag().equals("0")){
 						JOptionPane.showMessageDialog(null,
 								"Logindaten nicht korrekt!");
@@ -159,13 +169,13 @@ public class Client {
 			}
 
 		}
-		// gui anschluss fehlt
+		//verbindung wird zum Server Unterbrochen und informiert clientuser
 		catch (Exception e) { 
 			JOptionPane.showMessageDialog(null,"Verbindung zum Server unterbrochen!");
 			System.exit(0);
 		}
 	}
-
+//Methode zum senden zum Server ueber den outputstrem am Socket
 	public void send(String outToServerString) {
 		writer.println(outToServerString);
 		writer.flush();
