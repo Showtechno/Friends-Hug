@@ -125,7 +125,7 @@ public class DatabaseConnection {
 	public void ConnectionPasswortChange(String sqlStatement, ServerThread s,
 			String[] data) {
 		Connection connection = null;
-		ResultSet resultSet = null;
+//		ResultSet resultSet = null;
 		Statement statement = null;
 		String changePasswort = "UPDATE Data SET Passwort = '"
 				+ RegiSplitter.getInstance().getRegiInfos()[1]
@@ -141,14 +141,14 @@ public class DatabaseConnection {
 				statement.executeUpdate(changePasswort);
 				s.sendServerThread("FLAG_PASSWORTCHANGE;1");
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				resultSet.close();
+//				resultSet.close();
 				statement.close();
 				connection.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

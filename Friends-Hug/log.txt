@@ -72,3 +72,35 @@
 29.02.2016 05:03:53.138: A Client disconnected.
 29.02.2016 05:03:53.138: A Client disconnected.
 29.02.2016 05:03:53.138: A Client disconnected.
+29.02.2016 05:15:23.398: connect to Database
+29.02.2016 05:15:23.398: Login request
+29.02.2016 05:15:23.398: connect to Database
+29.02.2016 05:15:23.398: Login request
+29.02.2016 05:15:23.398: connect to Database
+29.02.2016 05:15:23.398: Login request
+29.02.2016 05:15:23.398: A Client disconnected.
+29.02.2016 05:15:23.398: A Client disconnected.
+29.02.2016 05:15:23.398: A Client disconnected.
+29.02.2016 05:20:32.658: connect to Database
+29.02.2016 05:20:32.658: Login request
+29.02.2016 05:20:32.658: A Client disconnected.
+29.02.2016 05:20:32.658: connect to Database
+29.02.2016 05:20:32.658: Login request
+29.02.2016 05:20:32.658: A Client disconnected.
+29.02.2016 05:20:32.658: connect to Database
+29.02.2016 05:20:32.658: Login request
+29.02.2016 05:20:32.658: A Client disconnected.
+29.02.2016 05:20:32.658: connect to Database
+29.02.2016 05:20:32.658: Login request
+29.02.2016 05:20:32.658: A Client disconnected.
+29.02.2016 05:27:42.963: connect to Database
+29.02.2016 05:27:42.963: Login request
+29.02.2016 05:27:42.963: A Client disconnected.
+29.02.2016 05:28:27.653: connect to Database
+29.02.2016 05:28:27.653: Login request
+29.02.2016 05:28:27.653: Passwort change request
+29.02.2016 05:28:27.653: A Client disconnected.
+29.02.2016 05:29:37.992: connect to Database
+29.02.2016 05:29:37.992: Login request
+29.02.2016 05:29:37.992: Passwort change request
+29.02.2016 05:29:37.992: A Client disconnected.
