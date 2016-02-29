@@ -59,7 +59,7 @@ public class Chatmenu
 			public void actionPerformed(ActionEvent e){
 				Client.getInstance().send("FLAG_LOGOUT;" + Client.getInstance().getUserName());
 				Client.getInstance().setUserName(null);
-				Frame.getInstance().switchPanel(Frame.START);
+				System.exit(0);
 			}
 		});
 		
