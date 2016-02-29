@@ -105,18 +105,18 @@ public class ServerThread extends Thread {
 					cLoginObject.getInstance().logIn(flagdetectionObject.getText(),this);
 					LogfileWriter.getInstance().writeLogfile("Login request");
 					if(getUsername()!= null){
-						server.getList().add(getUsername());
-						for(int i = 0; i < server.getList().size(); i++){
-							if(userList==""){
-								userList = server.getList().get(i);   
-							}
-							else{
-								userList = userList +',' + server.getList().get(i);
-							}
-						}
+//						server.getList().add(getUsername());
+//						for(int i = 0; i < server.getList().size(); i++){
+//							if(userList==""){
+//								userList = server.getList().get(i);   
+//							}
+//							else{
+//								userList = userList +',' + server.getList().get(i);
+//							}
+//						}
 						System.out.println(userList);
 						for (ServerThread s : server.clientlist.values()) {
-								s.sendServerThread("FLAG_ADD;" + userList );
+								s.sendServerThread("FLAG_ADD;" + getUsername());
 						}
 					}
 				}

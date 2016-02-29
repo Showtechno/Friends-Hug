@@ -17,7 +17,7 @@ public class Client {
 
 	// Text vom Server
 	private String textVomServer;
-	
+
 	private String UserName;
 
 	private Boolean isConnected = false;
@@ -64,6 +64,7 @@ public class Client {
 	public void setOutToServerText(String outToServerText) {
 		this.outToServerText = outToServerText;
 	}
+
 	public String getUserName() {
 		return UserName;
 	}
@@ -71,12 +72,14 @@ public class Client {
 	public void setUserName(String userName) {
 		UserName = userName;
 	}
-	//singelton Pattern
+
+	// singelton Pattern
 	public static Client getInstance() {
 		if (instance == null) {
 			instance = new Client();
-			/* Client oeffnet ein Socket mit dem Port:1337
-			 * oeffnet einen outputstream auf dem Socket
+			/*
+			 * Client oeffnet ein Socket mit dem Port:1337 oeffnet einen
+			 * outputstream auf dem Socket
 			 */
 			try {
 				instance.clientSocket = new Socket("localhost", 1337);
@@ -93,8 +96,9 @@ public class Client {
 		}
 		return instance;
 	}
-	/* ließt den Inputstream ein
-	 * wertet die Empfangenen ,,FLAGs" aus
+
+	/*
+	 * ließt den Inputstream ein wertet die Empfangenen ,,FLAGs" aus
 	 */
 	public void start() {
 		try {
@@ -113,80 +117,84 @@ public class Client {
 				} else {
 					setTextVomServer(null);
 				}
-				//Auswertung der Registrierung
+				// Auswertung der Registrierung
 				if (flagdetectionObject.getFlag().equals("FLAG_REGI")) {
-					//Benuter oder Email schon vergeben
+					// Benuter oder Email schon vergeben
 					if (flagdetectionObject.getText().contains("Benutzername")
 							|| flagdetectionObject.getText().contains("Email")) {
-						//ueberprüfung der Benutzerobeflaeche(Registration)
+						// ueberprüfung der Benutzerobeflaeche(Registration)
 						if (Frame.getInstance().getContentPane() instanceof Registration) {
 							JOptionPane.showMessageDialog(null,
 									flagdetectionObject.getText());
-						}
-						else {
+						} else {
 							Frame.getInstance().switchPanel(Frame.REGISTATION);
 							JOptionPane.showMessageDialog(null,
 									flagdetectionObject.getText());
 						}
 					}
-					//Registration erfolgreich
+					// Registration erfolgreich
 					if (flagdetectionObject.getText().equals("SUCCESS")) {
 						Frame.getInstance().switchPanel(Frame.LOGIN);
 						JOptionPane.showMessageDialog(null,
 								"Registration erfolgreich!");
 					}
 				}
-				//Auswertung zum Anzeigen der Teilnehmenr
-				if(flagdetectionObject.getFlag().equals("FLAG_ADD")){
-					ClientListSplitter.getInstance().returnListClient(flagdetectionObject.getText());
-					Chatfenster.getListModel().removeAllElements();
-//					System.out.println(Chatfenster.getListModel().getSize());
-//					for(int i=0;i<Chatfenster.getListModel().getSize();i++){
-//						Chatfenster.getListModel().remove(i);
-//					}
-					for(int i=0;i<ClientListSplitter.getInstance().getList().size();i++){
-						Chatfenster.addUser(ClientListSplitter.getInstance().getList().get(i));
+				// Auswertung zum Anzeigen der Teilnehmenr
+				if (flagdetectionObject.getFlag().equals("FLAG_ADD")) {
+					ClientListSplitter.getInstance().returnListClient(
+							flagdetectionObject.getText());
+				 Chatfenster.getListModel().removeAllElements();
+					// System.out.println(Chatfenster.getListModel().getSize());
+					// for(int i=0;i<Chatfenster.getListModel().getSize();i++){
+					// Chatfenster.getListModel().remove(i);
+					// }
+//					Chatfenster.deletUser();
+
+					 
+					for (int i = 0; i < ClientListSplitter.getInstance()
+							.getList().size(); i++) {
+						Chatfenster.addUser(ClientListSplitter.getInstance()
+								.getList().get(i));
 					}
 				}
-				//Auswertung des Logins
-				if(flagdetectionObject.getFlag().equals("FLAG_LOGIN")){
-					
-					String parts [] = flagdetectionObject.getText().split(",");
-					String success= parts[0];
+				// Auswertung des Logins
+				if (flagdetectionObject.getFlag().equals("FLAG_LOGIN")) {
+
+					String parts[] = flagdetectionObject.getText().split(",");
+					String success = parts[0];
 					String name = parts[1];
-					//gesendete logindaten waren korrekt
-					if(success.equals("1")){
+					// gesendete logindaten waren korrekt
+					if (success.equals("1")) {
 						setUserName(name);
 						Frame.getInstance().switchPanel(Frame.CHATMENU);
-						
+
 					}
-					//gesendete logindaten waren nicht korrekt
-					if(flagdetectionObject.getFlag().equals("0")){
+					// gesendete logindaten waren nicht korrekt
+					if (flagdetectionObject.getFlag().equals("0")) {
 						JOptionPane.showMessageDialog(null,
 								"Logindaten nicht korrekt!");
 					}
 				}
-				//Auswertung des Namen aenderns
-				if(flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")){
-					//Name schon vergeben
-					if(flagdetectionObject.getText().contains("vergeben")){
+				// Auswertung des Namen aenderns
+				if (flagdetectionObject.getFlag().equals("FLAG_NAMECHANGE")) {
+					// Name schon vergeben
+					if (flagdetectionObject.getText().contains("vergeben")) {
 						JOptionPane.showMessageDialog(null,
 								"Nutzername ist schon vergeben");
 					}
-					//Name noch nicht vergeben
-					if(flagdetectionObject.getText().equals("1")){
+					// Name noch nicht vergeben
+					if (flagdetectionObject.getText().equals("1")) {
 						JOptionPane.showMessageDialog(null,
 								"Name erfolgreich geändert");
 					}
 				}
-				//Auswertung des Passwort aenderns
-				if(flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")){
-					//Passwort wurde geaendert
-					if(flagdetectionObject.getText().equals("1")){
+				// Auswertung des Passwort aenderns
+				if (flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")) {
+					// Passwort wurde geaendert
+					if (flagdetectionObject.getText().equals("1")) {
 						JOptionPane.showMessageDialog(null,
 								"Passwort erfolgreich geändert");
-					}
-					else{
+					} else {
 						JOptionPane.showMessageDialog(null,
 								"Passowrt konnte nicht geändert werden");
 					}
@@ -194,17 +202,19 @@ public class Client {
 			}
 
 		}
-		//verbindung wird zum Server Unterbrochen und informiert clientuser
-		catch (Exception e) { 
-			JOptionPane.showMessageDialog(null,"Verbindung zum Server unterbrochen!");
+		// verbindung wird zum Server Unterbrochen und informiert clientuser
+		catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"Verbindung zum Server unterbrochen!");
 			System.exit(0);
 		}
 	}
-//Methode zum senden zum Server ueber den outputstrem am Socket
+
+	// Methode zum senden zum Server ueber den outputstrem am Socket
 	public void send(String outToServerString) {
 		writer.println(outToServerString);
 		writer.flush();
 
 	}
-	
+
 }
