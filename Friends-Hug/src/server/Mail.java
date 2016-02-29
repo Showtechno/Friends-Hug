@@ -35,7 +35,7 @@ public class Mail {
 			message.setText(Integer.toString(code));
 			//Nachricht senden
 			Transport.send(message);
-			System.out.println("Nachricht wurde gesendet");
+			LogfileWriter.getInstance().writeLogfile("Nachricht wurde gesendet");
 		}catch(MessagingException mex){
 			mex.printStackTrace();
 		}

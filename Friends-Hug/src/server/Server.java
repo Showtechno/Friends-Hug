@@ -37,7 +37,7 @@ public class Server {
 		try{
 			//ein socket wird auf port 1337 geoeffnet
 			ServerSocket serverSocket = new ServerSocket(1337);
-			System.out.println("Server ist im Betrieb");
+			LogfileWriter.getInstance().writeLogfile("Server ist im Betrieb");
 			while(true){
 				/*server nimmt jede einkommende verbindung an und startet ein neuen Thread und uebergibt ihm
 				 * den socket seine ,,Verbindungsnummer" und den Server selbst
@@ -49,11 +49,11 @@ public class Server {
 				serverThread.start();
 				clientlist.put(listnumber, serverThread);
 				listnumber++;
-				System.out.println("Verbindungsnummer: "+ listnumber);
+				LogfileWriter.getInstance().writeLogfile("Verbindungsnummer: "+ listnumber);
 			}
 		}
 		catch(Exception e){
-			System.out.println("Server funktioniert nicht.");
+			LogfileWriter.getInstance().writeLogfile("Server crashed");
 			e.printStackTrace();
 		}
 	}

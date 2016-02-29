@@ -95,10 +95,10 @@ public class DatabaseConnection {
 							RegiSplitter.getInstance().getRegiInfos()[1])) {
 						s.sendServerThread("FLAG_NAMECHANGE;Benutzername schon vergeben");
 						setUsernameAvailable(false);
-						System.out.println("Nutzername schon vergeben");
+						LogfileWriter.getInstance().writeLogfile("Nutzername schon vergeben");
 					} else {
 						setUsernameAvailable(true);
-						System.out.println("Nutzername noch frei");
+						LogfileWriter.getInstance().writeLogfile("Nutzername noch frei");
 
 					}
 				}
@@ -267,8 +267,6 @@ public class DatabaseConnection {
 			}
 			// schreiben in die Datenbank(Registrationsdaten)
 			if (sqlStatement.equals(writeUserDB)) {
-				System.out.println("regi gesendet");
-				System.out.println(IDNumberSearchLast());
 				statement.executeUpdate(writeUserDB);
 				s.sendServerThread("FLAG_REGI;SUCCESS");
 				LogfileWriter.getInstance().writeLogfile(
