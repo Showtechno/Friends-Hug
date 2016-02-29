@@ -108,14 +108,14 @@ public class DatabaseConnection {
 				statement.executeUpdate(changeName);
 				s.sendServerThread("FLAG_NAMECHANGE;1");
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
-				resultSet.close();
+//				resultSet.close();
 				statement.close();
 				connection.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
