@@ -114,7 +114,6 @@ public class ServerThread extends Thread {
 //								userList = userList +',' + server.getList().get(i);
 //							}
 //						}
-						System.out.println(userList);
 						for (ServerThread s : server.clientlist.values()) {
 								s.sendServerThread("FLAG_ADD;" + getUsername());
 						}
@@ -148,7 +147,6 @@ public class ServerThread extends Thread {
 		}
 		//faengt ab das die Clientverbindung abgebrochen ist und loescht ihn aus der Server clientlist
 		catch (Exception e) {
-			System.out.println("A Client disconnected.");
 			LogfileWriter.getInstance().writeLogfile("A Client disconnected.");
 			for (ServerThread s : server.clientlist.values()) {
 				if(s.isAlive()== false){

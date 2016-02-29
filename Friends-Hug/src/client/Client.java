@@ -106,7 +106,6 @@ public class Client {
 				BufferedReader in = new BufferedReader(new InputStreamReader(
 						clientSocket.getInputStream()));
 				String serverResponse = in.readLine();
-				System.out.println("vom Server empfangen: " + serverResponse);
 				setTextVomServer(serverResponse);
 				Flagdetection flagdetectionObject = new Flagdetection();
 				flagdetectionObject.returnFlagText(getTextVomServer());
@@ -152,14 +151,7 @@ public class Client {
 				if (flagdetectionObject.getFlag().equals("FLAG_ADD")) {
 					ClientListSplitter.getInstance().returnListClient(
 							flagdetectionObject.getText());
-				 Chatfenster.getListModel().removeAllElements();
-					// System.out.println(Chatfenster.getListModel().getSize());
-					// for(int i=0;i<Chatfenster.getListModel().getSize();i++){
-					// Chatfenster.getListModel().remove(i);
-					// }
-//					Chatfenster.deletUser();
-
-					 
+				 Chatfenster.getListModel().removeAllElements();			 
 					for (int i = 0; i < ClientListSplitter.getInstance()
 							.getList().size(); i++) {
 						Chatfenster.addUser(ClientListSplitter.getInstance()
