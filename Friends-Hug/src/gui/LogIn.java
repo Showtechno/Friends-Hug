@@ -49,11 +49,11 @@ public class LogIn
 		lblCode.setBounds(10, 131, 130, 40);
 		add(lblCode);
 		
-		JTextField txtName = new JTextField("Showtech");
+		JTextField txtName = new JTextField();
 		txtName.setBounds(162, 11, 200, 20);
 		add(txtName);
 		
-		JTextField txtPasswort = new JPasswordField("123");
+		JTextField txtPasswort = new JPasswordField();
 		txtPasswort.setBounds(162, 51, 200, 20);
 		add(txtPasswort);
 		

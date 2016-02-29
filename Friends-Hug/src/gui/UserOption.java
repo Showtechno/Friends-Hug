@@ -70,11 +70,11 @@ public class UserOption extends MenuPanel {
 		lblNeuesPasswordWiederholen.setBounds(10, 370, 186, 14);
 		add(lblNeuesPasswordWiederholen);
 
-		JTextField txtneuerName = new JTextField("Mel");
+		JTextField txtneuerName = new JTextField();
 		txtneuerName.setBounds(206, 106, 86, 20);
 		add(txtneuerName);
 
-		JTextField txtneuerNameWiederholen = new JTextField("Mel");
+		JTextField txtneuerNameWiederholen = new JTextField();
 		txtneuerNameWiederholen.setBounds(206, 140, 86, 20);
 		add(txtneuerNameWiederholen);
 

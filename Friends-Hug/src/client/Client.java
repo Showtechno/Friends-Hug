@@ -139,6 +139,15 @@ public class Client {
 								"Registration erfolgreich!");
 					}
 				}
+				
+				if(flagdetectionObject.getFlag().equals("FLAG_DELETE")){
+					for(int i = 0; i < Chatfenster.getListModel().getSize(); i++){
+						if(flagdetectionObject.getText().equals(Chatfenster.getListModel().getElementAt(i))){
+							Chatfenster.getListModel().remove(i);
+						}
+					}
+					}
+				
 				// Auswertung zum Anzeigen der Teilnehmenr
 				if (flagdetectionObject.getFlag().equals("FLAG_ADD")) {
 					ClientListSplitter.getInstance().returnListClient(
