@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
+import client.Client;
+
 
 public class Chatmenu
 		extends MenuPanel {
@@ -55,7 +57,9 @@ public class Chatmenu
 		add(btnAbmelden);
 		btnAbmelden.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent e){
-				System.out.println("Abmelden fehlt");
+				Client.getInstance().send("FLAG_LOGOUT;" + Client.getInstance().getUserName());
+				Client.getInstance().setUserName(null);
+				Frame.getInstance().switchPanel(Frame.START);
 			}
 		});
 		

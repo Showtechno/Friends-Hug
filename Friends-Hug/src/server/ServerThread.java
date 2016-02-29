@@ -138,6 +138,12 @@ public class ServerThread extends Thread {
 					cPasswortChangeObject.getInstance().passwortChange(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Passwort change request");
 				}
+				if(flagdetectionObject.getFlag().equals("FLAG_LOGOUT")){
+					for (ServerThread s : server.clientlist.values()) {
+						s.sendServerThread("FLAG_DELETE;" + getUsername());
+					}
+					setUsername(null);
+				}
 			}
 		}
 		//faengt ab das die Clientverbindung abgebrochen ist und loescht ihn aus der Server clientlist
