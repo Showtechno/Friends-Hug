@@ -100,8 +100,14 @@ public class Chatfenster
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode()== KeyEvent.VK_ENTER && !eingabe.getText().equals(null)){
-					Client.getInstance().send("FLAG_CHAT;"+ eingabe.getText());
-					eingabe.setText(null);
+					if(eingabe.getText().contains(";")){
+						JOptionPane.showMessageDialog(null,
+								"Es darf kein ; eingeben werden!");
+					}
+					else{
+							Client.getInstance().send("FLAG_CHAT;"+ eingabe.getText());
+							eingabe.setText(null);
+					}
 				}
 			}
 		});

@@ -179,7 +179,7 @@ public class DatabaseConnection {
 						s.sendServerThread("FLAG_LOGIN;1," + data[0]);
 						s.setUsername(data[0]);
 					} else {
-						s.sendServerThread("FLAG_LOGIN;0");
+						s.sendServerThread("FLAG_LOGIN;0,null");
 					}
 				}
 				resultSet.close();
@@ -197,14 +197,14 @@ public class DatabaseConnection {
 				}
 				resultSet.close();
 			}
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				resultSet.close();
 				statement.close();
 				connection.close();
-			} catch (SQLException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}

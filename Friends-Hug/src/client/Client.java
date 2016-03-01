@@ -85,10 +85,7 @@ public class Client {
 				instance.clientSocket = new Socket("localhost", 1337);
 				writer = new PrintWriter(
 						instance.clientSocket.getOutputStream());
-			} catch (UnknownHostException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -171,7 +168,7 @@ public class Client {
 
 					}
 					// gesendete logindaten waren nicht korrekt
-					if (flagdetectionObject.getFlag().equals("0")) {
+					if (success.equals("0")) {
 						JOptionPane.showMessageDialog(null,
 								"Logindaten nicht korrekt!");
 					}
@@ -205,6 +202,7 @@ public class Client {
 		}
 		// verbindung wird zum Server Unterbrochen und informiert clientuser
 		catch (Exception e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,
 					"Verbindung zum Server unterbrochen!");
 			System.exit(0);
