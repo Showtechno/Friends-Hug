@@ -54,7 +54,6 @@ public class Server {
 		}
 		catch(Exception e){
 			LogfileWriter.getInstance().writeLogfile("Server crashed");
-			e.printStackTrace();
 		}
 	}
 	public static void main(String[] args) {
