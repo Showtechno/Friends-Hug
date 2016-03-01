@@ -86,8 +86,7 @@ public class Client {
 				writer = new PrintWriter(
 						instance.clientSocket.getOutputStream());
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				System.out.println("Port belegt!");
 			}
 
 		}
@@ -202,7 +201,6 @@ public class Client {
 		}
 		// verbindung wird zum Server Unterbrochen und informiert clientuser
 		catch (Exception e) {
-			e.printStackTrace();
 			JOptionPane.showMessageDialog(null,
 					"Verbindung zum Server unterbrochen!");
 			System.exit(0);
@@ -213,7 +211,6 @@ public class Client {
 	public void send(String outToServerString) {
 		writer.println(outToServerString);
 		writer.flush();
-
 	}
 
 }
