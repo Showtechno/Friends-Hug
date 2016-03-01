@@ -185,6 +185,12 @@ public class Client {
 								"Name erfolgreich geändert");
 					}
 				}
+				if(flagdetectionObject.getFlag().equals("FLAG_DELET")){
+					if(flagdetectionObject.getText().equals("0")){
+						JOptionPane.showMessageDialog(null,
+								"Account konnte nicht gelöscht werden");
+					}
+				}
 				// Auswertung des Passwort aenderns
 				if (flagdetectionObject.getFlag().equals("FLAG_PASSWORTCHANGE")) {
 					// Passwort wurde geaendert
