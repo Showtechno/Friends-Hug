@@ -33,11 +33,4 @@ public class LogfileWriter {
 			System.out.println("ACHTUNG: Logfile konnte nicht beschrieben werden!");
 		}
 	}
-	public static void main(String[] args) {
-		LogfileWriter w = new LogfileWriter();
-		w.writeLogfile("test");
-		w.writeLogfile("test");
-		w.writeLogfile("test");
-		w.writeLogfile("test");
-	}
 }
