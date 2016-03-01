@@ -15,7 +15,9 @@ public class Frame
 	public static final int		CHATMENU			= 3;
 	public static final int		CHATFENSTER			= 4;
 	public static final int 	USEROPTION			= 5;
+	public static final int 	DELET				= 6;
 	public static final int 	BEENDEN				= -1;
+	private Delet				delet;
 	private Chatfenster 		chatfenster;
 	private UserOption			userOption;
 	private Start				start;
@@ -40,6 +42,7 @@ public class Frame
 		registration = new Registration(start);
 		chatfenster = new Chatfenster(start);
 		userOption = new UserOption(start);
+		delet = new Delet(start);
 		setContentPane(start);
 		setBounds(700, 450, 250 + 6, 300 + 29);
 		setTitle("Friends Hug");
@@ -83,6 +86,10 @@ public class Frame
 		}
 		case (USEROPTION): {
 			setContentPane(userOption);
+			break;
+		}
+		case (DELET):{
+			setContentPane(delet);
 			break;
 		}
 		

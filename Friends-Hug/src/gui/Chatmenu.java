@@ -50,6 +50,16 @@ public class Chatmenu
 			}
 		});
 		
+		JButton btnDelet  = new MenuButton(6);
+		btnDelet.setText("Account löschen");
+		btnDelet.setBounds(450, 150, 150, 50);
+		add(btnDelet);
+		btnDelet.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Frame.getInstance().switchPanel(Frame.DELET);
+			}
+		});
+		
 		JButton btnAbmelden = new MenuButton(0);
 		btnAbmelden.setText("Abmelden");
 		btnAbmelden.setBounds(300, 150, 150, 50);

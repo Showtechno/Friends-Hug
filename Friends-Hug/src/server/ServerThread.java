@@ -26,6 +26,7 @@ public class ServerThread extends Thread {
 	private CNameChange cNameChangeObject = new CNameChange();
 	private CLogIn cLoginObject = new CLogIn();
 	private CPasswortChange cPasswortChangeObject = new CPasswortChange();
+	private CDelet cDeletObjetct = new CDelet();
 	private String Username;
 	String userList="";
 	
@@ -136,6 +137,10 @@ public class ServerThread extends Thread {
 					//uebergibt den Passwortaendernauftrag an die Klasse
 					cPasswortChangeObject.getInstance().passwortChange(flagdetectionObject.getText(), this);
 					LogfileWriter.getInstance().writeLogfile("Passwort change request");
+				}
+				if(flagdetectionObject.getFlag().equals("FLAG_DELET")){
+					cDeletObjetct.getInstance().userDelet(flagdetectionObject.getText(), this);
+					LogfileWriter.getInstance().writeLogfile("User delet");
 				}
 				if(flagdetectionObject.getFlag().equals("FLAG_LOGOUT")){
 					for (ServerThread s : server.clientlist.values()) {

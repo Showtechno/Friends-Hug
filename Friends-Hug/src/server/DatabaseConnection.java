@@ -122,6 +122,40 @@ public class DatabaseConnection {
 
 	}
 
+	public void ConnectionUserDelet(String sqlStatement, ServerThread s,
+			String[] data) {
+		Connection connection = null;
+//		ResultSet resultSet = null;
+		Statement statement = null;
+		String userDelet = "DELETE FROM Data WHERE UserName = '"
+				+ RegiSplitter.getInstance().getRegiInfos()[0] + "'";
+		try {
+			//baut Verbindung zur DB auf
+			connection = DriverManager
+					.getConnection("jdbc:sqlite:db/FriendsHug.db3");
+			statement = connection.createStatement();
+			if (sqlStatement.equals(userDelet)) {
+				//löscht den User in der DB
+				statement.executeUpdate(userDelet);
+				s.sendServerThread("FLAG_DELET;1");
+			}
+			else{
+				s.sendServerThread("FLAG_DELET;0");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+//				resultSet.close();
+				statement.close();
+				connection.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+	
 	public void ConnectionPasswortChange(String sqlStatement, ServerThread s,
 			String[] data) {
 		Connection connection = null;
